@@ -5,14 +5,25 @@ packadd vimball
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Make sure you use single quotes
-Plug 'junegunn/vim-easy-align'
+
+" For the snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+" A tree explorer 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" Status bar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Git/alignments/latex
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/vim-easy-align'
 Plug 'vim-latex/vim-latex'
 
+" Autocompletion
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'jalvesaq/Nvim-R'
@@ -56,6 +67,9 @@ set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 " set autoread      " Automatically read again a file that has been changed outside of Vim
 
+" Useful stuff for buffers
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
@@ -85,6 +99,16 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme= 'deus'
+" Disable the whitespace extension to speed things up
+let g:airline#extensions#whitespace#enabled = 0
+" Don't show buffer numbers in the tab line
+let g:airline#extensions#tabline#buffer_nr_show = 0
+" enable/disable showing a summary of changed hunks under source control
+let g:airline#extensions#hunks#enabled = 1
 
 " vim latex stuff
 let g:Tex_DefaultTargetFormat = 'pdf'
