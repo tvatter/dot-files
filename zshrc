@@ -1,3 +1,6 @@
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
 # Some setup
 source functions.zsh                        # Load misc functions. Done in a seperate file to keep this from getting too long and ugly
 export LANG="en_US.UTF-8"                   # I'm not sure who looks at this, but I know it's good to set in general
@@ -43,9 +46,6 @@ alias wiki='web_search google site:wikipedia.com'
 alias news='web_search news'
 alias youtube='web_search youtube'
 alias map='web_search map'
-
-# Path to your oh-my-zsh installation.
-export ZSH="/home/tvatter/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
