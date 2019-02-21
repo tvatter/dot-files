@@ -18,19 +18,35 @@ sudo apt update
 Install required software
 
 ```
+sudo apt install xclip
 sudo apt install wget
 sudo apt install curl
 sudo apt install git
+sudo apt install gcc
+sudo apt install libclang-dev 
+sudo apt install clang
+sudo apt install texlive-full
 sudo apt install r-base 
 sudo apt install r-base-dev
 sudo apt install python-dev 
 sudo apt install python-pip
 sudo apt install python3-dev
 sudo apt install python3-pip
-sudo apt install libclang-dev clang
 sudo apt install neovim
 sudo apt install tmux
 ```
+
+### Configuring git
+
+Link .gitconfig:
+```
+ln -nfs ${PWD}/.gitconfig ~/.gitconfig
+```
+
+Add ssh key:
+
+  * https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+  * https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account
 
 ### Configuring ZSH
 
@@ -39,13 +55,15 @@ Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh):
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
 
-Link zshrc and zshrc.zni:
+Link required files:
 ```
+ln -nfs ${PWD}/functions.zsh ~/functions.zsh
 ln -nfs ${PWD}/zshrc ~/.zshrc
 ln -nfs ${PWD}/zshrc.zni ~/.zshrc.zni
 ```
 
-Make zsh the default terminal by /etc/passwd:
+Make zsh the default terminal by using `chsh -s /bin/zsh`, then log out and see
+if it worked. If not, then you'll need to manually change `/etc/passwd`:
 ```
 sudo vim /etc/passwd
 ```
@@ -87,7 +105,7 @@ Install plug-ins:
 nvim +PlugInstall
 ```
 
-For better latex
+For better latex:
 ```
 mkdir -p ~/.config/nvim/after
 mkdir -p ~/.config/nvim/after/syntax
@@ -108,8 +126,14 @@ rm -rf downloads
 
 ### Configuring R
 
-      - 
-      -    * ZSH: install with https://github.com/robbyrussell/oh-my-zsh
-   * R: update make command in Renviron (either /etc/R/Renviron or
-     /usr/lib/R/etc/Renviron, see R.home())
+Update make command in Renviron (either /etc/R/Renviron or 
+/usr/lib/R/etc/Renviron,see R.home()) to compile on multiple cores:
+```
+MAKE=${MAKE-'make -j 8'}
+```
+
+Link Makevars:
+```
+ln -nfs ${PWD}/Makevars ~/.R/Makevars
+```
 
