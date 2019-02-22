@@ -61,7 +61,24 @@ brew cask install mactex
 brew install r
 brew install python3
 brew install neovim
+brew install zsh-syntax-highlighting
+brew cask install iterm2
 ```
+
+Get a better color theme for iTerm2:
+
+  * [Solarized Dark theme](https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Solarized%20Dark%20-%20Patched.itermcolors) (patched version to fix the bright black value)
+  * [Solarized Light theme](https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors)
+  * [More themes @ iterm2colorschemes](http://iterm2colorschemes.com/)
+
+To install:
+
+* Just save it somewhere and open the file(s). The color settings will be imported into iTerm2. 
+  * Apply them in iTerm through iTerm → preferences → profiles → colors → load presets. 
+  * You can create a different profile other than `Default` if you wish to do so.
+
+From now on, use `iTerm2` instead of the default `terminal`
+It has better color fidelity than the built in, so your themes will look better.
 
 Run brew doctor and make sure that everything is OK (e.g., especially regarding
 the path):
@@ -101,6 +118,14 @@ ln -nfs ${PWD}/functions.zsh ~/functions.zsh
 ln -nfs ${PWD}/zshrc ~/.zshrc
 ln -nfs ${PWD}/zshrc.zni ~/.zshrc.zni
 ```
+
+Verify that the plugins `zsh-autosuggestions` and `zsh-syntax-highlighting` are in `~/.oh-my-zsh/plugins`. If not, then install them using:
+```
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting
+~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+```
+
 
 #### Ubuntu
 
