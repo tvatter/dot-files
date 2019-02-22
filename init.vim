@@ -123,7 +123,7 @@ imap <C-l> <Plug>Tex_LeftRight
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
-let g:ncm2_pyclang#library_path = '/usr/lib/llvm-6.0/lib'
+let g:ncm2_pyclang#library_path = '/usr/local/Cellar/llvm/7.0.1/lib' " '/usr/lib/llvm-6.0/lib'
 let g:ncm2_pyclang#database_path = [
             \ 'compile_commands.json',
             \ 'build/compile_commands.json'

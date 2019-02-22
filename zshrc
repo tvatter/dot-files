@@ -2,7 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # Some setup
-source functions.zsh                        # Load misc functions. Done in a seperate file to keep this from getting too long and ugly
+source $HOME/functions.zsh                  # Load misc functions. Done in a seperate file to keep this from getting too long and ugly
 export LANG="en_US.UTF-8"                   # I'm not sure who looks at this, but I know it's good to set in general
    
 # Misc
@@ -22,7 +22,11 @@ alias -g ......='../../../../..'
 alias -g .......='../../../../../..'
 alias -g ........='../../../../../../..'
 
-alias ls="ls -h --color='auto'"
+if [ "$(uname)" != "Linux" ]; then
+ alias ls='ls -h -G'
+else
+ alias ls="ls -h --color='auto'"
+fi
 alias lsa='ls -a'
 alias ll='ls -l'
 alias la='ls -la'

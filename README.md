@@ -5,6 +5,9 @@ My various dot files to avoid wasting time on install.
 
 ### Installs
 
+Install dropbox first (sync of files can take a long time):
+https://www.dropbox.com/install-linux
+
 Add repositories and update:
 
 ```
@@ -25,6 +28,7 @@ sudo apt install git
 sudo apt install gcc
 sudo apt install libclang-dev 
 sudo apt install clang
+sudo apt install cmake
 sudo apt install texlive-full
 sudo apt install r-base 
 sudo apt install r-base-dev
@@ -33,8 +37,12 @@ sudo apt install python-pip
 sudo apt install python3-dev
 sudo apt install python3-pip
 sudo apt install neovim
-sudo apt install tmux
 ```
+
+```
+pip3 install neovim
+```
+
 
 ### Configuring git
 
@@ -124,6 +132,15 @@ cd ..
 rm -rf downloads
 ```
 
+To be able to use autocomplete with R, it is necessary to:
+
+  * Disactivate ncm-R by commenting line 30 of `init.vim` (`Plug 'gaalcaras/ncm-R'`)
+  * Open an R file and launch an R terminal (`<leader>rf`, that is `\rf` by
+    default)
+  * Wait until Nvim-R has built the required `omni_*` files
+  * Close nvim
+  * Reactivate ncm-R by uncommenting the line above
+
 ### Configuring R
 
 Update make command in Renviron (either /etc/R/Renviron or 
@@ -137,3 +154,14 @@ Link Makevars:
 ln -nfs ${PWD}/Makevars ~/.R/Makevars
 ```
 
+### Configuring VNC
+
+Follow
+ 
+  * https://help.ubuntu.com/community/VNC/Servers#vino
+  * https://linuxconfig.org/ubuntu-remote-desktop-18-04-bionic-beaver-linux
+
+```
+gsettings set org.gnome.Vino require-encryption false
+gsettings reset org.gnome.Vino network-interface
+```
