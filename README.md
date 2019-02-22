@@ -8,6 +8,9 @@ My various dot files to avoid wasting time on install.
 Install dropbox first (sync of files can take a long time):
 https://www.dropbox.com/install-linux
 
+
+#### Ubuntu
+
 Add repositories and update:
 
 ```
@@ -19,7 +22,6 @@ sudo apt update
 ```
 
 Install required software
-
 ```
 sudo apt install xclip
 sudo apt install wget
@@ -38,6 +40,36 @@ sudo apt install python3-dev
 sudo apt install python3-pip
 sudo apt install neovim
 ```
+
+#### OSX
+
+Install homebrew:
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install caskroom/cask/brew-cask
+brew tap caskroom/cask
+```
+
+Install required software:
+```
+brew install wget
+brew install git
+brew install gcc
+brew install cmake
+brew install llvm
+brew cask install mactex
+brew install r
+brew install python3
+brew install neovim
+```
+
+Run brew doctor and make sure that everything is OK (e.g., especially regarding
+the path):
+```
+brew doctor
+```
+
+#### Both
 
 ```
 pip3 install neovim
@@ -70,6 +102,8 @@ ln -nfs ${PWD}/zshrc ~/.zshrc
 ln -nfs ${PWD}/zshrc.zni ~/.zshrc.zni
 ```
 
+#### Ubuntu
+
 Make zsh the default terminal by using `chsh -s /bin/zsh`, then log out and see
 if it worked. If not, then you'll need to manually change `/etc/passwd`:
 ```
@@ -87,6 +121,22 @@ username:x:1634231:100:Your Name:/home/username:/bin/zsh
 ```
 
 Log out and log in back for the changes to take effect.
+
+#### OSX
+
+Make zsh the default shell by using
+```
+chsh -s /bin/zsh
+```
+If it does's work, change manually using the menus.
+
+Run brew doctor and make sure that everything is OK (e.g., especially regarding
+the path):
+```
+brew doctor
+```
+
+
 
 ### Configuring NEOVIM
 
