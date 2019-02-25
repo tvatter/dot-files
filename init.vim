@@ -33,8 +33,15 @@ Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-pyclang'
 
+" Color theme
+Plug 'iCyMind/NeoSolarized'
+
 " Initialize plugin system
 call plug#end()
+
+" Color theme 
+set termguicolors
+colorscheme NeoSolarized
 
 " Let nerdree see hidden files and start with vim
 let NERDTreeShowHidden=1
