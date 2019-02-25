@@ -41,6 +41,14 @@ sudo apt install python3-pip
 sudo apt install neovim
 ```
 
+Install solarized theme for the GNOME terminal:
+```
+git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+cd gnome-terminal-colors-solarized
+./install.sh
+```
+And just follow the instructions.
+
 #### OSX
 
 Install homebrew:
@@ -62,10 +70,15 @@ brew install r
 brew install python3
 brew install neovim
 brew install zsh-syntax-highlighting
+```
+
+Check whether you can follow the instructions for the solarized theme on ubuntu,
+otherwise:
+```
 brew cask install iterm2
 ```
 
-Get a better color theme for iTerm2:
+And get a better color theme for iTerm2:
 
   * [Solarized Dark theme](https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Solarized%20Dark%20-%20Patched.itermcolors) (patched version to fix the bright black value)
   * [Solarized Light theme](https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors)

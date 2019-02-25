@@ -55,6 +55,12 @@ alias news='web_search news'
 alias youtube='web_search youtube'
 alias map='web_search map'
 
+# Colors theme
+if [ -f ~/.dir_colors/dircolors ]
+    then eval `dircolors ~/.dir_colors/dircolors`
+fi
+
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
