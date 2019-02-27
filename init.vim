@@ -50,7 +50,8 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Make it obvious where 80 characters is
 set textwidth=80
-set colorcolumn=+1
+set colorcolumn=+0
+set formatoptions-=t " remove if you want auto-wrap
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -73,6 +74,9 @@ set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 " set autoread      " Automatically read again a file that has been changed outside of Vim
+
+" Disable paste mode when leaving insert mode
+autocmd InsertLeave * set nopaste
 
 " Useful stuff for buffers
 nnoremap <F5> :buffers<CR>:buffer<Space>
@@ -116,6 +120,8 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#buffer_nr_show = 0
 " enable/disable showing a summary of changed hunks under source control
 let g:airline#extensions#hunks#enabled = 1
+" Disable the wordcount (gives weird results for latex anyway)
+let g:airline#extensions#wordcount#enabled = 0
 
 " vim latex stuff
 let g:Tex_DefaultTargetFormat = 'pdf'
