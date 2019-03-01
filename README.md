@@ -102,7 +102,8 @@ brew doctor
 #### Both
 
 ```
-pip3 install neovim
+pip3 install pynvim
+pip3 install unidecode
 ```
 
 
@@ -124,6 +125,13 @@ Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh):
 ```
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
+
+In `zshrc`, you can comment or update lines 19 and 20:
+```
+export PATH=/home/tvatter/anaconda3/bin:/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+```
+
 
 Link required files:
 ```

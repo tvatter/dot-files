@@ -11,11 +11,14 @@ setopt NO_BEEP                              # Disable beeps
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 if [ "$(uname)" != "Linux" ]; then
+ # for homebrew 
  export PATH=/usr/local/bin${PATH:+:${PATH}}
-else
- export PATH=/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
- export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 fi
+
+# For conda and cuda
+export PATH=/home/tvatter/anaconda3/bin:/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
 
 # Useful stuff
 
