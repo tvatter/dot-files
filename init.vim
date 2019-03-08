@@ -1,18 +1,17 @@
 set encoding=utf-8
-filetype plugin on
+filetype plugin indent on
 packadd vimball
 
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Make sure you use single quotes
 
-" For the snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
 " A tree explorer 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" Autocomplete brackets, parentheses, etc.
+Plug 'Raimondi/delimitMate'
 
 " Status bar
 Plug 'vim-airline/vim-airline'
@@ -32,6 +31,10 @@ Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-pyclang'
+
+" For the snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Color theme
 Plug 'iCyMind/NeoSolarized'
@@ -59,6 +62,10 @@ set shiftwidth=2
 set shiftround
 set expandtab
 
+" Define leader and local leader
+let mapleader = " "
+let maplocalleader = ","
+
 " Numbers
 set number
 set numberwidth=5
@@ -73,10 +80,15 @@ set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
+set autoindent    " apply the indentation of the current line to the next
+set smartindent   " reacts to the syntax/style of the code you are editing (especially for C)
 " set autoread      " Automatically read again a file that has been changed outside of Vim
 
 " Disable paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
+
+" Change between apste and nopaste modes easily
+set pastetoggle=<F3>
 
 " Useful stuff for buffers
 nnoremap <F5> :buffers<CR>:buffer<Space>
@@ -132,21 +144,35 @@ imap <C-b> <Plug>Tex_MathBF
 imap <C-c> <Plug>Tex_MathCal
 imap <C-l> <Plug>Tex_LeftRight
 
+" Snipet and popup menu
+" enter to trigger snippet expansion 
+" c-j c-k for moving in snippet
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+"let g:UltiSnipsRemoveSelectModeMappings = 0
+
 " ncm2 autocomplete
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
 let g:ncm2_pyclang#library_path = '/usr/lib/llvm-6.0/lib' "  '/usr/local/Cellar/llvm/7.0.1/lib'  
 let g:ncm2_pyclang#database_path = [
-            \ 'compile_commands.json',
-            \ 'build/compile_commands.json'
-            \ ]
+      \ 'compile_commands.json',
+      \ 'build/compile_commands.json'
+      \ ]
 
-" Snipet and popup menu
-" enter to trigger snippet expansion 
-" c-j c-k for moving in snippet
-inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-" let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
-let g:UltiSnipsRemoveSelectModeMappings = 0
+" setup that feels a little more like the completion menu of other IDEs 
+inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+" inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+
+" vim-R
+" autocmd VimResized * let R_rconsole_width = winwidth(0) " because the default sucks
+let R_assign = 2 " two '_' inserts ' <- '
+let R_buffer_opts = "nobuflisted" " remove winfixwidth to allow for automatic resizing
+" Press the space bar to send lines and selection to R:
+vmap <Space> <Plug>RDSendSelection
+nmap <Space> <Plug>RDSendLine
+
