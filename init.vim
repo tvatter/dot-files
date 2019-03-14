@@ -84,6 +84,14 @@ set autoindent    " apply the indentation of the current line to the next
 set smartindent   " reacts to the syntax/style of the code you are editing (especially for C)
 " set autoread      " Automatically read again a file that has been changed outside of Vim
 
+" Enable spell checking for specific file types
+" set spell
+augroup spell_checking
+    autocmd!
+    autocmd FileType markdown,latex,rmarkdown,text setlocal spell
+    autocmd BufRead,BufNewFile *.md,*.tex,*.rmd,*.Rmd,*.txt setlocal spell
+augroup END
+
 " Disable paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
 
