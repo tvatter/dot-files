@@ -261,3 +261,9 @@ Follow
 gsettings set org.gnome.Vino require-encryption false
 gsettings reset org.gnome.Vino network-interface
 ```
+
+### TODO
+
+  * [Autoformat](https://github.com/Chiel92/vim-autoformat)
+  * Python: Plug 'ncm2/ncm2-jedi'
+  * [Asynchronous linting/fixing](https://github.com/w0rp/ale)
