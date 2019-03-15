@@ -4,40 +4,50 @@ packadd vimball
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Make sure you use single quotes
+" Color theme
+Plug 'iCyMind/NeoSolarized'
 
 " A tree explorer 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" Autocomplete brackets, parentheses, etc.
-Plug 'Raimondi/delimitMate'
-
 " Status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Git/alignments/latex
+" Autocomplete brackets, parentheses, etc.
+Plug 'Raimondi/delimitMate'
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" Git
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/vim-easy-align'
+
+" Latex
 Plug 'vim-latex/vim-latex'
 
-" Autocompletion
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
+" R
 Plug 'jalvesaq/Nvim-R'
-Plug 'gaalcaras/ncm-R'
+
+" Markdown and RMarkdown
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-rmarkdown'
+
+" Autocompletion
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-pyclang'
+Plug 'ncm2/ncm2-jedi'
+Plug 'gaalcaras/ncm-R'
 
-" For the snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
-" Color theme
-Plug 'iCyMind/NeoSolarized'
+" Asynchronous linting/fixing
+Plug 'w0rp/ale'
 
 " Initialize plugin system
 call plug#end()
@@ -105,6 +115,21 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 set splitbelow
 set splitright
 
+" A cool trick to keep the content of register when pasting over selected text
+vnoremap <leader>p "_dP
+
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
 " Quicker window movement
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
@@ -124,12 +149,6 @@ tnoremap <Esc> <C-\><C-n>
 
 " To simulate |i_CTRL-R| in terminal-mode
 tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
@@ -183,4 +202,27 @@ let R_buffer_opts = "nobuflisted" " remove winfixwidth to allow for automatic re
 " Press the space bar to send lines and selection to R:
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
+" R output is highlighted with current colorscheme
+let g:rout_follow_colorscheme = 1
+" R commands in R output are highlighted
+let g:Rout_more_colors = 1
+
+" ALE
+let g:ale_enabled = 1
+let g:ale_sign_error = '✖︎'
+let g:ale_sign_warning = '✔︎'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
+let g:ale_c_parse_compile_commands = 1 " parse automatically `compile_commands.json`
+" Use linters available by default
+" let g:ale_linters = {
+"      \   'cpp': ['clang', 'clangcheck'],
+"      \}
+let g:ale_fixers = {
+      \   'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
+      \}
 

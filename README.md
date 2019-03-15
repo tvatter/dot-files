@@ -5,8 +5,7 @@ My various dot files to avoid wasting time on install.
 
 ### Installs
 
-Install dropbox first (sync of files can take a long time):
-https://www.dropbox.com/install-linux
+[Install dropbox first (sync of files can take a long time)](https://www.dropbox.com/install-linux)
 
 
 #### Ubuntu
@@ -22,6 +21,7 @@ sudo apt update
 ```
 
 Install required software
+
 ```
 sudo apt install xclip
 sudo apt install wget
@@ -30,6 +30,7 @@ sudo apt install git
 sudo apt install gcc
 sudo apt install libclang-dev 
 sudo apt install clang
+sudo apt install clang-tools
 sudo apt install cmake
 sudo apt install texlive-full
 sudo apt install r-base 
@@ -41,17 +42,26 @@ sudo apt install python3-pip
 sudo apt install neovim
 ```
 
+Because some clang tools are installed with their version number, you probably need:
+
+```
+sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
+```
+
 Install solarized theme for the GNOME terminal:
+
 ```
 git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
 cd gnome-terminal-colors-solarized
 ./install.sh
 ```
+
 And just follow the instructions.
 
 #### OSX
 
 Install homebrew:
+
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install caskroom/cask/brew-cask
@@ -59,6 +69,7 @@ brew tap caskroom/cask
 ```
 
 Install required software:
+
 ```
 brew install wget
 brew install git
@@ -74,6 +85,7 @@ brew install zsh-syntax-highlighting
 
 Check whether you can follow the instructions for the solarized theme on ubuntu,
 otherwise:
+
 ```
 brew cask install iterm2
 ```
@@ -95,21 +107,25 @@ It has better color fidelity than the built in, so your themes will look better.
 
 Run brew doctor and make sure that everything is OK (e.g., especially regarding
 the path):
+
 ```
 brew doctor
 ```
+
 
 #### Both
 
 ```
 pip3 install pynvim
 pip3 install unidecode
+pip3 install jedi
 ```
 
 
 ### Configuring git
 
 Link .gitconfig:
+
 ```
 ln -nfs ${PWD}/.gitconfig ~/.gitconfig
 ```
@@ -122,11 +138,13 @@ Add ssh key:
 ### Configuring ZSH
 
 Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh):
+
 ```
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
 
 In `zshrc`, you can comment or update lines 19 and 20:
+
 ```
 export PATH=/home/tvatter/anaconda3/bin:/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
@@ -134,6 +152,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRAR
 
 
 Link required files:
+
 ```
 ln -nfs ${PWD}/functions.zsh ~/functions.zsh
 ln -nfs ${PWD}/zshrc ~/.zshrc
@@ -141,6 +160,7 @@ ln -nfs ${PWD}/zshrc.zni ~/.zshrc.zni
 ```
 
 Verify that the plugins `zsh-autosuggestions` and `zsh-syntax-highlighting` are in `~/.oh-my-zsh/plugins`. If not, then install them using:
+
 ```
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting
@@ -152,64 +172,74 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting
 
 Make zsh the default terminal by using `chsh -s /bin/zsh`, then log out and see
 if it worked. If not, then you'll need to manually change `/etc/passwd`:
+
 ```
 sudo vim /etc/passwd
 ```
 
 Find the line with your username:
+
 ```
 username:x:1634231:100:Your Name:/home/username:/bin/bash
 ```
 
 And replace bash with zsh:
+
 ```
 username:x:1634231:100:Your Name:/home/username:/bin/zsh
 ```
 
 Log out and log in back for the changes to take effect.
 
+
 #### OSX
 
 Make zsh the default shell by using
+
 ```
 chsh -s /bin/zsh
 ```
+
 If it does's work, change manually using the menus.
 
 Run brew doctor and make sure that everything is OK (e.g., especially regarding
 the path):
+
 ```
 brew doctor
 ```
 
-
-
 ### Configuring NEOVIM
 
 Install plug-in manager:
+
 ```
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 Update line 96 in `init.vim`:
+
 ```
 let g:ncm2_pyclang#library_path = 'path/to/llvm/lib'
 ```
 
 
 Install configuration file:
+
 ```
 mkdir -p ~/.config/nvim
 ln -nfs ${PWD}/init.vim ~/.config/nvim/init.vim
 ```
 
 Install plug-ins:
+
 ```
 nvim +PlugInstall
 ```
 
 For better latex:
+
 ```
 mkdir -p ~/.config/nvim/after
 mkdir -p ~/.config/nvim/after/syntax
@@ -237,17 +267,36 @@ To be able to use autocomplete with R, it is necessary to:
   * Close nvim
   * Reactivate ncm-R by uncommenting the line above
 
+Note that the `rmarkdown` and `lintr` packages are required to get, respectively, Rmarkdown support and asynchronous linting.
+
 ### Configuring R
 
-Update make command in Renviron (either /etc/R/Renviron or 
-/usr/lib/R/etc/Renviron,see R.home()) to compile on multiple cores:
+Update make command in Renviron (either `/etc/R/Renviron` or 
+`/usr/lib/R/etc/Renviron`, see `R.home()`) to compile on multiple cores:
+
 ```
 MAKE=${MAKE-'make -j 8'}
 ```
 
 Link Makevars:
+
 ```
 ln -nfs ${PWD}/Makevars ~/.R/Makevars
+```
+
+Install needed packages:
+
+```
+install.packages('rmarkdown')
+install.packages('lintr')
+```
+
+If tensorflow is used on GPU, the following lines need to be added to `.profile`:
+
+```
+export CUDA_HOME=usr/local/cuda10.0
+export PATH=${CUDA_HOME}/bin:${PATH}
+export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
 ```
 
 ### Configuring VNC
@@ -263,7 +312,12 @@ gsettings reset org.gnome.Vino network-interface
 ```
 
 ### TODO
-
+ 
+  * On OSX: 
+      * check that `ale_cpp_clang_executable` use homebrew's clang
+      * verify install clangd [(for ALE)](https://github.com/w0rp/ale/blob/master/doc/ale-cpp.txt)
   * [Autoformat](https://github.com/Chiel92/vim-autoformat)
-  * Python: Plug 'ncm2/ncm2-jedi'
-  * [Asynchronous linting/fixing](https://github.com/w0rp/ale)
+  * Python (probably some cool stuff unrelated to autocompletion)  
+  * Octave
+  * [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) and [example use](https://github.com/kadekillary/init.vim/blob/master/init.vim)
+  
