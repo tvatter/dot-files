@@ -317,7 +317,7 @@ gsettings reset org.gnome.Vino network-interface
       * check that `ale_cpp_clang_executable` use homebrew's clang
       * verify install clangd [(for ALE)](https://github.com/w0rp/ale/blob/master/doc/ale-cpp.txt)
   * [Autoformat](https://github.com/Chiel92/vim-autoformat)
-  * Python (probably some cool stuff unrelated to autocompletion)  
+  * Python (explore better python-syntax and pymode)  
   * Octave
   * [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) and [example use](https://github.com/kadekillary/init.vim/blob/master/init.vim)
   
