@@ -179,6 +179,10 @@ tnoremap <Esc> <C-\><C-n>
 " To simulate |i_CTRL-R| in terminal-mode
 tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 
+" To clean up most syntax highlighting problems
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
+
 " ============================================================================
 " ======== NERDTree
 " ============================================================================
@@ -208,8 +212,9 @@ let g:airline#extensions#wordcount#enabled = 0
 " ============================================================================
 
 let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_MultipleCompileFormats='pdf,bib,pdf'
+let g:Tex_MultipleCompileFormats ='pdf,bib,pdf'
 let g:Tex_GotoError = 0
+" let g:Tex_AutoFolding = 0
 imap <C-v> <Plug>Tex_InsertItemOnThisLine
 imap <C-b> <Plug>Tex_MathBF
 imap <C-c> <Plug>Tex_MathCal
