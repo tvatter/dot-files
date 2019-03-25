@@ -235,13 +235,12 @@ let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 augroup NCM
     autocmd!
     autocmd BufEnter * call ncm2#enable_for_buffer()
+    " remap goto to gd
+    autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
 augroup END
 
 " enable popupopen
 set completeopt=noinsert,menuone,noselect
-
-" remap goto to gd
-autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
 
 " path to the llvm library
 let g:ncm2_pyclang#library_path = '/usr/lib/llvm-6.0/lib' "  '/usr/local/Cellar/llvm/7.0.1/lib'  

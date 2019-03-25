@@ -218,7 +218,7 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-Update line 96 in `init.vim`:
+Update line 246 in `init.vim`:
 
 ```
 let g:ncm2_pyclang#library_path = 'path/to/llvm/lib'
@@ -260,9 +260,9 @@ rm -rf downloads
 
 To be able to use autocomplete with R, it is necessary to:
 
-  * Disactivate ncm-R by commenting line 30 of `init.vim` (`Plug 'gaalcaras/ncm-R'`)
+  * Disactivate ncm-R by commenting line 71 of `init.vim` (`Plug 'gaalcaras/ncm-R'`)
   * Open an R file and launch an R terminal (`<leader>rf`, that is `\rf` by
-    default)
+    default or `<space>rf` with my custom mapping)
   * Wait until Nvim-R has built the required `omni_*` files
   * Close nvim
   * Reactivate ncm-R by uncommenting the line above
