@@ -71,8 +71,11 @@ Plug 'ncm2/ncm2-pyclang'
 Plug 'ncm2/ncm2-jedi'
 Plug 'gaalcaras/ncm-R'
 
-" Asynchronous linting/fixing
-Plug 'w0rp/ale'
+" Asynchronous linting/fixing (should be w0rp/ale when the PR is accepted)
+Plug 'tvatter/ale'
+
+" Find and replace
+Plug 'brooth/far.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -331,5 +334,6 @@ let g:ale_c_parse_compile_commands = 1 " parse automatically `compile_commands.j
 "      \}
 let g:ale_fixers = {
       \   'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
+      \   'r':  ['trim_whitespace', 'remove_trailing_lines', 'styler']
       \}
 

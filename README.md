@@ -115,11 +115,27 @@ brew doctor
 
 #### Both
 
+Install required python libraries:
+
 ```
 pip3 install pynvim
 pip3 install unidecode
 pip3 install jedi
 ```
+
+Install required R packages:
+
+```
+Rscript --vanilla -e install.packages(c("lintr", "styler"))
+```
+
+Additional often used R packages:
+
+```
+Rscript --vanilla -e install.packages(c("BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"))
+```
+
+Note that the development version of `lintr` contains a fix for the `^` operator an can be installed via `Rscript --vanilla -e devtools::install_github("jimhester/lintr")`.
 
 
 ### Configuring git
@@ -282,13 +298,6 @@ Link Makevars:
 
 ```
 ln -nfs ${PWD}/Makevars ~/.R/Makevars
-```
-
-Install needed packages:
-
-```
-install.packages('rmarkdown')
-install.packages('lintr')
 ```
 
 If tensorflow is used on GPU, the following lines need to be added to `.profile`:
