@@ -5,8 +5,10 @@ My various dot files to avoid wasting time on install.
 
 ### Installs
 
-    * Install chrome and the lastpass extension and log into both
-    * [Install dropbox (sync of files can take a long time)](https://www.dropbox.com/install-linux)
+First things first:
+
+* Install chrome and the lastpass extension and log into both
+* [Install dropbox (sync of files can take a long time)](https://www.dropbox.com/install-linux)
 
 
 #### Ubuntu
