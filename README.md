@@ -123,16 +123,16 @@ Install required R packages (you might need to create the personal library
 by installing a package from within R first):
 
 ```
-Rscript --vanilla -e install.packages(c("lintr", "styler"), repo = "https://cloud.r-project.org/")
+Rscript --vanilla -e 'install.packages(c("lintr", "styler"), repo = "https://cloud.r-project.org/")'
 ```
 
 Additional often used R packages:
 
 ```
-Rscript --vanilla -e install.packages(c("BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), repo = "https://cloud.r-project.org/")
+Rscript --vanilla -e 'install.packages(c("BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), repo = "https://cloud.r-project.org/")'
 ```
 
-Note that the development version of `lintr` contains a fix for the `^` operator an can be installed via `Rscript --vanilla -e devtools::install_github("jimhester/lintr")`.
+Note that the development version of `lintr` contains a fix for the `^` operator an can be installed via `Rscript --vanilla -e 'devtools::install_github("jimhester/lintr")'`.
 
 
 ### Configuring git
