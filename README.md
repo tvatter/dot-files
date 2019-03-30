@@ -38,6 +38,7 @@ using either latex or R):
 sudo apt install xclip wget curl git gcc libclang-dev clang clang-tools cmake
 zsh
 sudo apt install texlive-full r-base r-base-dev libssl-dev libcurl4-openssl-dev
+libxml2-dev
 sudo apt install python-dev python-pip python3-dev python3-pip neovim
 ```
 
@@ -177,8 +178,7 @@ Verify that the plugins `zsh-autosuggestions` and `zsh-syntax-highlighting` are 
 
 ```
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting
-~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 ```
 
 
