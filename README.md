@@ -23,6 +23,12 @@ sudo add-apt-repository ppa:noobslab/icons
 sudo apt update
 ```
 
+Install a nice theme and changeit in gnome tweak tool:
+
+```
+sudo apt install gnome-tweak-tool arc-theme arc-icons
+```
+
 Install required software (second line is not required if you don't plan on 
 using either latex or R):
 
@@ -108,9 +114,7 @@ brew doctor
 Install required python libraries:
 
 ```
-pip3 install pynvim
-pip3 install unidecode
-pip3 install jedi
+pip3 install pynvim unidecode jedi
 ```
 
 Install required R packages:
