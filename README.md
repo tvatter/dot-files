@@ -295,6 +295,7 @@ MAKE=${MAKE-'make -j 8'}
 Link Makevars:
 
 ```
+mkdir -p ~/.R
 ln -nfs ${PWD}/Makevars ~/.R/Makevars
 ```
 
