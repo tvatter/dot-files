@@ -34,7 +34,7 @@ using either latex or R):
 
 ```
 sudo apt install xclip wget curl git gcc libclang-dev clang clang-tools cmake
-sudo apt install texlive-full r-base r-base-dev
+sudo apt install texlive-full r-base r-base-dev libssl-dev libcurl4-openssl-dev
 sudo apt install python-dev python-pip python3-dev python3-pip neovim
 ```
 
@@ -121,13 +121,13 @@ Install required R packages (you might need to create the personal library
 by installing a package from within R first):
 
 ```
-Rscript --vanilla -e install.packages(c("lintr", "styler"))
+Rscript --vanilla -e install.packages(c("lintr", "styler"), repo = "https://cloud.r-project.org/")
 ```
 
 Additional often used R packages:
 
 ```
-Rscript --vanilla -e install.packages(c("BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"))
+Rscript --vanilla -e install.packages(c("BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), repo = "https://cloud.r-project.org/")
 ```
 
 Note that the development version of `lintr` contains a fix for the `^` operator an can be installed via `Rscript --vanilla -e devtools::install_github("jimhester/lintr")`.
