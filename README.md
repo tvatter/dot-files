@@ -36,6 +36,7 @@ using either latex or R):
 
 ```
 sudo apt install xclip wget curl git gcc libclang-dev clang clang-tools cmake
+zsh
 sudo apt install texlive-full r-base r-base-dev libssl-dev libcurl4-openssl-dev
 sudo apt install python-dev python-pip python3-dev python3-pip neovim
 ```
