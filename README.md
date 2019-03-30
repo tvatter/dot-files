@@ -117,7 +117,8 @@ Install required python libraries:
 pip3 install pynvim unidecode jedi
 ```
 
-Install required R packages:
+Install required R packages (you might need to create the personal library 
+by installing a package from within R first):
 
 ```
 Rscript --vanilla -e install.packages(c("lintr", "styler"))
