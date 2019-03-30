@@ -22,13 +22,14 @@ sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo add-apt-repository ppa:noobslab/themes
 sudo add-apt-repository ppa:noobslab/icons
+sudo add-apt-repository -u ppa:snwh/ppa
 sudo apt update
 ```
 
 Install a nice theme and changeit in gnome tweak tool:
 
 ```
-sudo apt install gnome-tweak-tool arc-theme arc-icons
+sudo apt install gnome-tweak-tool arc-theme arc-icons moka-icon-theme faba-icon-theme faba-mono-icons
 ```
 
 Install required software (second line is not required if you don't plan on 
@@ -278,8 +279,7 @@ To be able to use autocomplete with R, it is necessary to:
   * Open an R file and launch an R terminal (`<leader>rf`, that is `\rf` by
     default or `<space>rf` with my custom mapping)
   * Wait until Nvim-R has built the required `omni_*` files
-  * Close nvim
-  * Reactivate ncm-R by uncommenting the line above
+  * Reactivate ncm-R by uncommenting the line above and close nvim
 
 Note that the `rmarkdown` and `lintr` packages are required to get, respectively, Rmarkdown support and asynchronous linting.
 
