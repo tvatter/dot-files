@@ -5,7 +5,8 @@ My various dot files to avoid wasting time on install.
 
 ### Installs
 
-[Install dropbox first (sync of files can take a long time)](https://www.dropbox.com/install-linux)
+    * Install chrome and the lastpass extension and log into both
+    * [Install dropbox (sync of files can take a long time)](https://www.dropbox.com/install-linux)
 
 
 #### Ubuntu
@@ -17,29 +18,18 @@ sudo apt install apt-transport-https software-properties-common
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
 sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo add-apt-repository ppa:noobslab/themes
+sudo add-apt-repository ppa:noobslab/icons
 sudo apt update
 ```
 
-Install required software
+Install required software (second line is not required if you don't plan on 
+using either latex or R):
 
 ```
-sudo apt install xclip
-sudo apt install wget
-sudo apt install curl
-sudo apt install git
-sudo apt install gcc
-sudo apt install libclang-dev 
-sudo apt install clang
-sudo apt install clang-tools
-sudo apt install cmake
-sudo apt install texlive-full
-sudo apt install r-base 
-sudo apt install r-base-dev
-sudo apt install python-dev 
-sudo apt install python-pip
-sudo apt install python3-dev
-sudo apt install python3-pip
-sudo apt install neovim
+sudo apt install xclip wget curl git gcc libclang-dev clang clang-tools cmake
+sudo apt install texlive-full r-base r-base-dev
+sudo apt install python-dev python-pip python3-dev python3-pip neovim
 ```
 
 Because some clang tools are installed with their version number, you probably need:
