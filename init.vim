@@ -77,6 +77,9 @@ Plug 'tvatter/ale'
 " Find and replace
 Plug 'brooth/far.vim'
 
+" Comment/uncomment easily
+Plug 'scrooloose/nerdcommenter'
+
 " Initialize plugin system
 call plug#end()
 
