@@ -2,7 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # Some setup
-source $HOME/functions.zsh                  # Load misc functions. Done in a seperate file to keep this from getting too long and ugly
+source $HOME/.functions.zsh                  # Load misc functions. Done in a seperate file to keep this from getting too long and ugly
 export LANG="en_US.UTF-8"                   # I'm not sure who looks at this, but I know it's good to set in general
    
 # Misc

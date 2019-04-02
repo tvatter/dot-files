@@ -7,273 +7,47 @@ My various dot files to avoid wasting time on install.
 
 First things first:
 
-* Install chrome and the lastpass extension and log into both
+* Install/configure git and clone the repo
+
+```
+sudo apt install -y git
+git clone git@github.com:tvatter/dot-files.git ~/dot-files
+```
+
+* Run the install script
+
+```
+cd ~/dot-files
+./install.sh
+```
+
+* Update the theme in the gnome tweak tool
+* Make zsh the default shell (need to log out and log back in):
+
+```
+chsh -s $(which zsh)
+```
+If it did not work, then you'll need to manually change `/etc/passwd`. 
+Find the line with your username and replace `/bin/bash` by `/bin/zsh`.
+
+*  Create an ssh for git and add it to github:
+
+```
+ssh-keygen -t rsa -b 4096 -C "thibault.vatter@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+xclip -sel clip < ~/.ssh/id_rsa.pub  # -> add on github.com
+```
+
+* Install the lastpass chrome extension and log into it
 * [Install dropbox (sync of files can take a long time)](https://www.dropbox.com/install-linux)
-
-
-#### Ubuntu
-
-Add repositories and update:
-
-```
-sudo apt install apt-transport-https software-properties-common
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo add-apt-repository ppa:noobslab/themes
-sudo add-apt-repository ppa:noobslab/icons
-sudo add-apt-repository -u ppa:snwh/ppa
-sudo apt update
-```
-
-Install a nice theme and changeit in gnome tweak tool:
-
-```
-sudo apt install gnome-tweak-tool arc-theme arc-icons moka-icon-theme faba-icon-theme faba-mono-icons
-```
-
-Install required software (second line is not required if you don't plan on 
-using either latex or R):
-
-```
-sudo apt install xclip wget curl git gcc libclang-dev clang clang-tools cmake
-zsh
-sudo apt install texlive-full r-base r-base-dev libssl-dev libcurl4-openssl-dev
-libxml2-dev
-sudo apt install python-dev python-pip python3-dev python3-pip neovim
-```
-
-Because some clang tools are installed with their version number, you probably need:
+* If the version of clang Because some clang tools are installed with their version number, you probably need:
 
 ```
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
 ```
 
-Install solarized theme for the GNOME terminal:
-
-```
-git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
-cd gnome-terminal-colors-solarized
-./install.sh
-```
-
-And just follow the instructions.
-
-#### OSX
-
-Install homebrew:
-
-```
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew install caskroom/cask/brew-cask
-brew tap caskroom/cask
-```
-
-Install required software:
-
-```
-brew install wget
-brew install git
-brew install gcc
-brew install cmake
-brew install llvm
-brew cask install mactex
-brew install r
-brew install python3
-brew install neovim
-brew install zsh-syntax-highlighting
-```
-
-Check whether you can follow the instructions for the solarized theme on ubuntu,
-otherwise:
-
-```
-brew cask install iterm2
-```
-
-And get a better color theme for iTerm2:
-
-  * [Solarized Dark theme](https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/schemes/Solarized%20Dark%20-%20Patched.itermcolors) (patched version to fix the bright black value)
-  * [Solarized Light theme](https://raw.githubusercontent.com/altercation/solarized/master/iterm2-colors-solarized/Solarized%20Light.itermcolors)
-  * [More themes @ iterm2colorschemes](http://iterm2colorschemes.com/)
-
-To install:
-
-* Just save it somewhere and open the file(s). The color settings will be imported into iTerm2. 
-  * Apply them in iTerm through iTerm → preferences → profiles → colors → load presets. 
-  * You can create a different profile other than `Default` if you wish to do so.
-
-From now on, use `iTerm2` instead of the default `terminal`
-It has better color fidelity than the built in, so your themes will look better.
-
-Run brew doctor and make sure that everything is OK (e.g., especially regarding
-the path):
-
-```
-brew doctor
-```
-
-
-#### Both
-
-Install required python libraries:
-
-```
-pip3 install pynvim unidecode jedi
-```
-
-Install required R packages (you might need to create the personal library 
-by installing a package from within R first):
-
-```
-Rscript --vanilla -e 'install.packages(c("lintr", "styler"), repo = "https://cloud.r-project.org/")'
-```
-
-Additional often used R packages:
-
-```
-Rscript --vanilla -e 'install.packages(c("BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), repo = "https://cloud.r-project.org/")'
-```
-
-Note that the development version of `lintr` contains a fix for the `^` operator an can be installed via `Rscript --vanilla -e 'devtools::install_github("jimhester/lintr")'`.
-
-
-### Configuring git
-
-Link .gitconfig:
-
-```
-ln -nfs ${PWD}/.gitconfig ~/.gitconfig
-```
-
-Add ssh key:
-
-  * https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
-  * https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account
-
-### Configuring ZSH
-
-Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh):
-
-```
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-```
-
-In `zshrc`, you can comment or update lines 19 and 20:
-
-```
-export PATH=/home/tvatter/anaconda3/bin:/usr/local/cuda-10.0/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-```
-
-
-Link required files:
-
-```
-ln -nfs ${PWD}/functions.zsh ~/functions.zsh
-ln -nfs ${PWD}/zshrc ~/.zshrc
-ln -nfs ${PWD}/zshrc.zni ~/.zshrc.zni
-```
-
-Verify that the plugins `zsh-autosuggestions` and `zsh-syntax-highlighting` are in `~/.oh-my-zsh/plugins`. If not, then install them using:
-
-```
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-```
-
-
-#### Ubuntu
-
-Make zsh the default terminal by using `chsh -s /bin/zsh`, then log out and see
-if it worked. If not, then you'll need to manually change `/etc/passwd`:
-
-```
-sudo vim /etc/passwd
-```
-
-Find the line with your username:
-
-```
-username:x:1634231:100:Your Name:/home/username:/bin/bash
-```
-
-And replace bash with zsh:
-
-```
-username:x:1634231:100:Your Name:/home/username:/bin/zsh
-```
-
-Log out and log in back for the changes to take effect.
-
-
-#### OSX
-
-Make zsh the default shell by using
-
-```
-chsh -s /bin/zsh
-```
-
-If it does's work, change manually using the menus.
-
-Run brew doctor and make sure that everything is OK (e.g., especially regarding
-the path):
-
-```
-brew doctor
-```
-
-### Configuring NEOVIM
-
-Install plug-in manager:
-
-```
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
-
-Update line 246 in `init.vim`:
-
-```
-let g:ncm2_pyclang#library_path = 'path/to/llvm/lib'
-```
-
-
-Install configuration file:
-
-```
-mkdir -p ~/.config/nvim
-ln -nfs ${PWD}/init.vim ~/.config/nvim/init.vim
-```
-
-Install plug-ins:
-
-```
-nvim +PlugInstall
-```
-
-For better latex:
-
-```
-mkdir -p ~/.config/nvim/after
-mkdir -p ~/.config/nvim/after/syntax
-mkdir -p ~/.config/nvim/after/syntax/tex
-mkdir -p downloads
-cd downloads
-wget http://www.drchip.org/astronaut/vim/vbafiles/amsmath.vba.gz
-wget http://www.drchip.org/astronaut/vim/vbafiles/array.vba.gz
-wget http://www.drchip.org/astronaut/vim/vbafiles/lstlisting.vba.gz
-wget http://www.drchip.org/astronaut/vim/vbafiles/moreverb.vba.gz
-nvim amsmath.vba.gz +UseVimball
-nvim array.vba.gz +UseVimball
-nvim lstlisting.vba.gz +UseVimball
-nvim moreverb.vba.gz +UseVimball
-cd ..
-rm -rf downloads
-```
-
-To be able to use autocomplete with R, it is necessary to:
+* To be able to use autocomplete with R, it is necessary to:
 
   * Disactivate ncm-R by commenting line 71 of `init.vim` (`Plug 'gaalcaras/ncm-R'`)
   * Open an R file and launch an R terminal (`<leader>rf`, that is `\rf` by
@@ -281,25 +55,21 @@ To be able to use autocomplete with R, it is necessary to:
   * Wait until Nvim-R has built the required `omni_*` files
   * Reactivate ncm-R by uncommenting the line above and close nvim
 
-Note that the `rmarkdown` and `lintr` packages are required to get, respectively, Rmarkdown support and asynchronous linting.
 
-### Configuring R
+* Update line 246 in `init.vim`:
 
-Update make command in Renviron (either `/etc/R/Renviron` or 
+```
+let g:ncm2_pyclang#library_path = 'path/to/llvm/lib'
+```
+
+* Update make command in Renviron (either `/etc/R/Renviron` or 
 `/usr/lib/R/etc/Renviron`, see `R.home()`) to compile on multiple cores:
 
 ```
 MAKE=${MAKE-'make -j 8'}
 ```
 
-Link Makevars:
-
-```
-mkdir -p ~/.R
-ln -nfs ${PWD}/Makevars ~/.R/Makevars
-```
-
-If tensorflow is used on GPU, the following lines need to be added to `.profile`:
+* If tensorflow is used on GPU, the following lines need to be added to `.profile`:
 
 ```
 export CUDA_HOME=usr/local/cuda10.0
@@ -307,21 +77,10 @@ export PATH=${CUDA_HOME}/bin:${PATH}
 export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
 ```
 
-### Configuring VNC
-
-Follow
- 
-  * https://help.ubuntu.com/community/VNC/Servers#vino
-  * https://linuxconfig.org/ubuntu-remote-desktop-18-04-bionic-beaver-linux
-
-```
-gsettings set org.gnome.Vino require-encryption false
-gsettings reset org.gnome.Vino network-interface
-```
-
 ### TODO
  
   * On OSX: 
+      * Use old commit to create install script
       * check that `ale_cpp_clang_executable` use homebrew's clang
       * verify install clangd [(for ALE)](https://github.com/w0rp/ale/blob/master/doc/ale-cpp.txt)
   * [Autoformat](https://github.com/Chiel92/vim-autoformat)
