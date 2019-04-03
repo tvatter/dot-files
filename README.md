@@ -3,7 +3,7 @@
 My various dot files to avoid wasting time on install.
 
 
-### Installs
+##o# Installs
 
 First things first:
 
@@ -11,14 +11,38 @@ First things first:
 
 ```
 sudo apt install -y git
-git clone git@github.com:tvatter/dot-files.git ~/dot-files
+git clone https://github.com/tvatter/dot-files.git
 ```
 
-* Run the install script
+* Update the line for the latest RStudio version (line 125) and run the install script
 
 ```
 cd ~/dot-files
+chmod +x install.sh
 ./install.sh
+```
+
+* Install the lastpass chrome extension and log into it
+* Create an ssh for git and add it to github:
+
+```
+ssh-keygen -t rsa -b 4096 -C "thibault.vatter@gmail.com" -N "" -f ~/.ssh/id_rsa
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+xclip -sel clip < ~/.ssh/id_rsa.pub  # -> add on github.com
+```
+
+* [Install dropbox (sync of files can take a long time)](https://www.dropbox.com/install-linux)
+
+```
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+~/.dropbox-dist/dropboxd
+```
+
+* If the version of clang Because some clang tools are installed with their version number, you probably need:
+
+```
+sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
 ```
 
 * Update the theme in the gnome tweak tool
@@ -30,22 +54,6 @@ chsh -s $(which zsh)
 If it did not work, then you'll need to manually change `/etc/passwd`. 
 Find the line with your username and replace `/bin/bash` by `/bin/zsh`.
 
-*  Create an ssh for git and add it to github:
-
-```
-ssh-keygen -t rsa -b 4096 -C "thibault.vatter@gmail.com"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
-xclip -sel clip < ~/.ssh/id_rsa.pub  # -> add on github.com
-```
-
-* Install the lastpass chrome extension and log into it
-* [Install dropbox (sync of files can take a long time)](https://www.dropbox.com/install-linux)
-* If the version of clang Because some clang tools are installed with their version number, you probably need:
-
-```
-sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
-```
 
 * To be able to use autocomplete with R, it is necessary to:
 
@@ -88,3 +96,4 @@ export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
   * Octave
   * [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) and [example use](https://github.com/kadekillary/init.vim/blob/master/init.vim)
   
+

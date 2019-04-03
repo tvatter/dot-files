@@ -88,7 +88,7 @@ call plug#end()
 " ============================================================================
 
 " Color theme 
-colorscheme NeoSolarized
+silent! colorscheme NeoSolarized
 
 " Make it obvious where 80 characters is
 set textwidth=80
