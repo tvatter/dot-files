@@ -2,11 +2,6 @@
 
 My various dot files to avoid wasting time on install.
 
-
-##o# Installs
-
-First things first:
-
 * Install/configure git and clone the repo
 
 ```
@@ -39,13 +34,15 @@ cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 ~/.dropbox-dist/dropboxd
 ```
 
-* If the version of clang Because some clang tools are installed with their version number, you probably need:
+* Add dropbox as a startup application
+    * In the "name" field, type `Dropbox`.
+    * In the "command" field, type `/home/{your-username}/.dropbox-dist/dropboxd`.
 
-```
-sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
-```
 
 * Update the theme in the gnome tweak tool
+* Add the terminal as a startup application
+    * In the "name" field, type `Terminal`.
+    * In the "command" field, type `gnome-terminal`.
 * Make zsh the default shell (need to log out and log back in):
 
 ```
@@ -54,6 +51,17 @@ chsh -s $(which zsh)
 If it did not work, then you'll need to manually change `/etc/passwd`. 
 Find the line with your username and replace `/bin/bash` by `/bin/zsh`.
 
+* If the version of clang Because some clang tools are installed with their version number, you probably need:
+
+```
+sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
+```
+
+* Similarly, you may need to update line 246 in `init.vim`:
+
+```
+let g:ncm2_pyclang#library_path = 'path/to/llvm/lib'
+```
 
 * To be able to use autocomplete with R, it is necessary to:
 
@@ -63,12 +71,6 @@ Find the line with your username and replace `/bin/bash` by `/bin/zsh`.
   * Wait until Nvim-R has built the required `omni_*` files
   * Reactivate ncm-R by uncommenting the line above and close nvim
 
-
-* Update line 246 in `init.vim`:
-
-```
-let g:ncm2_pyclang#library_path = 'path/to/llvm/lib'
-```
 
 * Update make command in Renviron (either `/etc/R/Renviron` or 
 `/usr/lib/R/etc/Renviron`, see `R.home()`) to compile on multiple cores:
