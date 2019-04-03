@@ -117,13 +117,14 @@ sudo apt install -f -y
 cd ..; rm -rf mendeley
 
 #### Texmaker
-sudo apt install texmaker
+sudo apt install -y texmaker
 
 #### Rstudio
-sudo apt-get install -y gdebi-core libjpeg62
+sudo apt install -y gdebi-core libjpeg62
 mkdir -p rstudio; cd rstudio
 wget -c https://s3.amazonaws.com/rstudio-ide-build/desktop/bionic/amd64/rstudio-1.2.1335-amd64.deb 
 sudo gdebi --non-interactive rstudio*
 cd ..; rm -rf rstudio
 
-
+#### Libreoffice
+sudo apt install -y libreoffice
