@@ -1,7 +1,6 @@
 #!/bin/bash
 
-## Upgrade default install ----------
-
+#### Upgrade default install
 sudo apt update
 sudo apt upgrade
 sudo apt install -y xclip wget curl apt-transport-https software-properties-common
@@ -12,11 +11,9 @@ sudo add-apt-repository -y ppa:noobslab/icons
 sudo apt update
 sudo apt install -y gnome-tweak-tool arc-theme arc-icons moka-icon-theme
 
-#### Solarized theme
+#### Gnome terminal theme
 git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
 cd gnome-terminal-colors-solarized; ./install.sh -s dark --install-dircolors; cd ..; rm -rf gnome-terminal-colors-solarized
-
-## Web ----------
 
 #### Chrome
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -30,14 +27,12 @@ echo "deb https://repo.skype.com/deb stable main" | sudo tee /etc/apt/sources.li
 sudo apt update
 sudo apt install -y skypeforlinux
 
-#### zoom
+#### Zoom
 mkdir -p zoom; cd zoom
 wget -c https://zoom.us/client/latest/zoom_amd64.deb
 sudo dpkg -i zoom*.deb
 sudo apt install -f -y 
 cd ..; rm -rf zoom
-
-## Terminal
 
 #### ZSH
 sudo apt install -y zsh
@@ -52,9 +47,6 @@ cd zsh; for f in *; do rm -rf ~/.$f; ln -s $PWD/$f ~/.$f; done; cd ..
 cd vim; mkdir -p ~/.config/nvim; for f in *; do rm -rf ~/.config/nvim/$f; ln -s $PWD/$f ~/.config/nvim; done; cd ..
 declare -a files=(".R" ".gitconfig")
 for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
-
-
-## Programming ----------
 
 #### C++
 sudo apt install -y build-essential
@@ -104,10 +96,8 @@ nvim moreverb.vba.gz +UseVimball +qall > /dev/null
 cd ..
 rm -rf downloads
 
-#### Web
+#### Hugo
 sudo apt install -y hugo
-
-## Misc --------------
 
 #### Mendeley
 mkdir -p mendeley; cd mendeley
