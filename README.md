@@ -7,12 +7,12 @@ My various dot files to avoid wasting time on install.
 ```
 sudo apt install -y git
 git clone https://github.com/tvatter/dot-files.git
+cd ~/dot-files
 ```
 
 * Update the line for the latest RStudio version (line 125) and run the install script
 
 ```
-cd ~/dot-files
 chmod +x install.sh
 ./install.sh
 ```
