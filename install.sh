@@ -21,6 +21,13 @@ echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sud
 sudo apt update
 sudo apt install -y google-chrome-stable
 
+#### Dropbox
+wget -c 'https://linux.dropbox.com/packages/dropbox.py'
+chmod +x dropbox.py; mv dropbox.py ~/.dropbox.py
+sudo rm -rf /usr/bin/dropbox; sudo ln -s ~/.dropbox.py /usr/bin/dropbox
+dropbox autostart -y
+dropbox update
+
 #### Skype
 curl https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -
 echo "deb https://repo.skype.com/deb stable main" | sudo tee /etc/apt/sources.list.d/skypeforlinux.list

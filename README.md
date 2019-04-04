@@ -27,11 +27,10 @@ ssh-add ~/.ssh/id_rsa
 xclip -sel clip < ~/.ssh/id_rsa.pub  # -> add on github.com
 ```
 
-* [Install dropbox (sync of files can take a long time)](https://www.dropbox.com/install-linux)
+* Complete dropbox install
 
 ```
-cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
-~/.dropbox-dist/dropboxd
+dropbox start
 ```
 
 * Add dropbox as a startup application
