@@ -42,6 +42,18 @@ dropbox start
 * Add the terminal as a startup application
     * In the "name" field, type `Terminal`.
     * In the "command" field, type `gnome-terminal`.
+* If needed, desactivate bluetooth. 18.04+ users who don't naturally have a `/etc/rc.local` need to create one and make it executable
+
+```
+sudo install -b -m 755 /dev/stdin /etc/rc.local << EOF
+#!/bin/sh
+rfkill block bluetooth
+exit 0
+EOF
+```
+
+If `/etc/rc.local` already exists, simply add `rfkill block bluetooth` before the line starting with `exit 0`.
+
 * Make zsh the default shell (need to log out and log back in):
 
 ```
