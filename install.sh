@@ -5,6 +5,9 @@ sudo apt update
 sudo apt upgrade
 sudo apt install -y xclip wget curl apt-transport-https software-properties-common
 
+#### Activate firewall
+sudo ufw enable
+
 #### Ubuntu theme
 sudo add-apt-repository -y ppa:noobslab/themes
 sudo add-apt-repository -y ppa:noobslab/icons
