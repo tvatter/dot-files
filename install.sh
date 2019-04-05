@@ -125,3 +125,6 @@ cd ..; rm -rf rstudio
 
 #### Libreoffice
 sudo apt install -y libreoffice
+
+#### VLC
+sudo apt install -y vlc
