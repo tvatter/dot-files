@@ -98,6 +98,18 @@ export PATH=${CUDA_HOME}/bin:${PATH}
 export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
 ```
 
+* Install `KindleGen`
+
+```
+mkdir -p kindlegen; cd kindlegen
+wget http://kindlegen.s3.amazonaws.com/kindlegen_linux_2.6_i386_v2_9.tar.gz
+tar -zxvf kindlegen_linux_2.6_i386_v2_9.tar.gz
+cp kindlegen ~/
+sudo ln -s ~/kindlegen /usr/bin/kindlegen 
+cd ..; rm -rf kindlegen
+```
+
+
 ### TODO
  
   * On OSX: 
