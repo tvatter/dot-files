@@ -2,6 +2,22 @@
 
 My various dot files to avoid wasting time on install.
 
+* Install the latest graphic drivers using either (e.g., on a computer with intel graphics)
+
+```
+sudo add-apt-repository ppa:oibaf/graphics-drivers
+sudo apt update
+sudo apt dist-upgrade
+```
+
+or if you have an nvidia GPU (XYZ is the latest driver compatible with your GPU)
+
+```
+sudo apt purge nvidia*
+sudo apt update
+sudo apt install nvidia-XYZ
+```
+
 * Install/configure git and clone the repo
 
 ```
@@ -108,6 +124,8 @@ cp kindlegen ~/
 sudo ln -s ~/kindlegen /usr/bin/kindlegen 
 cd ..; rm -rf kindlegen
 ```
+
+* Install `https://github.com/schemen/m2em`
 
 
 ### TODO
