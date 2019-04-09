@@ -5,45 +5,6 @@ sudo apt update
 sudo apt upgrade
 sudo apt install -y xclip wget curl apt-transport-https software-properties-common
 
-#### Activate firewall
-sudo ufw enable
-
-#### Ubuntu theme
-sudo add-apt-repository -y ppa:noobslab/themes
-sudo add-apt-repository -y ppa:noobslab/icons
-sudo apt update
-sudo apt install -y gnome-tweak-tool arc-theme arc-icons moka-icon-theme
-
-#### Gnome terminal theme
-git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
-cd gnome-terminal-colors-solarized; ./install.sh -s dark --install-dircolors; cd ..; rm -rf gnome-terminal-colors-solarized
-
-#### Chrome
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
-sudo apt update
-sudo apt install -y google-chrome-stable
-
-#### Dropbox
-wget -c 'https://linux.dropbox.com/packages/dropbox.py'
-chmod +x dropbox.py; mv dropbox.py ~/.dropbox.py
-sudo rm -rf /usr/bin/dropbox; sudo ln -s ~/.dropbox.py /usr/bin/dropbox
-dropbox autostart -y
-dropbox update
-
-#### Skype
-curl https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -
-echo "deb https://repo.skype.com/deb stable main" | sudo tee /etc/apt/sources.list.d/skypeforlinux.list
-sudo apt update
-sudo apt install -y skypeforlinux
-
-#### Zoom
-mkdir -p zoom; cd zoom
-wget -c https://zoom.us/client/latest/zoom_amd64.deb
-sudo dpkg -i zoom*.deb
-sudo apt install -f -y 
-cd ..; rm -rf zoom
-
 #### ZSH
 sudo apt install -y zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sed -e 's/^\s*chsh -s/sudo chsh -s/g' -e 's/^\s*env\szsh.*$/#/g')"
@@ -106,28 +67,3 @@ nvim moreverb.vba.gz +UseVimball +qall > /dev/null
 cd ..
 rm -rf downloads
 
-#### Hugo
-sudo apt install -y hugo
-
-#### Mendeley
-mkdir -p mendeley; cd mendeley
-wget -c https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
-sudo dpkg -i mendeley*
-sudo apt install -f -y 
-cd ..; rm -rf mendeley
-
-#### Texmaker
-sudo apt install -y texmaker
-
-#### Rstudio
-sudo apt install -y gdebi-core libjpeg62
-mkdir -p rstudio; cd rstudio
-wget -c https://s3.amazonaws.com/rstudio-ide-build/desktop/bionic/amd64/rstudio-1.2.1335-amd64.deb 
-sudo gdebi --non-interactive rstudio*
-cd ..; rm -rf rstudio
-
-#### Libreoffice
-sudo apt install -y libreoffice
-
-#### VLC
-sudo apt install -y vlc
