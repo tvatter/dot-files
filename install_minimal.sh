@@ -26,9 +26,6 @@ sudo apt install -y cmake
 sudo apt install -y libboost-dev libeigen3-dev 
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
 
-#### TeX
-sudo apt install -y texlive-full
-
 #### R
 sudo add-apt-repository -y ppa:marutter/rrutter3.5
 sudo apt update
@@ -51,19 +48,4 @@ sudo apt install -y neovim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall +qall > /dev/null
-mkdir -p ~/.config/nvim/after
-mkdir -p ~/.config/nvim/after/syntax
-mkdir -p ~/.config/nvim/after/syntax/tex
-mkdir -p downloads
-cd downloads
-wget http://www.drchip.org/astronaut/vim/vbafiles/amsmath.vba.gz
-wget http://www.drchip.org/astronaut/vim/vbafiles/array.vba.gz
-wget http://www.drchip.org/astronaut/vim/vbafiles/lstlisting.vba.gz
-wget http://www.drchip.org/astronaut/vim/vbafiles/moreverb.vba.gz
-nvim amsmath.vba.gz +UseVimball +qall > /dev/null
-nvim array.vba.gz +UseVimball +qall > /dev/null
-nvim lstlisting.vba.gz +UseVimball +qall > /dev/null
-nvim moreverb.vba.gz +UseVimball +qall > /dev/null
-cd ..
-rm -rf downloads
 
