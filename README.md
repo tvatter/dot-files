@@ -4,9 +4,19 @@ My various dot files to avoid wasting time on install.
 
 ## Pre-install
 
-On a server (e.g., an amazon instance), this step can be skipped.
+* Install git and xclip, create an ssh for git and add it to github:
 
-* Install the latest graphic drivers using either (e.g., on a computer with intel graphics)
+```
+sudo apt install -y git xclip
+ssh-keygen -t rsa -b 4096 -C "thibault.vatter@gmail.com" -N "" -f ~/.ssh/id_rsa
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+xclip -sel clip < ~/.ssh/id_rsa.pub  # -> add on github.com
+```
+
+* Install the latest graphic drivers. On a server (e.g., an AWS instance), this step can be skipped.
+
+    * On a computer with intel graphics:
 
 ```
 sudo add-apt-repository ppa:oibaf/graphics-drivers
@@ -14,7 +24,7 @@ sudo apt update
 sudo apt dist-upgrade
 ```
 
-or if you have an nvidia GPU (XYZ is the latest driver compatible with your GPU)
+    * Or if you have an nvidia GPU (XYZ is the latest driver compatible with your GPU):
 
 ```
 sudo apt purge nvidia*
@@ -24,29 +34,28 @@ sudo apt install nvidia-XYZ
 
 ## Install
 
-* Install/configure git and clone the repo
+* Clone the repo:
 
 ```
-sudo apt install -y git
 git clone https://github.com/tvatter/dot-files.git
 cd ~/dot-files
 ```
 
-* Update the line for the latest RStudio version (line 125) and run the install script
+* Update the line for the latest RStudio version (line 125) and run the install script:
 
 ```
 chmod +x install.sh
 ./install.sh
 ```
 
-Alternatively, a minimal version, without the theme and graphical applications (e.g., for use on a server), can be installed via
+Alternatively, a minimal version, without the theme and graphical applications (e.g., for use on a server), can be installed via:
 
 ```
 chmod +x install_minimal.sh
 ./install_minimal.sh
 ```
 
-In this case, the theme for the gnome terminal can be further installed using
+In this case, the theme for the gnome terminal can be further installed using:
 
 ```
 git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
@@ -57,22 +66,14 @@ cd gnome-terminal-colors-solarized; ./install.sh -s dark --install-dircolors; cd
 
 ### Minimal
 
-* Create an ssh for git and add it to github:
-
-```
-ssh-keygen -t rsa -b 4096 -C "thibault.vatter@gmail.com" -N "" -f ~/.ssh/id_rsa
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
-xclip -sel clip < ~/.ssh/id_rsa.pub  # -> add on github.com
-```
-
 * Make zsh the default shell (need to log out and log back in):
 
 ```
 chsh -s $(which zsh)
 ```
-If it did not work, then you'll need to manually change `/etc/passwd`. 
-Find the line with your username and replace `/bin/bash` by `/bin/zsh`.
+
+Note that this step sometimes requires `sudo`.
+
 * If the version of clang Because some clang tools are installed with their version number, you probably need:
 
 ```
