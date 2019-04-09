@@ -33,6 +33,20 @@ chmod +x install.sh
 ./install.sh
 ```
 
+Alternatively, a minimal version, without the theme and graphical applications (e.g., for use on a server), can be installed via
+
+```
+chmod +x install_minimal.sh
+./install_minimal.sh
+```
+
+In this case, the theme for the gnome terminal can be further installed using
+
+```
+git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
+cd gnome-terminal-colors-solarized; ./install.sh -s dark --install-dircolors; cd ..; rm -rf gnome-terminal-colors-solarized
+```
+
 * Install the lastpass chrome extension and log into it
 * Create an ssh for git and add it to github:
 
