@@ -3,9 +3,10 @@
 #### Upgrade default install
 sudo apt update
 sudo apt upgrade
-sudo apt install -y wget curl apt-transport-https software-properties-common
+sudo apt install -y wget curl apt-transport-https software-properties-common openssh-server
 
 #### Activate firewall
+sudo ufw allow ssh
 sudo ufw enable
 
 #### Ubuntu theme
