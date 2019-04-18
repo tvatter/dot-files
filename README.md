@@ -14,17 +14,15 @@ ssh-add ~/.ssh/id_rsa
 xclip -sel clip < ~/.ssh/id_rsa.pub  # -> add on github.com
 ```
 
-* Install the latest graphic drivers. On a server (e.g., an AWS instance), this step can be skipped.
-
-    * On a computer with intel graphics:
-
+* Install the latest graphic drivers. On a server (e.g., an AWS instance), this step can be skipped. On a computer with intel graphics (for nvidia, go to next bullet point):
 ```
 sudo add-apt-repository ppa:oibaf/graphics-drivers
 sudo apt update
 sudo apt dist-upgrade
 ```
 
-    * Or if you have an nvidia GPU (XYZ is the latest driver compatible with your GPU):
+* Or if you have an nvidia GPU (XYZ is the latest driver compatible with your GPU):
+
 
 ```
 sudo apt purge nvidia*
