@@ -109,6 +109,9 @@ rm -rf downloads
 #### Hugo
 sudo apt install -y hugo
 
+#### Pandoc
+sudo apt install -y pandoc
+
 #### Mendeley
 mkdir -p mendeley; cd mendeley
 wget -c https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
