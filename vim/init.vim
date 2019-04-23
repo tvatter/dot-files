@@ -71,8 +71,8 @@ Plug 'ncm2/ncm2-pyclang'
 Plug 'ncm2/ncm2-jedi'
 Plug 'gaalcaras/ncm-R'
 
-" Asynchronous linting/fixing (should be w0rp/ale when the PR is accepted)
-Plug 'tvatter/ale'
+" Asynchronous linting/fixing
+Plug 'w0rp/ale'
 
 " Find and replace
 Plug 'brooth/far.vim'
