@@ -287,6 +287,13 @@ let g:rout_follow_colorscheme = 1
 " R commands in R output are highlighted
 let g:Rout_more_colors = 1
 
+augroup nvimr
+    autocmd!
+    " To activate the plugin when opening .Rproj files
+    autocmd BufNewFile,BufRead *.Rproj set ft=r
+    autocmd BufNewFile,BufRead *.Rproj set syntax=yaml
+augroup END
+
 " ============================================================================
 " ======== Python (python-syntax and python-mode)
 " ============================================================================
