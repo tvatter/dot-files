@@ -51,6 +51,7 @@ Plug 'vim-latex/vim-latex'
 
 " R
 Plug 'jalvesaq/Nvim-R'
+Plug 'mllg/vim-devtools-plugin'
 
 " Markdown and RMarkdown
 Plug 'vim-pandoc/vim-pandoc'
