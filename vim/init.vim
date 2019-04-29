@@ -295,8 +295,8 @@ augroup nvimr
     autocmd BufNewFile,BufRead *.Rproj set ft=r
     autocmd BufNewFile,BufRead *.Rproj set syntax=yaml
     " Press the space bar to send lines and selection to R:
-    autocmd FileType R,r,Rmd,rmd nnoremap <buffer> <Space> :<c-u>call SendLineToR("stay")<cr>
-    autocmd FileType R,r,Rmd,rmd vnoremap <buffer> <Space> :<c-u>call SendSelectionToR("echo", "stay")<cr>
+    autocmd FileType R,r,Rmd,rmd nnoremap <buffer> <Space> :<c-u>call SendLineToR("down")<cr>
+    autocmd FileType R,r,Rmd,rmd vnoremap <buffer> <Space> :<c-u>call SendSelectionToR("echo", "down")<cr>
 augroup END
 
 " ============================================================================
