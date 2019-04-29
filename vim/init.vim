@@ -225,10 +225,14 @@ let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats ='pdf,bib,pdf'
 let g:Tex_GotoError = 0
 " let g:Tex_AutoFolding = 0
-imap <C-v> <Plug>Tex_InsertItemOnThisLine
-imap <C-b> <Plug>Tex_MathBF
-imap <C-c> <Plug>Tex_MathCal
-imap <C-l> <Plug>Tex_LeftRight
+augroup vimlatex
+    autocmd!
+    " Special commands
+    autocmd FileType tex imap <C-v> <Plug>Tex_InsertItemOnThisLine
+    autocmd FileType tex imap <C-b> <Plug>Tex_MathBF
+    autocmd FileType tex imap <C-c> <Plug>Tex_MathCal
+    autocmd FileType tex imap <C-l> <Plug>Tex_LeftRight
+augroup END
 
 " ============================================================================
 " ======== snippets
@@ -280,9 +284,6 @@ inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
 " autocmd VimResized * let R_rconsole_width = winwidth(0) " because the default sucks
 let R_assign = 2 " two '_' inserts ' <- '
 let R_buffer_opts = "nobuflisted" " remove winfixwidth to allow for automatic resizing
-" Press the space bar to send lines and selection to R:
-vmap <Space> <Plug>RDSendSelection
-nmap <Space> <Plug>RDSendLine
 " R output is highlighted with current colorscheme
 let g:rout_follow_colorscheme = 1
 " R commands in R output are highlighted
@@ -293,6 +294,9 @@ augroup nvimr
     " To activate the plugin when opening .Rproj files
     autocmd BufNewFile,BufRead *.Rproj set ft=r
     autocmd BufNewFile,BufRead *.Rproj set syntax=yaml
+    " Press the space bar to send lines and selection to R:
+    autocmd FileType r,rmd vmap <Space> <Plug>RDSendSelection
+    autocmd FileType r,rmd nmap <Space> <Plug>RDSendLine
 augroup END
 
 " ============================================================================
