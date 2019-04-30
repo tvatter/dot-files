@@ -152,7 +152,7 @@ augroup END
 " ============================================================================
 
 " Easy switch between buffers
-nnoremap <F5> :buffers<CR>:buffer<Space>
+nnoremap <F4> :buffers<CR>:buffer<Space>
 
 " To keep the content of register when pasting over selected text
 vnoremap <leader>p "_dP
