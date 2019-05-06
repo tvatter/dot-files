@@ -117,10 +117,13 @@ dropbox start
 * Add the terminal as a startup application
     * In the "name" field, type `Terminal`.
     * In the "command" field, type `gnome-terminal`.
-* If needed, e.g., on a laptop:
-    * Deactivate bluetooth. If `/etc/rc.local` already exists, simply 
-    add `rfkill block bluetooth` before the line starting with `exit 0`. 18.04+ users 
-    who don't naturally have a `/etc/rc.local` need to create one and make it executable.
+
+### Power-saving on a laptop
+
+* Deactivate bluetooth. If `/etc/rc.local` already exists, simply 
+add `rfkill block bluetooth` before the line starting with `exit 0`. 18.04+ users 
+who don't naturally have a `/etc/rc.local` need to create one and make it executable.
+
 ```
 sudo install -b -m 755 /dev/stdin /etc/rc.local << EOF
 #!/bin/sh
@@ -128,14 +131,18 @@ rfkill block bluetooth
 exit 0
 EOF
 ```
-    * Install `powertop`, run the calibration and then let `powertop` take measures for a while on battery.
+
+* Install `powertop`, run the calibration and then let `powertop` take measures for a while on battery.
+
 ```
 sudo apt install powertop
 sudo powertop --calibrate --htlm
 sudo powertop --htlm
 ```
-    * You can then verify that `powertop` has enough measurements by running `sudo powertop --auto-tune`. If it runs without 
-    issue, you can then add auto-tune as a service.
+
+* You can then verify that `powertop` has enough measurements by running `sudo powertop --auto-tune`. If it runs without 
+issue, you can then add auto-tune as a service.
+
 ```
 cat << EOF | sudo tee /etc/systemd/system/powertop.service
 [Unit]
@@ -153,15 +160,18 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable powertop.service
 ```
-    * Install and run `tlp`.
+
+* Install and run `tlp`.
+
 ```
 sudo apt install tlp
 sudo systemctl status tlp
 sudo tlp start
 sudo tlp-stat -s 
 ```
-    * Follow [this suggestion](https://askubuntu.com/questions/1029474/ubuntu-18-04-dell-xps13-9370-no-longer-suspends-on-lid-close/1036122#1036122) 
-    is the battery is drained too fast even when the lid is closed.
+
+* Follow [this suggestion](https://askubuntu.com/questions/1029474/ubuntu-18-04-dell-xps13-9370-no-longer-suspends-on-lid-close/1036122#1036122) 
+is the battery is drained too fast even when the lid is closed.
 
 ### TODO
  
