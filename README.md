@@ -118,7 +118,9 @@ dropbox start
     * In the "name" field, type `Terminal`.
     * In the "command" field, type `gnome-terminal`.
 * If needed, e.g., on a laptop:
-    * Deactivate bluetooth. 18.04+ users who don't naturally have a `/etc/rc.local` need to create one and make it executable
+    * Deactivate bluetooth. If `/etc/rc.local` already exists, simply 
+    add `rfkill block bluetooth` before the line starting with `exit 0`. 18.04+ users 
+    who don't naturally have a `/etc/rc.local` need to create one and make it executable.
 ```
 sudo install -b -m 755 /dev/stdin /etc/rc.local << EOF
 #!/bin/sh
@@ -158,9 +160,8 @@ sudo systemctl status tlp
 sudo tlp start
 sudo tlp-stat -s 
 ```
-
-If `/etc/rc.local` already exists, simply add `rfkill block bluetooth` before the line starting with `exit 0`.
-* On a l
+    * Follow [this suggestion](https://askubuntu.com/questions/1029474/ubuntu-18-04-dell-xps13-9370-no-longer-suspends-on-lid-close/1036122#1036122) 
+    is the battery is drained too fast even when the lid is closed.
 
 ### TODO
  
