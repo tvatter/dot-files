@@ -117,8 +117,8 @@ dropbox start
 * Add the terminal as a startup application
     * In the "name" field, type `Terminal`.
     * In the "command" field, type `gnome-terminal`.
-* If needed, deactivate bluetooth. 18.04+ users who don't naturally have a `/etc/rc.local` need to create one and make it executable
-
+* If needed, e.g., on a laptop:
+    * Deactivate bluetooth. 18.04+ users who don't naturally have a `/etc/rc.local` need to create one and make it executable
 ```
 sudo install -b -m 755 /dev/stdin /etc/rc.local << EOF
 #!/bin/sh
@@ -126,8 +126,41 @@ rfkill block bluetooth
 exit 0
 EOF
 ```
+    * Install `powertop`, run the calibration and then let `powertop` take measures for a while on battery.
+```
+sudo apt install powertop
+sudo powertop --calibrate --htlm
+sudo powertop --htlm
+```
+    * You can then verify that `powertop` has enough measurements by running `sudo powertop --auto-tune`. If it runs without 
+    issue, you can then add auto-tune as a service.
+```
+cat << EOF | sudo tee /etc/systemd/system/powertop.service
+[Unit]
+Description=PowerTOP auto tune
+
+[Service]
+Type=idle
+Environment="TERM=dumb"
+ExecStart=/usr/sbin/powertop --auto-tune
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable powertop.service
+```
+    * Install and run `tlp`.
+```
+sudo apt install tlp
+sudo systemctl status tlp
+sudo tlp start
+sudo tlp-stat -s 
+```
 
 If `/etc/rc.local` already exists, simply add `rfkill block bluetooth` before the line starting with `exit 0`.
+* On a l
 
 ### TODO
  
