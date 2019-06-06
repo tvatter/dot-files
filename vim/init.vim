@@ -68,12 +68,12 @@ Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-pyclang'
+Plug 'tvatter/ncm2-pyclang'
 Plug 'ncm2/ncm2-jedi'
 Plug 'gaalcaras/ncm-R'
 
 " Asynchronous linting/fixing
-Plug 'w0rp/ale'
+Plug 'tvatter/ale'
 
 " Find and replace
 Plug 'brooth/far.vim'
@@ -256,6 +256,8 @@ augroup NCM
     autocmd BufEnter * call ncm2#enable_for_buffer()
     " remap goto to gd
     autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
+    autocmd FileType c,cpp nnoremap <buffer> gs :<c-u>call ncm2_pyclang#goto_declaration_split()<cr>
+    autocmd FileType c,cpp nnoremap <buffer> gv :<c-u>call ncm2_pyclang#goto_declaration_vsplit()<cr>
 augroup END
 
 " enable popupopen
@@ -352,7 +354,8 @@ let g:ale_c_parse_compile_commands = 1 " parse automatically `compile_commands.j
 "      \}
 let g:ale_fixers = {
       \   'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
-      \   'r':  ['trim_whitespace', 'remove_trailing_lines', 'styler']
+      \   'r':  ['trim_whitespace', 'remove_trailing_lines', 'styler'],
+      \   'rmarkdown':  ['trim_whitespace', 'remove_trailing_lines', 'styler']
       \}
 
 " ============================================================================
