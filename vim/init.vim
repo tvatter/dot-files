@@ -68,7 +68,7 @@ Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
-Plug 'tvatter/ncm2-pyclang'
+Plug 'ncm2/ncm2-pyclang'
 Plug 'ncm2/ncm2-jedi'
 Plug 'gaalcaras/ncm-R'
 
