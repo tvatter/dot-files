@@ -73,7 +73,7 @@ Plug 'ncm2/ncm2-jedi'
 Plug 'gaalcaras/ncm-R'
 
 " Asynchronous linting/fixing
-Plug 'tvatter/ale'
+Plug 'w0rp/ale'
 
 " Find and replace
 Plug 'brooth/far.vim'
