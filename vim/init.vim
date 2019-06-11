@@ -158,16 +158,16 @@ nnoremap <F4> :buffers<CR>:buffer<Space>
 vnoremap <leader>p "_dP
 
 " " Copy to clipboard
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
+vnoremap  <A-y>  "+y
+nnoremap  <A-y>  "+y
+" nnoremap  <A-Y>  "+yg_
+" nnoremap  <A-y>y  "+yy
 
 " " Paste from clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
+nnoremap <A-p> "+p
+nnoremap <A-P> "+P
+vnoremap <A-p> "+p
+vnoremap <A-P> "+P
 
 " Quicker window movement
 tnoremap <A-h> <C-\><C-N><C-w>h
