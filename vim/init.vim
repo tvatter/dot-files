@@ -221,6 +221,7 @@ let g:airline#extensions#wordcount#enabled = 0
 " ======== vim-latex
 " ============================================================================
 
+let g:tex_flavor = "latex"
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats ='pdf,bib,pdf'
 let g:Tex_GotoError = 0
