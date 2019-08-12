@@ -62,6 +62,7 @@ Plug 'vim-pandoc/vim-rmarkdown'
 Plug 'vim-python/python-syntax'
 Plug 'python-mode/python-mode'
 Plug 'jupyter-vim/jupyter-vim'
+" Plug 'szymonmaszke/vimpyter'
 
 " Autocompletion
 Plug 'roxma/nvim-yarp'
@@ -311,6 +312,9 @@ augroup END
 " ======== Python (python-syntax and python-mode)
 " ============================================================================
 
+" autocmd Filetype ipynb nmap <silent><Leader>b :VimpyterInsertPythonBlock<CR>
+" autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
+
 let g:python3_host_prog = '/home/tvatter/miniconda/envs/vim/bin/python3'
 set pyxversion=3
 
@@ -329,7 +333,6 @@ let g:python_highlight_doctests = 1
 let g:python_highlight_class_vars = 1
 let g:python_highlight_operators = 1
 let g:python_highlight_file_headers_as_comments = 1
-
 
 " pymode
 let g:pymode_python='python3'
