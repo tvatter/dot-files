@@ -16,7 +16,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting \
 #### Dotfiles
 cd zsh; for f in *; do rm -rf ~/.$f; ln -s $PWD/$f ~/.$f; done; cd ..
 cd vim; mkdir -p ~/.config/nvim; for f in *; do rm -rf ~/.config/nvim/$f; ln -s $PWD/$f ~/.config/nvim; done; cd ..
-declare -a files=(".R" ".gitconfig")
+declare -a files=("jupyter" ".R" ".gitconfig")
 for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
 
 #### C++
@@ -38,8 +38,12 @@ Rscript --vanilla -e 'install.packages(c("lintr", "styler", "BH", "RcppEigen", "
 Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.getenv("R_LIBS_USER"))'
 
 #### Python
-sudo apt install -y python3 python3-pip python3-setuptools
-pip3 install wheel pynvim unidecode jedi
+# sudo apt install -y python3 python3-pip python3-setuptools
+# pip3 install wheel pynvim unidecode jedi
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda.sh
+bash conda.sh -b -p $HOME/miniconda
+rm conda.sh
+conda create --name vim --file conda_spec.txt
 
 #### Neovim
 sudo add-apt-repository -y  ppa:neovim-ppa/unstable

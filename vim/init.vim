@@ -61,6 +61,7 @@ Plug 'vim-pandoc/vim-rmarkdown'
 " Python
 Plug 'vim-python/python-syntax'
 Plug 'python-mode/python-mode'
+Plug 'jupyter-vim/jupyter-vim'
 
 " Autocompletion
 Plug 'roxma/nvim-yarp'
@@ -193,6 +194,10 @@ tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
+" To send stuff to the terminal
+nnoremap <silent> <localleader>sl :TREPLSendLine<cr>
+vnoremap <silent> <localleader>ss :TREPLSendSelection<cr>
+
 " ============================================================================
 " ======== NERDTree
 " ============================================================================
@@ -305,6 +310,9 @@ augroup END
 " ============================================================================
 " ======== Python (python-syntax and python-mode)
 " ============================================================================
+
+let g:python3_host_prog = '/home/tvatter/miniconda/envs/vim/bin/python3'
+set pyxversion=3
 
 " python-syntax
 let g:python_highlight_builtins = 1
