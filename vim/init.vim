@@ -195,9 +195,19 @@ tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
+" ============================================================================
+" ======== neoterm
+" ============================================================================
+
 " To send stuff to the terminal
-nnoremap <silent> <localleader>sl :TREPLSendLine<cr>
-vnoremap <silent> <localleader>ss :TREPLSendSelection<cr>
+nnoremap <silent> <leader>tl :TREPLSendLine<cr>
+vnoremap <silent> <leader>ts :TREPLSendSelection<cr>
+
+" To clear the terminal
+nnoremap <leader>tl :<c-u>exec v:count.'Tclear'<cr>
+
+" To open a terminal in a new vertical split
+nnoremap <leader>tn :vert Tnew<cr>
 
 " ============================================================================
 " ======== NERDTree
