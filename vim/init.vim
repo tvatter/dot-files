@@ -204,7 +204,7 @@ nnoremap <silent> <leader>tl :TREPLSendLine<cr>
 vnoremap <silent> <leader>ts :TREPLSendSelection<cr>
 
 " To clear the terminal
-nnoremap <leader>tl :<c-u>exec v:count.'Tclear'<cr>
+nnoremap <leader>tc :<c-u>exec v:count.'Tclear'<cr>
 
 " To open a terminal in a new vertical split
 nnoremap <leader>tn :vert Tnew<cr>
