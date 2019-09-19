@@ -145,7 +145,7 @@ augroup FileOptions
   " (for comments moving to BOL): https://stackoverflow.com/questions/2063175/comments-go-to-start-of-line-in-the-insert-mode-in-vim
   autocmd Filetype cpp,python setlocal sts=4 sw=4  
   autocmd BufRead,BufNewFile *.Rmd,*.md set wrap
-  autocmd BufRead,BufNewFile *.Rmd set filetype=rmarkdown 
+  " autocmd BufRead,BufNewFile *.Rmd set filetype=rmarkdown 
   autocmd FileType markdown,latex,rmarkdown,text setlocal spell
   autocmd BufRead,BufNewFile *.md,*.tex,*.Rmd,*.txt setlocal spell
 augroup END
