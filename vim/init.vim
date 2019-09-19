@@ -202,12 +202,20 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 " To send stuff to the terminal
 nnoremap <silent> <leader>tl :TREPLSendLine<cr>
 vnoremap <silent> <leader>ts :TREPLSendSelection<cr>
+vmap <tab> <Plug>(neoterm-repl-send)
+nmap <tab> <Plug>(neoterm-repl-send-line)
 
 " To clear the terminal
-nnoremap <leader>tl :<c-u>exec v:count.'Tclear'<cr>
+nnoremap <leader>tc :<c-u>exec v:count.'Tclear'<cr>
 
 " To open a terminal in a new vertical split
 nnoremap <leader>tn :vert Tnew<cr>
+
+" Some filetypes aren't properly detected by vim
+au VimEnter,BufRead,BufNewFile *.jl set filetype=julia
+au VimEnter,BufRead,BufNewFile *.idr set filetype=idris
+au VimEnter,BufRead,BufNewFile *.lidr set filetype=lidris
+au VimEnter,BufRead,BufNewFile *.lfe, set filetype=lfe
 
 " ============================================================================
 " ======== NERDTree
@@ -401,19 +409,4 @@ let g:NERDDefaultAlign = 'left'
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
 
-" ============================================================================
-" ======== neoterm
-" ============================================================================
 
-" Press tab to send lines and selection to the terminail
-vmap <tab> <Plug>(neoterm-repl-send)
-nmap <tab> <Plug>(neoterm-repl-send-line)
-
-" Some filetypes aren't properly detected by vim
-au VimEnter,BufRead,BufNewFile *.jl set filetype=julia
-au VimEnter,BufRead,BufNewFile *.idr set filetype=idris
-au VimEnter,BufRead,BufNewFile *.lidr set filetype=lidris
-au VimEnter,BufRead,BufNewFile *.lfe, set filetype=lfe
-
-" <leader>tl will clear neoterm
-nnoremap <leader>tl :<c-u>exec v:count.'Tclear'<cr>
