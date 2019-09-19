@@ -89,7 +89,7 @@ rm conda.sh
 conda create --name vim python=3.7.3
 exec zsh
 conda activate vim
-conda install pynvim setuptools wheel unidecode jedi flake8 autopep8
+conda install pynvim setuptools wheel unidecode jedi flake8 autopep8 isort pylint
 # conda install jupyter jupyter_contrib_nbextensions
 #conda create --name vim --file conda_spec.txt
 

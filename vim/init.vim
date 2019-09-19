@@ -338,7 +338,8 @@ augroup END
 " autocmd Filetype ipynb nmap <silent><Leader>b :VimpyterInsertPythonBlock<CR>
 " autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
 
-let g:python3_host_prog = '/home/tvatter/miniconda/envs/vim/bin/python3'
+let g:conda_env = '/home/tvatter/miniconda/envs/vim'
+let g:python3_host_prog = join([conda_env, '/bin/python3'], "")
 set pyxversion=3
 
 " python-syntax
@@ -373,6 +374,10 @@ let g:pymode_virtualenv = 1
 " ======== ALE
 " ============================================================================
 
+let g:ale_python_autopep8_executable = join([conda_env, '/bin/autopep8'], "")
+let g:ale_python_isort_executable = join([conda_env, '/bin/isort'], "")
+let g:ale_python_flake8_executable = join([conda_env, '/bin/flake8'], "")
+let g:ale_python_pylint_executable = join([conda_env, '/bin/pylint'], "")
 let g:ale_enabled = 1
 let g:ale_sign_error = '✖︎'
 let g:ale_sign_warning = '✔︎'
@@ -387,9 +392,11 @@ let g:ale_c_parse_compile_commands = 1 " parse automatically `compile_commands.j
 " Otherwise, all linters are used and it kills the battery available by default
 let g:ale_linters = {
      \   'cpp': ['clang', 'clangcheck'],
+     \   'python': ['flake8', 'pylint'],
      \}
 let g:ale_fixers = {
       \   'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
+      \   'python':  ['trim_whitespace', 'remove_trailing_lines', 'add_blank_lines_for_python_control_statements', 'autopep8', 'isort'],
       \   'r':  ['trim_whitespace', 'remove_trailing_lines', 'styler'],
       \   'rmarkdown':  ['trim_whitespace', 'remove_trailing_lines', 'styler']
       \}
