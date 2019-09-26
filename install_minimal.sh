@@ -21,7 +21,7 @@ for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
 
 #### C++
 sudo apt install -y build-essential
-sudo apt install -y libclang-dev clang clang-tools
+sudo apt install -y libclang-dev clang clang-tools clang-tidy
 sudo apt install -y cmake
 sudo apt install -y libboost-dev libeigen3-dev 
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
@@ -46,7 +46,8 @@ rm conda.sh
 conda create --name vim python=3.7.3
 exec zsh
 conda activate vim
-conda install pynvim setuptools wheel unidecode jedi flake8 autopep8
+conda install pynvim setuptools wheel unidecode jedi flake8 autopep8 isort pylint
+
 # conda install jupyter jupyter_contrib_nbextensions
 #conda create --name vim --file conda_spec.txt
 

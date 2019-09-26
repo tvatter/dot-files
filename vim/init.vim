@@ -390,8 +390,9 @@ let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 let g:ale_c_parse_compile_commands = 1 " parse automatically `compile_commands.json`
 " Otherwise, all linters are used and it kills the battery available by default
+     " \   'cpp': ['clang', 'clangcheck'],
 let g:ale_linters = {
-     \   'cpp': ['clang', 'clangcheck'],
+     \   'cpp': ['clangtidy'],
      \   'python': ['flake8', 'pylint'],
      \}
 let g:ale_fixers = {
