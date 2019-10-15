@@ -144,3 +144,17 @@ sudo apt install -y libreoffice
 
 #### VLC
 sudo apt install -y vlc
+
+#### nordvpn
+sudo wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb
+sudo dpkg -i nordvpn-release_1.0.0_all.deb
+sudo apt update
+sudo apt install -y nordvpn
+sudo rm nordvpn-release_1.0.0_all.deb
+# sudo apt install -y openvpn ca-certificates unzip screen
+# cd /etc/openvpn
+# sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip
+# sudo unzip ovpn.zip
+# sudo rm ovpn.zip
+# cd ~/dot-files
+
