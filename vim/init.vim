@@ -254,6 +254,7 @@ let g:tex_flavor = "latex"
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats ='pdf,bib,pdf'
 let g:Tex_GotoError = 0
+let g:Tex_CompileRule_pdf = 'pdflatex -shell-escape -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
 " let g:Tex_AutoFolding = 0
 augroup vimlatex
     autocmd!
