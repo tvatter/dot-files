@@ -103,6 +103,7 @@ nvim +PlugInstall +qall > /dev/null
 mkdir -p ~/.config/nvim/after
 mkdir -p ~/.config/nvim/after/syntax
 mkdir -p ~/.config/nvim/after/syntax/tex
+mkdir -p ~/.config/nvim/spell
 mkdir -p downloads
 cd downloads
 wget http://www.drchip.org/astronaut/vim/vbafiles/amsmath.vba.gz
