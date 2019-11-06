@@ -64,7 +64,7 @@ sudo apt install -y build-essential
 sudo apt install -y libclang-dev clang clang-tools clang-tidy
 sudo apt install -y cmake
 sudo apt install -y libboost-dev libeigen3-dev 
-sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
+# sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
 
 #### TeX
 sudo apt install -y texlive-full
