@@ -209,6 +209,9 @@ nmap <tab> <Plug>(neoterm-repl-send-line)
 " To clear the terminal
 nnoremap <leader>tc :<c-u>exec v:count.'Tclear'<cr>
 
+" To close the terminal
+nnoremap <leader>te :<c-u>exec v:count.'Tclose'<cr>
+
 " To open a terminal in a new vertical split
 nnoremap <leader>tn :vert Tnew<cr>
 
