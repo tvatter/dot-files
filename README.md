@@ -62,8 +62,6 @@ cd gnome-terminal-colors-solarized; ./install.sh -s dark --install-dircolors; cd
 
 ## Post-install
 
-### Minimal
-
 * Make zsh the default shell (need to log out and log back in):
 
 ```
@@ -114,6 +112,8 @@ dropbox start
     * In the "command" field, type `/home/{your-username}/.dropbox-dist/dropboxd`.
 
 * Update the theme in the gnome tweak tool
+    * Applications: `Arc-Dark`
+    * Icons: `Moka`
 * Add the terminal as a startup application
     * In the "name" field, type `Terminal`.
     * In the "command" field, type `gnome-terminal`.
