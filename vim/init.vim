@@ -342,7 +342,7 @@ augroup END
 " autocmd Filetype ipynb nmap <silent><Leader>b :VimpyterInsertPythonBlock<CR>
 " autocmd Filetype ipynb nmap <silent><Leader>j :VimpyterStartJupyter<CR>
 
-let g:conda_env = '/home/tvatter/miniconda/envs/vim'
+let g:conda_env = '/home/rstudio/miniconda/envs/vim'
 let g:python3_host_prog = join([conda_env, '/bin/python3'], "")
 set pyxversion=3
 
