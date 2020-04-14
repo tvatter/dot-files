@@ -78,7 +78,7 @@ sudo apt install -y libgsl-dev  # for VineCopula
 sudo apt install -y xorg libx11-dev libglu1-mesa-dev libfreetype6-dev # for rgl
 Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)'
 Rscript --vanilla -e 'install.packages(c("lintr", "styler", "BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
-Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.getenv("R_LIBS_USER"))'
+# Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.getenv("R_LIBS_USER"))'
 
 #### Python
 # sudo apt install -y python3 python3-pip python3-setuptools
@@ -89,7 +89,8 @@ rm conda.sh
 exec zsh
 conda create --name vim python=3.7.3
 conda activate vim
-conda install pynvim setuptools wheel unidecode jedi flake8 autopep8 isort pylint
+conda install -c conda-forge pynvim
+conda install setuptools wheel unidecode jedi flake8 autopep8 isort pylint
 # conda install jupyter jupyter_contrib_nbextensions
 #conda create --name vim --file conda_spec.txt
 

@@ -18,6 +18,7 @@ cd zsh; for f in *; do rm -rf ~/.$f; ln -s $PWD/$f ~/.$f; done; cd ..
 cd vim; mkdir -p ~/.config/nvim; for f in *; do rm -rf ~/.config/nvim/$f; ln -s $PWD/$f ~/.config/nvim; done; cd ..
 declare -a files=("jupyter" ".R" ".gitconfig")
 for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
+find . -type f -exec sed -i "s/tvatter/$USER/g" {} \;
 
 #### C++
 sudo apt install -y build-essential
@@ -35,7 +36,7 @@ sudo apt install -y libgsl-dev  # for VineCopula
 sudo apt install -y xorg libx11-dev libglu1-mesa-dev libfreetype6-dev # for rgl
 Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)'
 Rscript --vanilla -e 'install.packages(c("lintr", "styler", "BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
-Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.getenv("R_LIBS_USER"))'
+# Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.getenv("R_LIBS_USER"))'
 
 #### Python
 # sudo apt install -y python3 python3-pip python3-setuptools
@@ -43,10 +44,11 @@ Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.gete
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda.sh
 bash conda.sh -b -p $HOME/miniconda
 rm conda.sh
-conda create --name vim python=3.7.3
 exec zsh
+conda create --name vim python=3.7.3
 conda activate vim
-conda install pynvim setuptools wheel unidecode jedi flake8 autopep8 isort pylint
+conda install -c conda-forge pynvim
+conda install setuptools wheel unidecode jedi flake8 autopep8 isort pylint
 
 # conda install jupyter jupyter_contrib_nbextensions
 #conda create --name vim --file conda_spec.txt

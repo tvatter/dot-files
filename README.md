@@ -70,26 +70,29 @@ chsh -s $(which zsh)
 
 Note that this step sometimes requires `sudo`.
 
-* If the version of clang Because some clang tools are installed with their version number, you probably need:
+* You may need to update line 301 in `init.vim`:
 
 ```
-sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
+let g:ncm2_pyclang#library_path = 'path/to/llvm/lib'
 ```
 
-* Similarly, you may need to update line 246 in `init.vim`:
+Usually, it is located somewhere like `usr/lib/llvm-MAJOR.MINOR`.
 
-```
-let g:ncm2_pyclang#library_path = 'path/to/llvm/lib
-```
+<!-- * If the version of clang Because some clang tools are installed with their version number, you probably need: -->
+<!--  -->
+<!-- ``` -->
+<!-- sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100 -->
+<!-- ``` -->
+<!--  -->
 
-* To be able to use autocomplete with R, it is necessary to:
-
-  * Disactivate ncm-R by commenting line 71 of `init.vim` (`Plug 'gaalcaras/ncm-R'`)
-  * Open an R file and launch an R terminal (`<local leader>rf`, that is `,rf` by
-    default or `<space>rf` with my custom mapping)
-  * Wait until Nvim-R has built the required `*` files
-  * Reactivate ncm-R by uncommenting the line above and close nvim
-
+<!-- * To be able to use autocomplete with R, it is necessary to: -->
+  <!--  -->
+  <!-- * Disactivate ncm-R by commenting line 71 of `init.vim` (`Plug 'gaalcaras/ncm-R'`) -->
+  <!-- * Open an R file and launch an R terminal (`<local leader>rf`, that is `,rf` by -->
+  <!--   default or `<space>rf` with my custom mapping) -->
+  <!-- * Wait until Nvim-R has built the required `*` files -->
+  <!-- * Reactivate ncm-R by uncommenting the line above and close nvim -->
+<!--  -->
 
 * Update make command in Renviron (either `/etc/R/Renviron` or 
 `/usr/lib/R/etc/Renviron`, see `R.home()`) to compile on multiple cores:
