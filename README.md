@@ -117,6 +117,9 @@ dropbox start
 * Update the theme in the gnome tweak tool
     * Applications: `Arc-Dark`
     * Icons: `Moka`
+* Update font in the `gnome-terminal`:
+    * Go to `Edit/preferences/profiles/custom font`
+    * Use `JetBrainsMono-Regular`
 * Add the terminal as a startup application
     * In the "name" field, type `Terminal`.
     * In the "command" field, type `gnome-terminal`.

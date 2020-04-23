@@ -18,6 +18,10 @@ sudo apt install -y gnome-tweak-tool arc-theme arc-icons moka-icon-theme
 #### Gnome terminal theme
 git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
 cd gnome-terminal-colors-solarized; ./install.sh -s dark --install-dircolors; cd ..; rm -rf gnome-terminal-colors-solarized
+wget https://download.jetbrains.com/fonts/JetBrainsMono-1.0.3.zip
+sudo unzip JetBrainsMono-1.0.3.zip -d /usr/share/fonts/
+fc-cache -f -v
+rm JetBrainsMono-1.0.3.zip
 
 # #### Chrome
 # wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
