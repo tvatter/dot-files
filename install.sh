@@ -10,10 +10,10 @@ sudo ufw allow ssh
 sudo ufw enable
 
 #### Ubuntu theme
-sudo add-apt-repository -y ppa:noobslab/themes
-sudo add-apt-repository -y ppa:noobslab/icons
-sudo apt update
-sudo apt install -y gnome-tweak-tool arc-theme arc-icons moka-icon-theme
+#sudo add-apt-repository -y ppa:noobslab/themes
+#sudo add-apt-repository -y ppa:noobslab/icons
+#sudo apt update
+sudo apt install -y gnome-tweak-tool #arc-theme arc-icons moka-icon-theme
 
 #### Gnome terminal theme
 git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
