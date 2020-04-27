@@ -85,15 +85,6 @@ Usually, it is located somewhere like `usr/lib/llvm-MAJOR.MINOR`.
 <!-- ``` -->
 <!--  -->
 
-<!-- * To be able to use autocomplete with R, it is necessary to: -->
-  <!--  -->
-  <!-- * Disactivate ncm-R by commenting line 71 of `init.vim` (`Plug 'gaalcaras/ncm-R'`) -->
-  <!-- * Open an R file and launch an R terminal (`<local leader>rf`, that is `,rf` by -->
-  <!--   default or `<space>rf` with my custom mapping) -->
-  <!-- * Wait until Nvim-R has built the required `*` files -->
-  <!-- * Reactivate ncm-R by uncommenting the line above and close nvim -->
-<!--  -->
-
 * Update make command in Renviron (either `/etc/R/Renviron` or 
 `/usr/lib/R/etc/Renviron`, see `R.home()`) to compile on multiple cores:
 
@@ -113,16 +104,10 @@ dropbox start
 * Add dropbox as a startup application
     * In the "name" field, type `Dropbox`.
     * In the "command" field, type `/home/{your-username}/.dropbox-dist/dropboxd`.
-
-* Update the theme in the gnome tweak tool
-    * Applications: `Arc-Dark`
-    * Icons: `Moka`
+* Add skype/zoom/terminal as startup applications
 * Update font in the `gnome-terminal`:
     * Go to `Edit/preferences/profiles/custom font`
     * Use `JetBrainsMono-Regular`
-* Add the terminal as a startup application
-    * In the "name" field, type `Terminal`.
-    * In the "command" field, type `gnome-terminal`.
 
 ### Power-saving on a laptop
 

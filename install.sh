@@ -91,7 +91,8 @@ wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O co
 bash conda.sh -b -p $HOME/miniconda
 rm conda.sh
 exec zsh
-conda create --name vim python=3.7.3
+conda update -n base -c defaults conda
+conda create --name vim python=3.8.2
 conda activate vim
 conda install -c conda-forge pynvim
 conda install setuptools wheel unidecode jedi flake8 autopep8 isort pylint
