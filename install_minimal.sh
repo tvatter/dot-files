@@ -28,7 +28,7 @@ sudo apt install -y libboost-dev libeigen3-dev
 # sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
 
 #### R
-sudo add-apt-repository -y ppa:marutter/rrutter3.5
+sudo add-apt-repository -y ppa:marutter/rrutter4.0
 sudo apt update
 sudo apt install -y r-base r-base-dev
 sudo apt install -y libcurl4-openssl-dev libssl-dev libxml2-dev  # for tidyverse packagews
