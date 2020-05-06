@@ -298,7 +298,7 @@ augroup END
 set completeopt=noinsert,menuone,noselect
 
 " path to the llvm library
-let g:ncm2_pyclang#library_path = '/usr/lib/llvm-10.0/lib' "  '/usr/local/Cellar/llvm/7.0.1/lib'  
+let g:ncm2_pyclang#library_path = '/usr/lib/llvm-10/lib' "  '/usr/local/Cellar/llvm/7.0.1/lib'  
 
 " where to look for compile_commands.json
 let g:ncm2_pyclang#database_path = [
