@@ -397,13 +397,15 @@ let g:ale_c_parse_compile_commands = 1 " parse automatically `compile_commands.j
      " \   'cpp': ['clang', 'clangcheck'],
 let g:ale_linters = {
      \   'cpp': ['clangtidy'],
+     \   'markdown': ['textlint'],
      \   'python': ['flake8', 'pylint'],
      \}
 let g:ale_fixers = {
       \   'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
       \   'python':  ['trim_whitespace', 'remove_trailing_lines', 'add_blank_lines_for_python_control_statements', 'autopep8', 'isort'],
       \   'r':  ['trim_whitespace', 'remove_trailing_lines', 'styler'],
-      \   'rmarkdown':  ['trim_whitespace', 'remove_trailing_lines', 'styler']
+      \   'rmarkdown':  ['trim_whitespace', 'remove_trailing_lines', 'styler'],
+      \   'markdown':  ['trim_whitespace', 'remove_trailing_lines', 'textlint']
       \}
 
 " ============================================================================
