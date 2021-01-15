@@ -325,6 +325,13 @@ let g:rout_follow_colorscheme = 1
 " R commands in R output are highlighted
 let g:Rout_more_colors = 1
 
+" better R console, see https://github.com/randy3k/radian
+let R_app = "radian"
+let R_cmd = "R"
+let R_hl_term = 0
+let R_args = []  " if you had set any
+let R_bracketed_paste = 1
+
 augroup nvimr
     autocmd!
     " To activate the plugin when opening .Rproj files

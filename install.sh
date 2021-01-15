@@ -66,7 +66,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting \
 #### Dotfiles
 cd zsh; for f in *; do rm -rf ~/.$f; ln -s $PWD/$f ~/.$f; done; cd ..
 cd vim; mkdir -p ~/.config/nvim; for f in *; do rm -rf ~/.config/nvim/$f; ln -s $PWD/$f ~/.config/nvim; done; cd ..
-declare -a files=(".jupyter" ".R" ".gitconfig" ".condarc")
+declare -a files=(".jupyter" ".R" ".gitconfig" ".condarc", ".radian_profile")
 for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
 
 #### C++
@@ -87,7 +87,7 @@ sudo apt install -y libgsl-dev  # for VineCopula
 sudo apt install -y xorg libx11-dev libglu1-mesa-dev libfreetype6-dev # for rgl
 Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)'
 Rscript --vanilla -e 'install.packages(c("lintr", "styler", "BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
-pip install -U radian # a better console
+pip install -U radian # a better console, see https://github.com/randy3k/radian
 # Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.getenv("R_LIBS_USER"))'
 
 #### Python
