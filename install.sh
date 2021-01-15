@@ -10,14 +10,24 @@ sudo ufw allow ssh
 sudo ufw enable
 
 #### Ubuntu theme
-sudo add-apt-repository -y ppa:noobslab/themes
-sudo add-apt-repository -y ppa:noobslab/icons
-sudo apt update
-sudo apt install -y gnome-tweak-tool arc-theme arc-icons moka-icon-theme
+#sudo add-apt-repository -y ppa:noobslab/themes
+#sudo add-apt-repository -y ppa:noobslab/icons
+#sudo apt update
+sudo apt install -y gnome-tweak-tool #arc-theme arc-icons moka-icon-theme
 
 #### Gnome terminal theme
 git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
 cd gnome-terminal-colors-solarized; ./install.sh -s dark --install-dircolors; cd ..; rm -rf gnome-terminal-colors-solarized
+wget https://download.jetbrains.com/fonts/JetBrainsMono-1.0.3.zip
+sudo unzip JetBrainsMono-1.0.3.zip -d /usr/share/fonts/
+fc-cache -f -v
+rm JetBrainsMono-1.0.3.zip
+
+#### Brave
+curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo apt update
+sudo apt install -y brave-browser
 
 # #### Chrome
 # wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -61,16 +71,15 @@ for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
 
 #### C++
 sudo apt install -y build-essential
-sudo apt install -y libclang-dev clang clang-tools clang-tidy
-sudo apt install -y cmake
+sudo apt install -y libclang-dev clang clang-tools clang-tidy clang-format
+sudo apt install -y cmake doxygen
 sudo apt install -y libboost-dev libeigen3-dev 
-# sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100
 
 #### TeX
 sudo apt install -y texlive-full
 
 #### R
-sudo add-apt-repository -y ppa:marutter/rrutter3.5
+sudo add-apt-repository -y ppa:marutter/rrutter4.0
 sudo apt update
 sudo apt install -y r-base r-base-dev
 sudo apt install -y libcurl4-openssl-dev libssl-dev libxml2-dev  # for tidyverse packagews
@@ -78,7 +87,7 @@ sudo apt install -y libgsl-dev  # for VineCopula
 sudo apt install -y xorg libx11-dev libglu1-mesa-dev libfreetype6-dev # for rgl
 Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)'
 Rscript --vanilla -e 'install.packages(c("lintr", "styler", "BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
-Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.getenv("R_LIBS_USER"))'
+# Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.getenv("R_LIBS_USER"))'
 
 #### Python
 # sudo apt install -y python3 python3-pip python3-setuptools
@@ -86,10 +95,12 @@ Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.gete
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda.sh
 bash conda.sh -b -p $HOME/miniconda
 rm conda.sh
-conda create --name vim python=3.7.3
 exec zsh
+conda update -n base -c defaults conda
+conda create --name vim python=3.8.2
 conda activate vim
-conda install pynvim setuptools wheel unidecode jedi flake8 autopep8 isort pylint
+conda install -c conda-forge pynvim
+conda install setuptools wheel unidecode jedi flake8 autopep8 isort pylint
 # conda install jupyter jupyter_contrib_nbextensions
 #conda create --name vim --file conda_spec.txt
 
@@ -122,6 +133,10 @@ sudo apt install -y hugo
 
 #### Pandoc
 sudo apt install -y pandoc
+
+#### npm and stuff
+sudo apt install -y npm
+sudo npm install remark remark-lint textlint --global
 
 #### Mendeley
 mkdir -p mendeley; cd mendeley
