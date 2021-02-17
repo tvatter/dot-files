@@ -1,0 +1,13 @@
+{
+    "r.bracketedPaste": true,
+    "r.rterm.linux": "/home/tvatter/miniconda/bin/radian",
+    "workbench.colorTheme": "Material Theme High Contrast",
+    "workbench.iconTheme": "material-icon-theme",
+    "terminal.integrated.inheritEnv": false,
+    "editor.tabSize": 2,
+    "window.zoomLevel": 2,
+    "aws.profile": "profile:tvatter",
+    "terminal.integrated.env.linux": {
+        "DISPLAY":"localhost:10.0"
+    }
+}

@@ -66,6 +66,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting \
 #### Dotfiles
 cd zsh; for f in *; do rm -rf ~/.$f; ln -s $PWD/$f ~/.$f; done; cd ..
 cd vim; mkdir -p ~/.config/nvim; for f in *; do rm -rf ~/.config/nvim/$f; ln -s $PWD/$f ~/.config/nvim; done; cd ..
+cd vscode; mkdir -p ~/.config/Code/User; for f in *; do rm -rf ~/.config/Code/User/$f; ln -s $PWD/$f ~/.config/Code/User; done; cd ..
 declare -a files=(".jupyter" ".R" ".gitconfig" ".condarc", ".radian_profile")
 for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
 
@@ -175,3 +176,7 @@ sudo rm nordvpn-release_1.0.0_all.deb
 # sudo rm ovpn.zip
 # cd ~/dot-files
 
+#### VS Code
+sudo wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+sudo apt install code
