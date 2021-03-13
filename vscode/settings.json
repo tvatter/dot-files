@@ -7,7 +7,23 @@
     "editor.tabSize": 2,
     "window.zoomLevel": 2,
     "aws.profile": "profile:tvatter",
-    "terminal.integrated.env.linux": {
-        "DISPLAY":"localhost:10.0"
-    }
+    // "terminal.integrated.env.linux": {
+    //     "DISPLAY":"localhost:10.0"
+    // },
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "vim.useSystemClipboard": true,
+    "python.pythonPath": "/home/tvatter/miniconda/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfArgs": [
+        "--style",
+        "{based_on_style: pep8, indent_width: 2}"
+    ]
 }
