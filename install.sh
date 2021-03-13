@@ -67,7 +67,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting \
 cd zsh; for f in *; do rm -rf ~/.$f; ln -s $PWD/$f ~/.$f; done; cd ..
 cd vim; mkdir -p ~/.config/nvim; for f in *; do rm -rf ~/.config/nvim/$f; ln -s $PWD/$f ~/.config/nvim; done; cd ..
 cd vscode; mkdir -p ~/.config/Code/User; for f in *; do rm -rf ~/.config/Code/User/$f; ln -s $PWD/$f ~/.config/Code/User; done; cd ..
-declare -a files=(".jupyter" ".R" ".gitconfig" ".condarc", ".radian_profile", ".pylintrc")
+declare -a files=(".jupyter" ".R" ".gitconfig" ".condarc" ".radian_profile" ".pylintrc")
 for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
 
 #### C++
