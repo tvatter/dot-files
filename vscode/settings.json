@@ -24,11 +24,14 @@
         }
     ],
     "jupyter.interactiveWindowMode": "perFile",
+    "python.pythonPath": "/home/tvatter/miniconda/bin/python",
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": false,
     "python.linting.enabled": true,
-    "python.linting.pylintArgs": ["--generate-members"],
-    "python.formatting.enabled": true,
+    "editor.formatOnSave": true,
     "python.formatting.provider": "yapf",
-    "python.formatting.yapfArgs": ["--style", "{based_on_style: pep8, indent_width: 2}"],
+    "python.formatting.yapfArgs": [
+        "--style",
+        "{based_on_style: pep8, indent_width: 2}"
+    ]
 }
