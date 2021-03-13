@@ -8,17 +8,25 @@
     "window.zoomLevel": 2,
     "aws.profile": "profile:tvatter",
     // "terminal.integrated.env.linux": {
-    //     "DISPLAY":"localhost:10.0"
-    // },
+    //    "DISPLAY":"localhost:10.0"
+    //  },
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "editor.wordWrap": "bounded",
+    "vim.useSystemClipboard": true,
+    "[latex]": {
+        "editor.defaultFormatter": "nickfode.latex-formatter"
+    },
     "workbench.editorAssociations": [
         {
             "viewType": "jupyter.notebook.ipynb",
             "filenamePattern": "*.ipynb"
         }
     ],
-    "vim.useSystemClipboard": true,
+    "jupyter.interactiveWindowMode": "perFile",
     "python.pythonPath": "/home/tvatter/miniconda/bin/python",
     "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": false,
     "python.linting.enabled": true,
     "editor.formatOnSave": true,
     "python.formatting.provider": "yapf",
