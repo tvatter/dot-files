@@ -1,21 +1,20 @@
 {
-    "r.bracketedPaste": true,
-    "r.rterm.linux": "/home/tvatter/miniconda/bin/radian",
+    "editor.wordWrap": "bounded",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "window.zoomLevel": 2,
     "workbench.colorTheme": "Material Theme High Contrast",
     "workbench.iconTheme": "material-icon-theme",
     "terminal.integrated.inheritEnv": false,
-    "editor.tabSize": 2,
-    "window.zoomLevel": 2,
     "aws.profile": "profile:tvatter",
     // "terminal.integrated.env.linux": {
     //    "DISPLAY":"localhost:10.0"
     //  },
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.synctex.afterBuild.enabled": true,
-    "editor.wordWrap": "bounded",
-    "vim.useSystemClipboard": true,
     "[latex]": {
-        "editor.defaultFormatter": "nickfode.latex-formatter"
+        "editor.defaultFormatter": "nickfode.latex-formatter",
+        "editor.formatOnSave": false
     },
     "workbench.editorAssociations": [
         {
@@ -28,10 +27,12 @@
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": false,
     "python.linting.enabled": true,
-    "editor.formatOnSave": true,
     "python.formatting.provider": "yapf",
     "python.formatting.yapfArgs": [
         "--style",
         "{based_on_style: pep8, indent_width: 2}"
-    ]
+    ],
+    "r.bracketedPaste": true,
+    "r.rterm.linux": "/home/tvatter/miniconda/bin/radian",
+    "vim.useSystemClipboard": true,
 }
