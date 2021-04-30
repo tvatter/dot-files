@@ -87,7 +87,7 @@ sudo apt install -y libcurl4-openssl-dev libssl-dev libxml2-dev  # for tidyverse
 sudo apt install -y libgsl-dev  # for VineCopula 
 sudo apt install -y xorg libx11-dev libglu1-mesa-dev libfreetype6-dev # for rgl
 Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)'
-Rscript --vanilla -e 'install.packages(c("lintr", "styler", "BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
+Rscript --vanilla -e 'install.packages(c("lintr", "styler", "languageserver", "BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
 pip install -U radian # a better console, see https://github.com/randy3k/radian
 # Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.getenv("R_LIBS_USER"))'
 

@@ -35,4 +35,5 @@
     "r.bracketedPaste": true,
     "r.rterm.linux": "/home/tvatter/miniconda/bin/radian",
     "vim.useSystemClipboard": true,
+    "r.sessionWatcher": true,
 }
