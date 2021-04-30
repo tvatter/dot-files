@@ -13,5 +13,33 @@
     {
         "key": "shift+enter",
         "command": "workbench.action.terminal.runSelectedText"
+    },
+    {
+        "description": "Check Package with devtools::check()",
+        "key": "ctrl+shift+e",
+        "command": "r.runCommand",
+        "when": "editorLangId == r || editorLangId == rmd",
+        "args": "devtools::check()"
+    },
+    {
+        "description": "Install and Restart with devtools::install(quick = TRUE)",
+        "key": "ctrl+shift+b",
+        "command": "r.runCommand",
+        "when": "editorLangId == r || editorLangId == rmd",
+        "args": "devtools::install(quick = TRUE)"
+    },
+    {
+        "description": "Test Package with devtools::test()",
+        "key": "ctrl+shift+t",
+        "command": "r.runCommand",
+        "when": "editorLangId == r || editorLangId == rmd",
+        "args": "devtools::test()"
+    },
+    {
+        "description": "Document Package with devtools::document()",
+        "key": "ctrl+shift+d",
+        "command": "r.runCommand",
+        "when": "editorLangId == r || editorLangId == rmd",
+        "args": "devtools::document()"
     }
 ]
