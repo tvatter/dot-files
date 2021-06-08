@@ -1,6 +1,0 @@
-{
-  "load_extensions": {
-    "jupyter-autopep8-master/jupyter-autopep8": true,
-    "code_prettify/autopep8": true
-  }
-}

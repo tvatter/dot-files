@@ -65,9 +65,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting \
 
 #### Dotfiles
 cd zsh; for f in *; do rm -rf ~/.$f; ln -s $PWD/$f ~/.$f; done; cd ..
-cd vim; mkdir -p ~/.config/nvim; for f in *; do rm -rf ~/.config/nvim/$f; ln -s $PWD/$f ~/.config/nvim; done; cd ..
 cd vscode; mkdir -p ~/.config/Code/User; for f in *; do rm -rf ~/.config/Code/User/$f; ln -s $PWD/$f ~/.config/Code/User; done; cd ..
-declare -a files=(".jupyter" ".R" ".gitconfig" ".condarc" ".radian_profile" ".pylintrc")
+declare -a files=(".R" ".gitconfig" ".condarc" ".radian_profile" ".pylintrc")
 for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
 
 #### C++
@@ -89,47 +88,14 @@ sudo apt install -y xorg libx11-dev libglu1-mesa-dev libfreetype6-dev # for rgl
 Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)'
 Rscript --vanilla -e 'install.packages(c("lintr", "styler", "languageserver", "BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
 pip install -U radian # a better console, see https://github.com/randy3k/radian
-# Rscript --vanilla -e 'devtools::install_github("jimhester/lintr", lib = Sys.getenv("R_LIBS_USER"))'
 
 #### Python
-# sudo apt install -y python3 python3-pip python3-setuptools
-# pip3 install wheel pynvim unidecode jedi
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda.sh
 bash conda.sh -b -p $HOME/miniconda
 rm conda.sh
 exec zsh
 conda update -n base -c defaults conda
-conda install pylint yapf jedi setuptools wheel
-conda create --name vim python=3.8.2
-conda activate vim
-conda install -c conda-forge pynvim
 conda install setuptools wheel unidecode jedi flake8 autopep8 isort pylint
-# conda install jupyter jupyter_contrib_nbextensions
-#conda create --name vim --file conda_spec.txt
-
-#### Neovim
-sudo add-apt-repository -y  ppa:neovim-ppa/unstable
-sudo apt update
-sudo apt install -y neovim
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim +PlugInstall +qall > /dev/null
-mkdir -p ~/.config/nvim/after
-mkdir -p ~/.config/nvim/after/syntax
-mkdir -p ~/.config/nvim/after/syntax/tex
-mkdir -p ~/.config/nvim/spell
-mkdir -p downloads
-cd downloads
-wget http://www.drchip.org/astronaut/vim/vbafiles/amsmath.vba.gz
-wget http://www.drchip.org/astronaut/vim/vbafiles/array.vba.gz
-wget http://www.drchip.org/astronaut/vim/vbafiles/lstlisting.vba.gz
-wget http://www.drchip.org/astronaut/vim/vbafiles/moreverb.vba.gz
-nvim amsmath.vba.gz +UseVimball +qall > /dev/null
-nvim array.vba.gz +UseVimball +qall > /dev/null
-nvim lstlisting.vba.gz +UseVimball +qall > /dev/null
-nvim moreverb.vba.gz +UseVimball +qall > /dev/null
-cd ..
-rm -rf downloads
 
 #### Hugo
 sudo apt install -y hugo
@@ -138,8 +104,8 @@ sudo apt install -y hugo
 sudo apt install -y pandoc
 
 #### npm and stuff
-sudo apt install -y npm
-sudo npm install remark remark-lint textlint --global
+# sudo apt install -y npm
+# sudo npm install remark remark-lint textlint --global
 
 #### Mendeley
 mkdir -p mendeley; cd mendeley
@@ -154,7 +120,7 @@ sudo apt install -y texmaker
 #### Rstudio
 sudo apt install -y gdebi-core libjpeg62
 mkdir -p rstudio; cd rstudio
-wget -c https://s3.amazonaws.com/rstudio-ide-build/desktop/bionic/amd64/rstudio-1.2.1335-amd64.deb 
+wget -c https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1717-amd64.deb 
 sudo gdebi --non-interactive rstudio*
 cd ..; rm -rf rstudio
 
