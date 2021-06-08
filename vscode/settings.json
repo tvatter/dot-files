@@ -40,4 +40,11 @@
     "vim.useSystemClipboard": true,
     "r.sessionWatcher": true,
     "terminal.integrated.shell.linux": "zsh",
+    "remark.format": {
+        "rules": {
+            "listItemIndent": "1",
+            "commonmark": true,
+            "fences": true
+        }
+    }
 }
