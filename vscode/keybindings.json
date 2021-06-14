@@ -15,6 +15,16 @@
         "command": "workbench.action.terminal.runSelectedText"
     },
     {
+        "key": "ctrl+delete",
+        "command": "workbench.action.terminal.kill",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.terminal.clear",
+        "when": "terminalFocus"
+    },
+    {
         "description": "Check Package with devtools::check()",
         "key": "ctrl+shift+e",
         "command": "r.runCommand",

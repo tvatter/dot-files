@@ -87,7 +87,6 @@ sudo apt install -y libgsl-dev  # for VineCopula
 sudo apt install -y xorg libx11-dev libglu1-mesa-dev libfreetype6-dev # for rgl
 Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)'
 Rscript --vanilla -e 'install.packages(c("lintr", "styler", "languageserver", "BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
-pip install -U radian # a better console, see https://github.com/randy3k/radian
 
 #### Python
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda.sh
@@ -98,6 +97,7 @@ conda update -n base -c defaults conda
 conda install -c conda-forge pylint yapf jedi unidecode wheel isort
 conda install -c conda-forge numpy scipy scikit-learn pandas
 conda install -c conda-forge matplotlib seaborn
+conda install -c conda-forge radian # a better console, see https://github.com/randy3k/radian
 
 #### Hugo
 sudo apt install -y hugo
