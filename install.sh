@@ -95,7 +95,9 @@ bash conda.sh -b -p $HOME/miniconda
 rm conda.sh
 exec zsh
 conda update -n base -c defaults conda
-conda install setuptools wheel unidecode jedi flake8 autopep8 isort pylint
+conda install -c conda-forge pylint yapf jedi unidecode wheel isort
+conda install -c conda-forge numpy scipy scikit-learn pandas
+conda install -c conda-forge matplotlib seaborn
 
 #### Hugo
 sudo apt install -y hugo
