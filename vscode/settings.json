@@ -2,10 +2,20 @@
     "editor.wordWrap": "bounded",
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
+    "editor.cursorStyle": "line",
+    "editor.insertSpaces": false,
+    "editor.lineNumbers": "on",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
     "window.zoomLevel": 2,
     "workbench.colorTheme": "Material Theme High Contrast",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
     "workbench.iconTheme": "material-icon-theme",
-    "terminal.integrated.inheritEnv": false,
+    "workbench.editor.enablePreview": false,
+    "terminal.integrated.inheritEnv": true,
+    "terminal.integrated.shell.linux": "/usr/bin/zsh",
+    "vim.useSystemClipboard": true,
     "aws.profile": "profile:tvatter",
     // "terminal.integrated.env.linux": {
     //    "DISPLAY":"localhost:10.0"
@@ -16,12 +26,6 @@
         "editor.defaultFormatter": "nickfode.latex-formatter",
         "editor.formatOnSave": false
     },
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
     "jupyter.interactiveWindowMode": "perFile",
     "python.pythonPath": "/home/tvatter/miniconda/bin/python",
     "python.linting.pylintEnabled": true,
@@ -32,14 +36,17 @@
         "--style",
         "{based_on_style: pep8, indent_width: 2}"
     ],
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
     "[r]": {
-        "editor.wordSeparators": "`~!@#%$^&*()-=+[{]}\\|;:'\",<>/?"
+        "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
     },
     "r.bracketedPaste": true,
     "r.rterm.linux": "/home/tvatter/miniconda/bin/radian",
-    "vim.useSystemClipboard": true,
     "r.sessionWatcher": true,
-    "terminal.integrated.shell.linux": "zsh",
     "remark.format": {
         "rules": {
             "listItemIndent": "1",
