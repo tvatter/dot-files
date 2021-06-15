@@ -15,7 +15,12 @@
     "workbench.editor.enablePreview": false,
     "terminal.integrated.inheritEnv": true,
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
+    "vim.easymotion": true,
+    "vim.incsearch": true,
     "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.leader": "<space>",
     "aws.profile": "profile:tvatter",
     // "terminal.integrated.env.linux": {
     //    "DISPLAY":"localhost:10.0"
