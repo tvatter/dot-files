@@ -50,7 +50,7 @@
         "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
     },
     "r.bracketedPaste": true,
-    "r.rterm.linux": "/home/tvatter/miniconda/bin/radian",
+    // "r.rterm.linux": "/home/tvatter/miniconda/bin/radian",
     "r.sessionWatcher": true,
     "remark.format": {
         "rules": {

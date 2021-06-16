@@ -97,7 +97,7 @@ conda update -n base -c defaults conda
 conda install -c conda-forge pylint yapf jedi unidecode wheel isort
 conda install -c conda-forge numpy scipy scikit-learn pandas
 conda install -c conda-forge matplotlib seaborn
-conda install -c conda-forge radian # a better console, see https://github.com/randy3k/radian
+# conda install -c conda-forge radian # a better console, see https://github.com/randy3k/radian
 
 #### Hugo
 sudo apt install -y hugo
