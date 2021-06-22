@@ -41,6 +41,11 @@
         "--style",
         "{based_on_style: pep8, indent_width: 2}"
     ],
+    "python.terminal.launchArgs": [
+        "-m",
+        "IPython",
+        "--no-autoindent"
+    ],
     "[python]": {
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
