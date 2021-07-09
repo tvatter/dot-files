@@ -57,5 +57,9 @@
         "command": "r.runCommand",
         "when": "editorLangId == r || editorLangId == rmd",
         "args": "devtools::document()"
+    },
+    {
+        "key": "ctrl+f7",
+        "command": "cmake.configure"
     }
 ]

@@ -70,6 +70,9 @@ declare -a files=(".R" ".gitconfig" ".condarc" ".radian_profile" ".pylintrc")
 for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
 
 #### C++
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null # check ubuntu version!!
+sudo apt-get update
 sudo apt install -y build-essential
 sudo apt install -y libclang-dev clang clang-tools clang-tidy clang-format
 sudo apt install -y cmake doxygen
@@ -82,7 +85,8 @@ sudo apt install -y texlive-full
 sudo add-apt-repository -y ppa:marutter/rrutter4.0
 sudo apt update
 sudo apt install -y r-base r-base-dev
-sudo apt install -y libcurl4-openssl-dev libssl-dev libxml2-dev  # for tidyverse packagews
+sudo apt install -y libcurl4-openssl-dev libssl-dev # for tidyverse packagews
+sudo apt install -y libxml2-dev libfontconfig1-dev # for tidyverse packagews
 sudo apt install -y libgsl-dev  # for VineCopula 
 sudo apt install -y xorg libx11-dev libglu1-mesa-dev libfreetype6-dev # for rgl
 Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)'
@@ -97,7 +101,7 @@ conda update -n base -c defaults conda
 conda install -c conda-forge pylint yapf jedi unidecode wheel isort
 conda install -c conda-forge numpy scipy scikit-learn pandas
 conda install -c conda-forge matplotlib seaborn
-conda install -c conda-forge ipython
+conda install -c conda-forge ipython build
 # conda install -c conda-forge radian # a better console, see https://github.com/randy3k/radian
 
 #### Hugo
