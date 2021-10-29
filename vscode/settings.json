@@ -68,6 +68,7 @@
     },
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.inlineSuggest.enabled": true
     "git.autofetch": true,
     "notebook.cellToolbarLocation": {
         "default": "right",
