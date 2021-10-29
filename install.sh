@@ -3,7 +3,7 @@
 #### Upgrade default install
 sudo apt update
 sudo apt upgrade
-sudo apt install -y wget curl apt-transport-https software-properties-common openssh-server
+sudo apt install -y wget curl apt-transport-https software-properties-common openssh-server vim
 
 #### Activate firewall
 sudo ufw allow ssh
