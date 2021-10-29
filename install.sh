@@ -99,7 +99,7 @@ rm conda.sh
 exec zsh
 conda update -n base -c defaults conda
 conda install -c conda-forge pylint yapf jedi unidecode wheel isort
-conda install -c conda-forge numpy scipy scikit-learn pandas
+conda install -c conda-forge numpy scipy scikit-learn pandas scikit-learn-extra
 conda install -c conda-forge matplotlib seaborn
 conda install -c conda-forge ipython build
 # conda install -c conda-forge radian # a better console, see https://github.com/randy3k/radian
@@ -159,3 +159,10 @@ sudo apt install code
 sudo wget -q https://updates.signal.org/desktop/apt/keys.asc -O- | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
 sudo apt update && sudo apt install signal-desktop
+
+#### sonarr
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 2009837CBFFD68F45BC180471F4F90DE2A9B4BF8
+echo "deb https://apt.sonarr.tv/ubuntu focal main" | sudo tee /etc/apt/sources.list.d/sonarr.list
+sudo apt update
+sudo apt install sonarr
+

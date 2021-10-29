@@ -33,7 +33,8 @@
         "editor.formatOnSave": false
     },
     "jupyter.interactiveWindowMode": "perFile",
-    "python.pythonPath": "/home/tvatter/miniconda/bin/python",
+    // "python.pythonPath": "/home/tvatter/miniconda/bin/python",
+    "python.languageServer": "Pylance",
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": false,
     "python.linting.enabled": true,
@@ -71,5 +72,9 @@
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
-    }
+    },
+    "jupyter.askForKernelRestart": false,
+    "editor.inlineSuggest.enabled": true,
+    "notebook.lineNumbers": "on",
+    "python.insidersChannel": "daily"
 }

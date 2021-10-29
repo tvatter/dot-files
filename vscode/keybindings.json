@@ -61,5 +61,55 @@
     {
         "key": "ctrl+f7",
         "command": "cmake.configure"
+    },
+    {
+        "key": "ctrl+alt+a",
+        "command": "jupyter.insertCellAbove",
+        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+; a",
+        "command": "-jupyter.insertCellAbove",
+        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+alt+b",
+        "command": "jupyter.insertCellBelow",
+        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+; b",
+        "command": "-jupyter.insertCellBelow",
+        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+alt+c",
+        "command": "jupyter.changeCellToCode",
+        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+; c",
+        "command": "-jupyter.changeCellToCode",
+        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+alt+m",
+        "command": "jupyter.changeCellToMarkdown",
+        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+; m",
+        "command": "-jupyter.changeCellToMarkdown",
+        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+shift+backspace",
+        "command": "github.copilot.generate",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-github.copilot.generate",
+        "when": "editorTextFocus"
     }
 ]
