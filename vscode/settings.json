@@ -76,5 +76,6 @@
     },
     "jupyter.askForKernelRestart": false,
     "notebook.lineNumbers": "on",
-    "python.insidersChannel": "daily"
+    "python.insidersChannel": "daily",
+    "notebook.output.textLineLimit": 50
 }
