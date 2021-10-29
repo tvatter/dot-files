@@ -67,15 +67,14 @@
         }
     },
     "editor.suggestSelection": "first",
+    "editor.inlineSuggest.enabled": true,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "editor.inlineSuggest.enabled": true
     "git.autofetch": true,
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
     },
     "jupyter.askForKernelRestart": false,
-    "editor.inlineSuggest.enabled": true,
     "notebook.lineNumbers": "on",
     "python.insidersChannel": "daily"
 }
