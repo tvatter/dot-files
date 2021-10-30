@@ -1,0 +1,58 @@
+version: "3"
+services:
+  vpn:
+    image: ghcr.io/bubuntux/nordvpn:latest
+    restart: unless-stopped
+    cap_add:
+      - net_admin 
+    environment:                # Review https://github.com/bubuntux/nordvpn#environment-variables
+      - USER=${NORDVPN_USER}
+      - PASS=${NORDVPN_PWD}
+      - connect=United_States
+      - technology=NordLynx
+      - network=192.168.1.0/24  # So it can be accessed within the local network
+      - firewall=true
+    ports:
+      - 8112:8112 # port for deluge web UI to be reachable from local network
+
+  deluge:
+    container_name: deluge
+    image: ghcr.io/linuxserver/deluge:latest
+    restart: unless-stopped
+    network_mode: service:vpn # run on the vpn network
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+    volumes:
+      - ${ROOT}/downloads:/downloads # downloads folder
+      - ${ROOT}/config/deluge:/config # config files
+
+  jackett:
+    container_name: jackett
+    image: ghcr.io/linuxserver/jackett:latest
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${ROOT}/downloads/torrent-blackhole:/downloads # place where to put .torrent files for manual download
+      - ${ROOT}/config/jackett:/config # config files
+
+  sonarr:
+    container_name: sonarr
+    image: ghcr.io/linuxserver/sonarr:latest
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${ROOT}/config/sonarr:/config # config files
+      - ${ROOT}/complete/tv:/tv # tv shows folder
+      - ${ROOT}/downloads:/downloads # download folder
