@@ -1,17 +1,16 @@
-version: "3"
 services:
   vpn:
     image: ghcr.io/bubuntux/nordvpn:latest
     restart: unless-stopped
     cap_add:
-      - net_admin 
+      - NET_ADMIN
     environment:                # Review https://github.com/bubuntux/nordvpn#environment-variables
       - USER=${NORDVPN_USER}
       - PASS=${NORDVPN_PWD}
-      - connect=United_States
-      - technology=NordLynx
-      - network=192.168.1.0/24  # So it can be accessed within the local network
-      - firewall=true
+      - CONNECT=United_States
+      - TECHNOLOGY=NordLynx
+      #- FIREWALL=Disable # somehow it's needed on synology DSM 7
+      - NETWORK=192.168.1.0/24  # So it can be accessed within the local network
     ports:
       - 8112:8112 # port for deluge web UI to be reachable from local network
 
@@ -23,10 +22,12 @@ services:
     environment:
       - PUID=${PUID} # default user id, defined in .env
       - PGID=${PGID} # default group id, defined in .env
-      - TZ=${TZ} # timezone, defined in .env
+      - TZ=${TZ}     # timezone, defined in .env
     volumes:
-      - ${ROOT}/downloads:/downloads # downloads folder
-      - ${ROOT}/config/deluge:/config # config files
+      - ${ROOT_DIR}/config/deluge:/config # config files
+      - ${ROOT_DIR}/downloads/torrents:/torrents # torrents folder
+      - ${ROOT_DIR}/downloads/incomplete:/incomplete  # incomplete downloads folder
+      - ${ROOT_DIR}/downloads/complete:/complete      # complete downloads folder
 
   jackett:
     container_name: jackett
@@ -36,11 +37,11 @@ services:
     environment:
       - PUID=${PUID} # default user id, defined in .env
       - PGID=${PGID} # default group id, defined in .env
-      - TZ=${TZ} # timezone, defined in .env
+      - TZ=${TZ}     # timezone, defined in .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ROOT}/downloads/torrent-blackhole:/downloads # place where to put .torrent files for manual download
-      - ${ROOT}/config/jackett:/config # config files
+      - ${ROOT_DIR}/config/jackett:/config # config files
+      - ${ROOT_DIR}/downloads/torrents:/torrents # where to put torrent files for download
 
   sonarr:
     container_name: sonarr
@@ -50,9 +51,24 @@ services:
     environment:
       - PUID=${PUID} # default user id, defined in .env
       - PGID=${PGID} # default group id, defined in .env
-      - TZ=${TZ} # timezone, defined in .env
+      - TZ=${TZ}     # timezone, defined in .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ROOT}/config/sonarr:/config # config files
-      - ${ROOT}/complete/tv:/tv # tv shows folder
-      - ${ROOT}/downloads:/downloads # download folder
+      - ${ROOT_DIR}/config/sonarr:/config          # config files
+      - ${ROOT_DIR}/downloads/complete:/complete   # completed downloads folder
+      - ${MEDIA_DIR}/tvshows:/tvshows              # tv shows folder
+
+  # radarr:
+  #   container_name: radarr
+  #   image: linuxserver/radarr:latest
+  #   restart: unless-stopped
+  #   network_mode: host
+  #   environment:
+  #     - PUID=${PUID} # default user id, defined in .env
+  #     - PGID=${PGID} # default group id, defined in .env
+  #     - TZ=${TZ}     # timezone, defined in .env
+  #    volumes:
+  #     - /etc/localtime:/etc/localtime:ro
+  #     - ${ROOT}/config/radarr:/config    # config files
+  #     - ${ROOT_DIR}/downloads/complete:/complete   # completed downloads folder
+  #     - ${MEDIA_DIR}/movies:/movies      # movies folder
