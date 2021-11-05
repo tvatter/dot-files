@@ -10,10 +10,7 @@ sudo ufw allow ssh
 sudo ufw enable
 
 #### Ubuntu theme
-#sudo add-apt-repository -y ppa:noobslab/themes
-#sudo add-apt-repository -y ppa:noobslab/icons
-#sudo apt update
-sudo apt install -y gnome-tweak-tool #arc-theme arc-icons moka-icon-theme
+sudo apt install -y gnome-tweak-tool arc-theme 
 
 #### Gnome terminal theme
 git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
@@ -42,11 +39,11 @@ sudo rm -rf /usr/bin/dropbox; sudo ln -s ~/.dropbox.py /usr/bin/dropbox
 dropbox autostart -y
 dropbox update
 
-#### Skype
-curl https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -
-echo "deb https://repo.skype.com/deb stable main" | sudo tee /etc/apt/sources.list.d/skypeforlinux.list
-sudo apt update
-sudo apt install -y skypeforlinux
+# #### Skype
+# curl https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -
+# echo "deb https://repo.skype.com/deb stable main" | sudo tee /etc/apt/sources.list.d/skypeforlinux.list
+# sudo apt update
+# sudo apt install -y skypeforlinux
 
 #### Zoom
 mkdir -p zoom; cd zoom
@@ -93,15 +90,25 @@ Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings 
 Rscript --vanilla -e 'install.packages(c("lintr", "styler", "languageserver", "BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
 
 #### Python
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda.sh
-bash conda.sh -b -p $HOME/miniconda
-rm conda.sh
+# wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda.sh
+# bash conda.sh -b -p $HOME/miniconda
+# rm conda.sh
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
+bash Mambaforge-Linux-x86_64.sh -b -p $HOME/mambaforge
+rm Mambaforge-Linux-x86_64.sh
 exec zsh
-conda update -n base -c defaults conda
-conda install -c conda-forge pylint yapf jedi unidecode wheel isort
-conda install -c conda-forge numpy scipy scikit-learn pandas scikit-learn-extra
-conda install -c conda-forge matplotlib seaborn
-conda install -c conda-forge ipython build
+mamba install pylint yapf build
+mamba update --all
+mamba create --name ml clone base
+conda activate ml
+mamba install numpy scipy matplotlib pandas scikit-learn seaborn ipython jupyter rpy2
+# mamba update --all
+# conda update -n base -c defaults conda
+# conda install -c conda-forge pylint yapf jedi unidecode wheel isort
+# conda install -c conda-forge numpy scipy scikit-learn pandas scikit-learn-extra
+# conda install -c conda-forge matplotlib seaborn
+# conda install -c conda-forge ipython build
+# conda update --all
 # conda install -c conda-forge radian # a better console, see https://github.com/randy3k/radian
 
 #### Hugo
@@ -114,20 +121,20 @@ sudo apt install -y pandoc
 # sudo apt install -y npm
 # sudo npm install remark remark-lint textlint --global
 
-#### Mendeley
-mkdir -p mendeley; cd mendeley
-wget -c https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
-sudo dpkg -i mendeley*
-sudo apt install -f -y 
-cd ..; rm -rf mendeley
+# #### Mendeley
+# mkdir -p mendeley; cd mendeley
+# wget -c https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
+# sudo dpkg -i mendeley*
+# sudo apt install -f -y 
+# cd ..; rm -rf mendeley
 
-#### Texmaker
-sudo apt install -y texmaker
+# #### Texmaker
+# sudo apt install -y texmaker
 
 #### Rstudio
 sudo apt install -y gdebi-core libjpeg62
 mkdir -p rstudio; cd rstudio
-wget -c https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1717-amd64.deb 
+wget -c https://download1.rstudio.org/desktop/bionic/amd64/rstudio-2021.09.0-351-amd64.deb 
 sudo gdebi --non-interactive rstudio*
 cd ..; rm -rf rstudio
 
@@ -155,14 +162,9 @@ sudo wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-ke
 sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 sudo apt install code
 
-#### signal
-sudo wget -q https://updates.signal.org/desktop/apt/keys.asc -O- | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
-sudo apt update && sudo apt install signal-desktop
+# #### signal
+# sudo wget -q https://updates.signal.org/desktop/apt/keys.asc -O- | sudo apt-key add -
+# sudo add-apt-repository "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
+# sudo apt update && sudo apt install signal-desktop
 
-#### sonarr
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 2009837CBFFD68F45BC180471F4F90DE2A9B4BF8
-echo "deb https://apt.sonarr.tv/ubuntu focal main" | sudo tee /etc/apt/sources.list.d/sonarr.list
-sudo apt update
-sudo apt install sonarr
 

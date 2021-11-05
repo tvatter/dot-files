@@ -33,6 +33,7 @@
         "editor.formatOnSave": false
     },
     "jupyter.interactiveWindowMode": "perFile",
+    // "python.defaultInterpreterPath": "/home/tvatter/miniconda/bin/python",
     "python.languageServer": "Pylance",
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": false,
@@ -56,7 +57,7 @@
         "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
     },
     "r.bracketedPaste": true,
-    // "r.rterm.linux": "/home/tvatter/miniconda/bin/radian",
+    "r.rterm.linux": "/home/tvatter/mambaforge/envs/ml/bin/R",
     "r.sessionWatcher": true,
     "remark.format": {
         "rules": {
