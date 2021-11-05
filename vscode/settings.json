@@ -33,7 +33,6 @@
         "editor.formatOnSave": false
     },
     "jupyter.interactiveWindowMode": "perFile",
-    "python.defaultInterpreterPath": "/home/tvatter/miniconda/bin/python",
     "python.languageServer": "Pylance",
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": false,
