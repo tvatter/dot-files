@@ -70,13 +70,14 @@ chsh -s $(which zsh)
 
 Note that this step sometimes requires `sudo`.
 
+<!-- 
 - You may need to update line 301 in `init.vim`:
 
 ```
 let g:ncm2_pyclang#library_path = 'path/to/llvm/lib'
 ```
 
-Usually, it is located somewhere like `usr/lib/llvm-MAJOR.MINOR`.
+Usually, it is located somewhere like `usr/lib/llvm-MAJOR.MINOR`. -->
 
 <!-- * If the version of clang Because some clang tools are installed with their version number, you probably need: -->
 
@@ -99,7 +100,7 @@ MAKE=${MAKE-'make -j 8'}
 
 ### Additional
 
-- Install the lastpass chrome extension and log into it
+- Install the bitwarden brave extension and log into it
 - Complete dropbox install
 
 ```
@@ -109,7 +110,7 @@ dropbox start
 - Add dropbox as a startup application
   - In the "name" field, type `Dropbox`.
   - In the "command" field, type `/home/{your-username}/.dropbox-dist/dropboxd`.
-- Add skype/zoom/terminal as startup applications
+- Add terminal as startup application
 - Update font in the `gnome-terminal`:
   - Go to `Edit/preferences/profiles/custom font`
   - Use `JetBrainsMono-Regular`
