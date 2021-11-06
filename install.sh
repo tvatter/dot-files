@@ -87,7 +87,7 @@ sudo apt install -y libxml2-dev libfontconfig1-dev # for tidyverse packagews
 sudo apt install -y libgsl-dev  # for VineCopula 
 sudo apt install -y xorg libx11-dev libglu1-mesa-dev libfreetype6-dev # for rgl
 Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)'
-Rscript --vanilla -e 'install.packages(c("lintr", "styler", "languageserver", "BH", "RcppEigen", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
+Rscript --vanilla -e 'install.packages(c("lintr", "styler", "languageserver", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
 
 #### Python
 # wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda.sh
@@ -101,7 +101,10 @@ mamba install pylint yapf build
 mamba update --all
 mamba create --name ml clone base
 conda activate ml
-mamba install numpy scipy matplotlib pandas scikit-learn seaborn ipython jupyter rpy2
+mamba install numpy scipy matplotlib pandas scikit-learn seaborn 
+mamba install ipython jupyter 
+mamba install rpy2 r-tidyverse r-languageserver r-devtools r-lintr
+mamba install r-blogdown r-kableExtra r-ggthemes
 # mamba update --all
 # conda update -n base -c defaults conda
 # conda install -c conda-forge pylint yapf jedi unidecode wheel isort
