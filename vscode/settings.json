@@ -77,5 +77,6 @@
     "jupyter.askForKernelRestart": false,
     "notebook.lineNumbers": "on",
     "python.insidersChannel": "daily",
-    "notebook.output.textLineLimit": 50
+    "notebook.output.textLineLimit": 50,
+    "explorer.confirmDragAndDrop": false
 }
