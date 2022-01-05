@@ -7,7 +7,6 @@
     "editor.insertSpaces": true,
     "editor.lineNumbers": "on",
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-    "window.zoomLevel": 2,
     "workbench.colorTheme": "Material Theme High Contrast",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
