@@ -78,5 +78,8 @@
     "notebook.lineNumbers": "on",
     "python.insidersChannel": "daily",
     "notebook.output.textLineLimit": 50,
-    "explorer.confirmDragAndDrop": false
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "C_Cpp.updateChannel": "Insiders",
+    "git.suggestSmartCommit": false
 }
