@@ -7,7 +7,6 @@
     "editor.insertSpaces": true,
     "editor.lineNumbers": "on",
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-    "window.zoomLevel": 2,
     "workbench.colorTheme": "Material Theme High Contrast",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
@@ -81,5 +80,7 @@
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
     "C_Cpp.updateChannel": "Insiders",
-    "git.suggestSmartCommit": false
+    "git.suggestSmartCommit": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.formatOnSaveMode": "modificationsIfAvailable"
 }

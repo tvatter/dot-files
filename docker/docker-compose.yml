@@ -1,5 +1,6 @@
 services:
   vpn:
+    container_name: nordvpn
     image: ghcr.io/bubuntux/nordvpn:latest
     restart: unless-stopped
     cap_add:
@@ -13,6 +14,7 @@ services:
       - NETWORK=192.168.1.0/24  # So it can be accessed within the local network
     ports:
       - 8112:8112 # port for deluge web UI to be reachable from local network
+      # - 34400:34400 # port for xteve web UI to be reachable from local network
 
   deluge:
     container_name: deluge
@@ -58,17 +60,26 @@ services:
       - ${ROOT_DIR}/downloads/complete:/complete   # completed downloads folder
       - ${MEDIA_DIR}/tvshows:/tvshows              # tv shows folder
 
-  # radarr:
-  #   container_name: radarr
-  #   image: linuxserver/radarr:latest
+  radarr:
+    container_name: radarr
+    image: ghcr.io/linuxserver/radarr:latest
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ}     # timezone, defined in .env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${ROOT}/config/radarr:/config    # config files
+      - ${ROOT_DIR}/downloads/complete:/complete   # completed downloads folder
+      - ${MEDIA_DIR}/movies:/movies      # movies folder
+
+  # xteve:
+  #   container_name: xteve 
+  #   image: ghcr.io/bl0m1/xtevedocker/xtevedocker:ci-latest
   #   restart: unless-stopped
-  #   network_mode: host
-  #   environment:
-  #     - PUID=${PUID} # default user id, defined in .env
-  #     - PGID=${PGID} # default group id, defined in .env
-  #     - TZ=${TZ}     # timezone, defined in .env
-  #    volumes:
-  #     - /etc/localtime:/etc/localtime:ro
-  #     - ${ROOT}/config/radarr:/config    # config files
-  #     - ${ROOT_DIR}/downloads/complete:/complete   # completed downloads folder
-  #     - ${MEDIA_DIR}/movies:/movies      # movies folder
+  #   network_mode: service:vpn
+  #   volumes:
+  #     - ${ROOT_DIR}/config/xteve:/home/xteve/.xteve # config files
+  #     # https://iptv-org.github.io/iptv/index.m3u
