@@ -82,5 +82,8 @@
     "C_Cpp.updateChannel": "Insiders",
     "git.suggestSmartCommit": false,
     "security.workspace.trust.untrustedFiles": "open",
-    "editor.formatOnSaveMode": "modificationsIfAvailable"
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "git.confirmSync": false,
+    "workbench.startupEditor": "none",
+    "quarto.mathjax.theme": "dark"
 }
