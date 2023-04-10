@@ -50,7 +50,7 @@
     "[python]": {
         "editor.codeActionsOnSave": {
             "source.organizeImports": true
-        }
+        },
     },
     "[r]": {
         "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
@@ -85,5 +85,8 @@
     "editor.formatOnSaveMode": "modificationsIfAvailable",
     "git.confirmSync": false,
     "workbench.startupEditor": "none",
-    "quarto.mathjax.theme": "dark"
+    "quarto.mathjax.theme": "dark",
+    "files.associations": {
+        "*.qmd": "rmd"
+    }
 }
