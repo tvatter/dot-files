@@ -31,7 +31,6 @@
         "editor.defaultFormatter": "nickfode.latex-formatter",
         "editor.formatOnSave": false
     },
-    "jupyter.interactiveWindowMode": "perFile",
     // "python.defaultInterpreterPath": "/home/tvatter/miniconda/bin/python",
     "python.languageServer": "Pylance",
     "python.linting.pylintEnabled": true,
@@ -88,5 +87,6 @@
     "quarto.mathjax.theme": "dark",
     "files.associations": {
         "*.qmd": "rmd"
-    }
+    },
+    "jupyter.interactiveWindow.creationMode": "perFile"
 }

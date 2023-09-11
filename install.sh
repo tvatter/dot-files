@@ -99,8 +99,8 @@ rm Mambaforge-Linux-x86_64.sh
 exec zsh
 mamba install pylint yapf build
 mamba update --all
-mamba create --name ml clone base
-conda activate ml
+mamba create --name ml --clone base
+mamba activate ml
 mamba install numpy scipy matplotlib pandas scikit-learn seaborn 
 mamba install ipython jupyter 
 mamba install rpy2 r-tidyverse r-languageserver r-devtools r-lintr
