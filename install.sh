@@ -21,8 +21,8 @@ fc-cache -f -v
 rm JetBrainsMono-1.0.3.zip
 
 #### Brave
-curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
-echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt update
 sudo apt install -y brave-browser
 
@@ -82,12 +82,12 @@ sudo apt install -y texlive-full
 sudo add-apt-repository -y ppa:marutter/rrutter4.0
 sudo apt update
 sudo apt install -y r-base r-base-dev
-sudo apt install -y libcurl4-openssl-dev libssl-dev # for tidyverse packagews
-sudo apt install -y libxml2-dev libfontconfig1-dev # for tidyverse packagews
-sudo apt install -y libgsl-dev  # for VineCopula 
-sudo apt install -y xorg libx11-dev libglu1-mesa-dev libfreetype6-dev # for rgl
-Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)'
-Rscript --vanilla -e 'install.packages(c("lintr", "styler", "languageserver", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
+#sudo apt install -y libcurl4-openssl-dev libssl-dev # for tidyverse packagews
+#sudo apt install -y libxml2-dev libfontconfig1-dev # for tidyverse packagews
+#sudo apt install -y libgsl-dev  # for VineCopula 
+#sudo apt install -y xorg libx11-dev libglu1-mesa-dev libfreetype6-dev # for rgl
+#Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)'
+#Rscript --vanilla -e 'install.packages(c("lintr", "styler", "languageserver", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"), repo = "https://cloud.r-project.org/")'
 
 #### Python
 # wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda.sh
