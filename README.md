@@ -14,22 +14,6 @@ ssh-add ~/.ssh/id_rsa
 xclip -sel clip < ~/.ssh/id_rsa.pub  # -> add on github.com
 ```
 
-- Install the latest graphic drivers. On a server (e.g., an AWS instance), this step can be skipped. On a computer with intel graphics (for nvidia, go to next bullet point):
-
-```
-sudo add-apt-repository ppa:oibaf/graphics-drivers
-sudo apt update
-sudo apt dist-upgrade
-```
-
-- Or if you have an nvidia GPU (XYZ is the latest driver compatible with your GPU):
-
-```
-sudo apt purge nvidia*
-sudo apt update
-sudo apt install nvidia-XYZ
-```
-
 ## Install
 
 - Clone the repo:
@@ -70,35 +54,12 @@ chsh -s $(which zsh)
 
 Note that this step sometimes requires `sudo`.
 
-<!-- 
-- You may need to update line 301 in `init.vim`:
-
-```
-let g:ncm2_pyclang#library_path = 'path/to/llvm/lib'
-```
-
-Usually, it is located somewhere like `usr/lib/llvm-MAJOR.MINOR`. -->
-
-<!-- * If the version of clang Because some clang tools are installed with their version number, you probably need: -->
-
-<!--  -->
-
-<!-- ``` -->
-
-<!-- sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-6.0 100 -->
-
-<!-- ``` -->
-
-<!--  -->
-
 - Update make command in Renviron (either `/etc/R/Renviron` or 
   `/usr/lib/R/etc/Renviron`, see `R.home()`) to compile on multiple cores:
 
 ```
 MAKE=${MAKE-'make -j 8'}
 ```
-
-### Additional
 
 - Install the bitwarden brave extension and log into it
 - Complete dropbox install
@@ -111,6 +72,9 @@ dropbox start
   - In the "name" field, type `Dropbox`.
   - In the "command" field, type `/home/{your-username}/.dropbox-dist/dropboxd`.
 - Add terminal as startup application
+- Change the theme:
+  - In`Settings/Appearance`, set dark theme
+  - In `Tweaks`, set the Jetbrains font
 - Update font in the `gnome-terminal`:
   - Go to `Edit/preferences/profiles/custom font`
   - Use `JetBrainsMono-Regular`
