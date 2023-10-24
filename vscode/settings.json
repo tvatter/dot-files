@@ -1,92 +1,97 @@
 {
-    "editor.wordWrap": "bounded",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2,
-    "editor.detectIndentation": true,
-    "editor.cursorStyle": "line",
-    "editor.insertSpaces": true,
-    "editor.lineNumbers": "on",
-    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-    "workbench.colorTheme": "Default High Contrast",
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+  "editor.wordWrap": "bounded",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": true,
+  "editor.cursorStyle": "line",
+  "editor.insertSpaces": true,
+  "editor.lineNumbers": "on",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editor.enablePreview": false,
+  "terminal.integrated.inheritEnv": true,
+  "terminal.integrated.shell.linux": "/usr/bin/zsh",
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.leader": "<space>",
+  "aws.profile": "profile:tvatter",
+  // "terminal.integrated.env.linux": {
+  //    "DISPLAY":"localhost:10.0"
+  //  },
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.synctex.afterBuild.enabled": true,
+  "[latex]": {
+    "editor.defaultFormatter": "nickfode.latex-formatter",
+    "editor.formatOnSave": false
+  },
+  // "python.defaultInterpreterPath": "/home/tvatter/miniconda/bin/python",
+  "python.languageServer": "Pylance",
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": false,
+  "python.linting.enabled": true,
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style",
+    "{based_on_style: pep8, indent_width: 2}"
+  ],
+  "python.terminal.launchArgs": ["-m", "IPython", "--no-autoindent"],
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
     },
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.editor.enablePreview": false,
-    "terminal.integrated.inheritEnv": true,
-    "terminal.integrated.shell.linux": "/usr/bin/zsh",
-    "vim.easymotion": true,
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.useCtrlKeys": true,
-    "vim.hlsearch": true,
-    "vim.leader": "<space>",
-    "aws.profile": "profile:tvatter",
-    // "terminal.integrated.env.linux": {
-    //    "DISPLAY":"localhost:10.0"
-    //  },
-    "latex-workshop.view.pdf.viewer": "tab",
-    "latex-workshop.synctex.afterBuild.enabled": true,
-    "[latex]": {
-        "editor.defaultFormatter": "nickfode.latex-formatter",
-        "editor.formatOnSave": false
-    },
-    // "python.defaultInterpreterPath": "/home/tvatter/miniconda/bin/python",
-    "python.languageServer": "Pylance",
-    "python.linting.pylintEnabled": true,
-    "python.linting.flake8Enabled": false,
-    "python.linting.enabled": true,
-    "python.formatting.provider": "yapf",
-    "python.formatting.yapfArgs": [
-        "--style",
-        "{based_on_style: pep8, indent_width: 2}"
-    ],
-    "python.terminal.launchArgs": [
-        "-m",
-        "IPython",
-        "--no-autoindent"
-    ],
-    "[python]": {
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        },
-        "editor.formatOnType": true,
-    },
-    "[r]": {
-        "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
-    },
-    "r.bracketedPaste": true,
-    "r.sessionWatcher": true,
-    "remark.format": {
-        "rules": {
-            "listItemIndent": "1",
-            "commonmark": true,
-            "fences": true
-        }
-    },
-    "editor.suggestSelection": "first",
-    "editor.inlineSuggest.enabled": true,
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "git.autofetch": true,
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
-    },
-    "jupyter.askForKernelRestart": false,
-    "notebook.lineNumbers": "on",
-    "python.insidersChannel": "daily",
-    "notebook.output.textLineLimit": 50,
-    "explorer.confirmDragAndDrop": false,
-    "explorer.confirmDelete": false,
-    "C_Cpp.updateChannel": "Insiders",
-    "git.suggestSmartCommit": false,
-    "security.workspace.trust.untrustedFiles": "open",
-    "editor.formatOnSaveMode": "modificationsIfAvailable",
-    "git.confirmSync": false,
-    "workbench.startupEditor": "none",
-    "quarto.mathjax.theme": "dark",
-    "files.associations": {
-        "*.qmd": "rmd"
-    },
-    "jupyter.interactiveWindow.creationMode": "perFile"
+    "editor.formatOnType": true
+  },
+  "[r]": {
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
+  },
+  "r.bracketedPaste": true,
+  "r.sessionWatcher": true,
+  "remark.format": {
+    "rules": {
+      "listItemIndent": "1",
+      "commonmark": true,
+      "fences": true
+    }
+  },
+  "editor.suggestSelection": "first",
+  "editor.inlineSuggest.enabled": true,
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "git.autofetch": true,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "jupyter.askForKernelRestart": false,
+  "notebook.lineNumbers": "on",
+  "python.insidersChannel": "daily",
+  "notebook.output.textLineLimit": 50,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "C_Cpp.updateChannel": "Insiders",
+  "git.suggestSmartCommit": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "git.confirmSync": false,
+  "workbench.startupEditor": "none",
+  "quarto.mathjax.theme": "dark",
+  "files.associations": {
+    "*.qmd": "rmd"
+  },
+  "jupyter.interactiveWindow.creationMode": "perFile",
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "markdownlint.config": {
+    "default": true,
+    "MD003": { "style": "atx" },
+    "MD007": { "indent": 4 },
+    "no-hard-tabs": false
+  },
 }
