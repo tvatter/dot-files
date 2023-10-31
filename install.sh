@@ -118,12 +118,14 @@ sudo n lts
 sudo n prune
 sudo npm install remark remark-lint textlint --global
 
-# #### Mendeley
-mkdir -p mendeley; cd mendeley
-wget -c https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
-sudo dpkg -i mendeley*
-sudo apt install -f -y 
-cd ..; rm -rf mendeley
+#### Mendeley
+# mkdir -p mendeley; cd mendeley
+# wget -c https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest
+# # TODO see https://serverfault.com/questions/250224/how-do-i-get-apt-get-to-ignore-some-dependencies
+# sudo dpkg -i mendeley*
+# sudo apt install -y gconf2 python2 python-is-python3
+# sudo apt install -f -y 
+# cd ..; rm -rf mendeley
 
 # #### Texmaker
 sudo apt install -y texmaker
