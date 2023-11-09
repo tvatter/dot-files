@@ -1,12 +1,16 @@
 {
   "editor.wordWrap": "bounded",
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
   "editor.tabSize": 2,
   "editor.detectIndentation": true,
   "editor.cursorStyle": "line",
   "editor.insertSpaces": true,
   "editor.lineNumbers": "on",
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.suggestSelection": "first",
+  "editor.inlineSuggest.enabled": true,
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "workbench.colorTheme": "Material Theme Darker High Contrast",
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
@@ -33,21 +37,27 @@
   },
   // "python.defaultInterpreterPath": "/home/tvatter/miniconda/bin/python",
   "python.languageServer": "Pylance",
-  "python.linting.pylintEnabled": true,
-  "python.linting.flake8Enabled": false,
-  "python.linting.enabled": true,
-  "python.formatting.provider": "yapf",
-  "python.formatting.yapfArgs": [
+  "python.formatting.provider": "none",
+  "python.insidersChannel": "daily",
+  "python.terminal.launchArgs": [
+    "-m",
+    "IPython",
+    "--no-autoindent"
+  ],
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll": true
+    },
+    "editor.defaultFormatter": "eeyore.yapf"
+  },
+  "yapf.args": [
     "--style",
     "{based_on_style: pep8, indent_width: 2}"
   ],
-  "python.terminal.launchArgs": ["-m", "IPython", "--no-autoindent"],
-  "[python]": {
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    },
-    "editor.formatOnType": true
-  },
+  "pylint.args": [
+    "--disable=E0015",
+  ],
   "[r]": {
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
   },
@@ -60,38 +70,37 @@
       "fences": true
     }
   },
-  "editor.suggestSelection": "first",
-  "editor.inlineSuggest.enabled": true,
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "git.autofetch": true,
   "notebook.cellToolbarLocation": {
     "default": "right",
     "jupyter-notebook": "left"
   },
   "jupyter.askForKernelRestart": false,
+  "jupyter.interactiveWindow.creationMode": "perFile",
   "notebook.lineNumbers": "on",
-  "python.insidersChannel": "daily",
   "notebook.output.textLineLimit": 50,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
   "C_Cpp.updateChannel": "Insiders",
+  "git.autofetch": true,
   "git.suggestSmartCommit": false,
-  "security.workspace.trust.untrustedFiles": "open",
-  "editor.formatOnSaveMode": "modificationsIfAvailable",
   "git.confirmSync": false,
+  "security.workspace.trust.untrustedFiles": "open",
   "workbench.startupEditor": "none",
   "quarto.mathjax.theme": "dark",
   "files.associations": {
     "*.qmd": "rmd"
   },
-  "jupyter.interactiveWindow.creationMode": "perFile",
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
   "markdownlint.config": {
     "default": true,
-    "MD003": { "style": "atx" },
-    "MD007": { "indent": 4 },
+    "MD003": {
+      "style": "atx"
+    },
+    "MD007": {
+      "indent": 4
+    },
     "no-hard-tabs": false
-  },
+  }
 }
