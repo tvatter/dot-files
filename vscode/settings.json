@@ -35,20 +35,22 @@
     "editor.defaultFormatter": "nickfode.latex-formatter",
     "editor.formatOnSave": false
   },
-  // "python.defaultInterpreterPath": "/home/tvatter/miniconda/bin/python",
+  "python.defaultInterpreterPath": "/home/tvatter/mambaforge/bin/python",
   "python.languageServer": "Pylance",
   "python.formatting.provider": "none",
   "python.insidersChannel": "daily",
-  "python.terminal.launchArgs": [
-    "-m",
-    "IPython",
-    "--no-autoindent"
-  ],
+  // "python.terminal.launchArgs": [
+  //   "-m",
+  //   "IPython",
+  //   "--no-autoindent"
+  // ],
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": true,
       "source.fixAll": true
     },
+    "editor.formatOnSaveMode": "file",
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "eeyore.yapf"
   },
   "yapf.args": [
@@ -56,8 +58,10 @@
     "{based_on_style: pep8, indent_width: 2}"
   ],
   "pylint.args": [
-    "--disable=E0015",
+    "--disable=E0015"
   ],
+  "pylint.importStrategy": "fromEnvironment",
+  "pylint.lintOnChange": true,
   "[r]": {
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
   },
@@ -102,5 +106,7 @@
       "indent": 4
     },
     "no-hard-tabs": false
-  }
+  },
+  "cmake.showOptionsMovedNotification": false,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
 }
