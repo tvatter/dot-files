@@ -159,8 +159,17 @@ sudo apt install -y nordvpn
 
 #### VS Code
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc > /dev/null
-echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"| sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+echo \
+    "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" | \
+    sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
 sudo apt update
 sudo apt install code
 
-
+### docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin uidmap
