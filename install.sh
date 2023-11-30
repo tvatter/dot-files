@@ -157,13 +157,16 @@ sudo apt install -y nordvpn
 # sudo rm ovpn.zip
 # cd ~/dot-files
 
-#### VS Code
+#### VS Code and teams
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc > /dev/null
 echo \
     "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" | \
     sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+echo \
+    "deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main" | \
+    sudo tee /etc/apt/sources.list.d/teams.list > /dev/null
 sudo apt update
-sudo apt install code
+sudo apt install code teams
 
 ### docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -173,3 +176,4 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin uidmap
+
