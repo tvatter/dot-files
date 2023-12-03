@@ -15,11 +15,11 @@
         "command": "workbench.action.terminal.runSelectedText",
         "when": "!terminalFocus && editorLangId != 'python'"
     },
-    {
-        "key": "shift+enter",
-        "command": "python.execSelectionInTerminal",
-        "when": "!terminalFocus && editorLangId == 'python'"
-    },
+    // {
+    //     "key": "shift+enter",
+    //     "command": "python.execSelectionInTerminal",
+    //     "when": "!terminalFocus && editorLangId == 'python'"
+    // },
     {
         "key": "ctrl+delete",
         "command": "workbench.action.terminal.kill",
