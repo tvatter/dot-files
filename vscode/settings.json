@@ -109,4 +109,9 @@
   },
   "cmake.showOptionsMovedNotification": false,
   "terminal.integrated.enableMultiLinePasteWarning": false,
+  "github.copilot.advanced": {},
+  "github.copilot.enable": {
+    "quarto": false,
+    "*": true
+  },
 }

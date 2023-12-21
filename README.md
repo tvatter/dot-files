@@ -46,6 +46,7 @@ cd gnome-terminal-colors-solarized; ./install.sh -s dark --install-dircolors; cd
 
 ## Post-install
 
+- Enable [rootless Docker](https://docs.docker.com/engine/security/rootless/) by running `dockerd-rootless-setuptool.sh install`
 - Make zsh the default shell (need to log out and log back in):
 
 ```bash
