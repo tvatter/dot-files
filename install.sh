@@ -112,11 +112,11 @@ sudo apt install -y hugo
 sudo apt install -y pandoc
 
 #### npm and stuff
-sudo apt install -y npm
-sudo npm install -g n
-sudo n lts
-sudo n prune
-sudo npm install remark remark-lint textlint --global
+# sudo apt install -y npm
+# sudo npm install -g n
+# sudo n lts
+# sudo n prune
+# sudo npm install remark remark-lint textlint --global
 
 #### Mendeley
 # mkdir -p mendeley; cd mendeley
