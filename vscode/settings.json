@@ -91,9 +91,9 @@
   "security.workspace.trust.untrustedFiles": "open",
   "workbench.startupEditor": "none",
   "quarto.mathjax.theme": "dark",
-  "files.associations": {
-    "*.qmd": "rmd"
-  },
+  // "files.associations": {
+  //   "*.qmd": "rmd"
+  // },
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },

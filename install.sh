@@ -99,6 +99,7 @@ exec zsh
 mamba install pylint yapf build jedi unidecode wheel isort
 mamba install numpy scipy matplotlib pandas scikit-learn seaborn 
 mamba install ipython jupyter
+mamba install perl quarto r-quarto
 mamba update --all
 # mamba install rpy2 r-tidyverse r-languageserver r-devtools r-lintr
 # mamba install r-blogdown r-kableExtra r-ggthemes
