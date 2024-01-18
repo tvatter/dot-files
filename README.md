@@ -1,12 +1,12 @@
-# dot-files
+# dot-file
 
 My various dot files to avoid wasting time on install.
 
 ## Pre-install
 
-- Install git and xclip, create an ssh for git and add it to github:
+- Install git and xclip, create an ssh for git and add it to GitHub:
 
-```
+```bash
 sudo apt install -y git xclip
 ssh-keygen -t rsa -b 4096 -C "thibault.vatter@gmail.com" -N "" -f ~/.ssh/id_rsa
 eval "$(ssh-agent -s)"
