@@ -61,7 +61,7 @@
     "--disable=E0015"
   ],
   "pylint.importStrategy": "fromEnvironment",
-  "pylint.lintOnChange": true,
+  // "pylint.lintOnChange": true,
   "[r]": {
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
   },
