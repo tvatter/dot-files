@@ -3,29 +3,30 @@
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "modificationsIfAvailable",
   "editor.tabSize": 2,
-  "editor.detectIndentation": true,
-  "editor.cursorStyle": "line",
   "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.cursorStyle": "line",
   "editor.lineNumbers": "on",
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.suggestSelection": "first",
   "editor.inlineSuggest.enabled": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "workbench.iconTheme": "eq-material-theme-icons-darker",
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
   },
-  "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.enablePreview": false,
   "terminal.integrated.inheritEnv": true,
-  "terminal.integrated.shell.linux": "/usr/bin/zsh",
   "vim.easymotion": true,
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
   "vim.leader": "<space>",
-  "aws.profile": "profile:tvatter",
+  // "aws.profile": "profile:tvatter",
   // "terminal.integrated.env.linux": {
   //    "DISPLAY":"localhost:10.0"
   //  },
@@ -35,65 +36,42 @@
     "editor.defaultFormatter": "nickfode.latex-formatter",
     "editor.formatOnSave": false
   },
-  "python.defaultInterpreterPath": "/home/tvatter/mambaforge/bin/python",
   "python.languageServer": "Pylance",
-  "python.formatting.provider": "none",
-  "python.insidersChannel": "daily",
-  // "python.terminal.launchArgs": [
-  //   "-m",
-  //   "IPython",
-  //   "--no-autoindent"
-  // ],
+  "ruff.importStrategy": "fromEnvironment",
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit",
       "source.fixAll": "explicit"
     },
-    "editor.formatOnSaveMode": "file",
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "eeyore.yapf"
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
-  "yapf.args": [
-    "--style",
-    "{based_on_style: pep8, indent_width: 2}"
-  ],
-  "pylint.args": [
-    "--disable=E0015"
-  ],
-  "pylint.importStrategy": "fromEnvironment",
-  "pylint.lintOnChange": true,
-  "[r]": {
-    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
-  },
-  "r.bracketedPaste": true,
-  "r.sessionWatcher": true,
-  "remark.format": {
-    "rules": {
-      "listItemIndent": "1",
-      "commonmark": true,
-      "fences": true
-    }
+  "jupyter.askForKernelRestart": false,
+  "jupyter.interactiveWindow.creationMode": "perFile",
+  "notebook.formatOnSave.enabled": true,
+  "notebook.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
   },
   "notebook.cellToolbarLocation": {
     "default": "right",
     "jupyter-notebook": "left"
   },
-  "jupyter.askForKernelRestart": false,
-  "jupyter.interactiveWindow.creationMode": "perFile",
   "notebook.lineNumbers": "on",
-  "notebook.output.textLineLimit": 50,
-  "explorer.confirmDragAndDrop": false,
-  "explorer.confirmDelete": false,
-  "C_Cpp.updateChannel": "Insiders",
+  "notebook.output.textLineLimit": 80,
+  "notebook.output.scrolling": true,
+  "[r]": {
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
+  },
+  // "r.bracketedPaste": true,
+  // "r.sessionWatcher": true,
   "git.autofetch": true,
   "git.suggestSmartCommit": false,
   "git.confirmSync": false,
   "security.workspace.trust.untrustedFiles": "open",
   "workbench.startupEditor": "none",
-  "quarto.mathjax.theme": "dark",
-  // "files.associations": {
-  //   "*.qmd": "rmd"
-  // },
+  "files.associations": {
+    "*.qmd": "rmd"
+  },
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
