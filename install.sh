@@ -92,14 +92,13 @@ Rscript --vanilla -e 'dir.create(path = Sys.getenv("R_LIBS_USER"), showWarnings 
 Rscript --vanilla -e 'install.packages(c("lintr", "styler", "languageserver", "tidyverse", "blogdown", "kableExtra", "devtools","RColorBrewer", "ggthemes"), lib = Sys.getenv("R_LIBS_USER"))'
 
 #### Python
-wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
-bash Mambaforge-Linux-x86_64.sh -b -p $HOME/mambaforge
-rm Mambaforge-Linux-x86_64.sh
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+bash Miniforge3-$(uname)-$(uname -m).sh-b -p $HOME/miniforge3
+rm Miniforge3-$(uname)-$(uname -m).sh
 exec zsh
-mamba install pylint yapf build jedi unidecode wheel isort
+mamba install pylint yapf build jedi unidecode wheel isort ruff
 mamba install numpy scipy matplotlib pandas scikit-learn seaborn 
 mamba install ipython jupyter
-mamba install perl quarto r-quarto
 mamba update --all
 # mamba install rpy2 r-tidyverse r-languageserver r-devtools r-lintr
 # mamba install r-blogdown r-kableExtra r-ggthemes

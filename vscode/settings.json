@@ -36,7 +36,6 @@
     "editor.defaultFormatter": "nickfode.latex-formatter",
     "editor.formatOnSave": false
   },
-  "python.defaultInterpreterPath": "/home/tvatter/mambaforge/bin/python",
   "python.languageServer": "Pylance",
   "ruff.importStrategy": "fromEnvironment",
   "[python]": {
