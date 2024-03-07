@@ -8,3 +8,5 @@
 	helper = cache
 [submodule]
 	recurse = true
+[init]
+	defaultBranch = main
