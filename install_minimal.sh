@@ -15,8 +15,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting \
 
 #### Dotfiles
 cd zsh; for f in *; do rm -rf ~/.$f; ln -s $PWD/$f ~/.$f; done; cd ..
-cd vscode; mkdir -p ~/.config/Code/User; for f in *; do rm -rf ~/.config/Code/User/$f; ln -s $PWD/$f ~/.config/Code/User; done; cd ..
-declare -a files=(".R" ".gitconfig" ".condarc" ".pylintrc", ".Rprofile")
+declare -a files=(".gitconfig" ".condarc")
 for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
 
 #### Conda
