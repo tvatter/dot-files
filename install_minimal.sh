@@ -20,6 +20,6 @@ for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
 
 #### Conda
 wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
-bash Miniforge3-$(uname)-$(uname -m).sh-b -p $HOME/miniforge3
+bash Miniforge3-$(uname)-$(uname -m).sh -p $HOME/miniforge3
 rm Miniforge3-$(uname)-$(uname -m).sh
 exec zsh
