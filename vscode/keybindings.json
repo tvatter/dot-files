@@ -1,119 +1,124 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
-    {
-        "key": "ctrl+`",
-        "command": "workbench.action.terminal.focus",
-        "when": "!terminalFocus"
-    },
-    {
-        "key": "ctrl+`",
-        "command": "workbench.action.focusActiveEditorGroup",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "shift+enter",
-        "command": "workbench.action.terminal.runSelectedText",
-        "when": "!terminalFocus && editorLangId != 'python'"
-    },
-    // {
-    //     "key": "shift+enter",
-    //     "command": "python.execSelectionInTerminal",
-    //     "when": "!terminalFocus && editorLangId == 'python'"
-    // },
-    {
-        "key": "ctrl+delete",
-        "command": "workbench.action.terminal.kill",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+k",
-        "command": "workbench.action.terminal.clear",
-        "when": "terminalFocus"
-    },
-    // {
-    //     "description": "Check Package with devtools::check()",
-    //     "key": "ctrl+shift+e",
-    //     "command": "r.runCommand",
-    //     "when": "editorLangId == r || editorLangId == rmd",
-    //     "args": "devtools::check()"
-    // },
-    // {
-    //     "description": "Install and Restart with devtools::install(quick = TRUE)",
-    //     "key": "ctrl+shift+b",
-    //     "command": "r.runCommand",
-    //     "when": "editorLangId == r || editorLangId == rmd",
-    //     "args": "devtools::install(quick = TRUE)"
-    // },
-    // {
-    //     "description": "Test Package with devtools::test()",
-    //     "key": "ctrl+shift+t",
-    //     "command": "r.runCommand",
-    //     "when": "editorLangId == r || editorLangId == rmd",
-    //     "args": "devtools::test()"
-    // },
-    // {
-    //     "description": "Document Package with devtools::document()",
-    //     "key": "ctrl+shift+d",
-    //     "command": "r.runCommand",
-    //     "when": "editorLangId == r || editorLangId == rmd",
-    //     "args": "devtools::document()"
-    // },
-    {
-        "key": "ctrl+f7",
-        "command": "cmake.configure"
-    },
-    {
-        "key": "ctrl+alt+a",
-        "command": "jupyter.insertCellAbove",
-        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
-    },
-    {
-        "key": "ctrl+; a",
-        "command": "-jupyter.insertCellAbove",
-        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
-    },
-    {
-        "key": "ctrl+alt+b",
-        "command": "jupyter.insertCellBelow",
-        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
-    },
-    {
-        "key": "ctrl+; b",
-        "command": "-jupyter.insertCellBelow",
-        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
-    },
-    {
-        "key": "ctrl+alt+c",
-        "command": "jupyter.changeCellToCode",
-        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
-    },
-    {
-        "key": "ctrl+; c",
-        "command": "-jupyter.changeCellToCode",
-        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
-    },
-    {
-        "key": "ctrl+alt+m",
-        "command": "jupyter.changeCellToMarkdown",
-        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
-    },
-    {
-        "key": "ctrl+; m",
-        "command": "-jupyter.changeCellToMarkdown",
-        "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
-    },
-    {
-        "key": "ctrl+shift+backspace",
-        "command": "github.copilot.generate",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+enter",
-        "command": "-github.copilot.generate",
-        "when": "editorTextFocus"
-    },
-    // {
-    //     "key": "ctrl+shift+r",
-    //     "command": "quarto.renderProject"
-    // }
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.focus",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.runSelectedText",
+    "when": "!terminalFocus && editorLangId != 'python'"
+  },
+  // {
+  //     "key": "shift+enter",
+  //     "command": "python.execSelectionInTerminal",
+  //     "when": "!terminalFocus && editorLangId == 'python'"
+  // },
+  {
+    "key": "ctrl+delete",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.terminal.clear",
+    "when": "terminalFocus"
+  },
+  // {
+  //     "description": "Check Package with devtools::check()",
+  //     "key": "ctrl+shift+e",
+  //     "command": "r.runCommand",
+  //     "when": "editorLangId == r || editorLangId == rmd",
+  //     "args": "devtools::check()"
+  // },
+  // {
+  //     "description": "Install and Restart with devtools::install(quick = TRUE)",
+  //     "key": "ctrl+shift+b",
+  //     "command": "r.runCommand",
+  //     "when": "editorLangId == r || editorLangId == rmd",
+  //     "args": "devtools::install(quick = TRUE)"
+  // },
+  // {
+  //     "description": "Test Package with devtools::test()",
+  //     "key": "ctrl+shift+t",
+  //     "command": "r.runCommand",
+  //     "when": "editorLangId == r || editorLangId == rmd",
+  //     "args": "devtools::test()"
+  // },
+  // {
+  //     "description": "Document Package with devtools::document()",
+  //     "key": "ctrl+shift+d",
+  //     "command": "r.runCommand",
+  //     "when": "editorLangId == r || editorLangId == rmd",
+  //     "args": "devtools::document()"
+  // },
+  {
+    "key": "ctrl+f7",
+    "command": "cmake.configure"
+  },
+  {
+    "key": "ctrl+alt+a",
+    "command": "jupyter.insertCellAbove",
+    "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+  },
+  {
+    "key": "ctrl+; a",
+    "command": "-jupyter.insertCellAbove",
+    "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+  },
+  {
+    "key": "ctrl+alt+b",
+    "command": "jupyter.insertCellBelow",
+    "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+  },
+  {
+    "key": "ctrl+; b",
+    "command": "-jupyter.insertCellBelow",
+    "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+  },
+  {
+    "key": "ctrl+alt+c",
+    "command": "jupyter.changeCellToCode",
+    "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+  },
+  {
+    "key": "ctrl+; c",
+    "command": "-jupyter.changeCellToCode",
+    "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+  },
+  {
+    "key": "ctrl+alt+m",
+    "command": "jupyter.changeCellToMarkdown",
+    "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+  },
+  {
+    "key": "ctrl+; m",
+    "command": "-jupyter.changeCellToMarkdown",
+    "when": "editorTextFocus && jupyter.hascodecells && !notebookEditorFocused"
+  },
+  {
+    "key": "ctrl+shift+backspace",
+    "command": "github.copilot.generate",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+enter",
+    "command": "-github.copilot.generate",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+alt+t",
+    "command": "github.copilot.interactiveEditor.generateTests",
+    "when": "editorTextFocus && github.copilot.activated && !inInteractiveInput && !interactiveEditorFocused"
+  },
+  // {
+  //     "key": "ctrl+shift+r",
+  //     "command": "quarto.renderProject"
+  // }
 ]

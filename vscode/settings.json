@@ -1,4 +1,5 @@
 {
+  "settingsSync.keybindingsPerPlatform": false,
   "editor.wordWrap": "bounded",
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "modificationsIfAvailable",
@@ -19,7 +20,9 @@
     "*.ipynb": "jupyter-notebook"
   },
   "workbench.editor.enablePreview": false,
+  "workbench.startupEditor": "none",
   "terminal.integrated.inheritEnv": true,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
   // "vim.easymotion": true,
   // "vim.incsearch": true,
   // "vim.useSystemClipboard": true,
@@ -37,7 +40,6 @@
     "editor.formatOnSave": false
   },
   "python.languageServer": "Pylance",
-  "ruff.importStrategy": "fromEnvironment",
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit",
@@ -45,6 +47,11 @@
     },
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
+  "ruff.importStrategy": "fromEnvironment",
+  "mypy-type-checker.importStrategy": "fromEnvironment",
+  "mypy-type-checker.showNotifications": "always",
+  "mypy-type-checker.reportingScope": "workspace",
+  "mypy-type-checker.preferDaemon": true,
   "jupyter.askForKernelRestart": false,
   "jupyter.interactiveWindow.creationMode": "perFile",
   "notebook.formatOnSave.enabled": true,
@@ -59,6 +66,7 @@
   "notebook.lineNumbers": "on",
   "notebook.output.textLineLimit": 80,
   "notebook.output.scrolling": true,
+  "notebook.diff.ignoreOutputs": true,
   "[r]": {
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-"
   },
@@ -68,7 +76,6 @@
   "git.suggestSmartCommit": false,
   "git.confirmSync": false,
   "security.workspace.trust.untrustedFiles": "open",
-  "workbench.startupEditor": "none",
   "files.associations": {
     "*.qmd": "rmd"
   },
@@ -85,12 +92,30 @@
     },
     "no-hard-tabs": false
   },
-  "cmake.showOptionsMovedNotification": false,
-  "terminal.integrated.enableMultiLinePasteWarning": "never",
   "github.copilot.advanced": {},
   "github.copilot.enable": {
     "quarto": false,
     "*": true
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "cmake.configureOnOpen": true,
+  "cmake.showOptionsMovedNotification": false,
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ],
+  "cSpell.language": "en,fr,fr-FR",
+  "cSpell.enableFiletypes": [
+    "quarto"
+  ],
+  "cSpell.userWords": [
+    "jupyter",
+    "revealjs",
+  ],
+  "[cpp]": {
+    "editor.wordBasedSuggestions": "off",
+    "editor.suggest.insertMode": "replace",
+    "editor.semanticHighlighting.enabled": true
   },
   // "yapf.args": [
   //   "--style",
