@@ -56,8 +56,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting \
 
 #### Dotfiles
 cd zsh; for f in *; do rm -rf ~/.$f; ln -s $PWD/$f ~/.$f; done; cd ..
-cd vscode; mkdir -p ~/.config/Code/User; for f in *; do rm -rf ~/.config/Code/User/$f; ln -s $PWD/$f ~/.config/Code/User; done; cd ..
-declare -a files=(".R" ".gitconfig" ".condarc" ".pylintrc", ".Rprofile")
+declare -a files=(".R" ".gitconfig")
 for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
 
 #### C++
@@ -96,7 +95,9 @@ wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforg
 bash Miniforge3-$(uname)-$(uname -m).sh -p $HOME/miniforge3
 rm Miniforge3-$(uname)-$(uname -m).sh
 exec zsh
-mamba install pylint yapf build jedi unidecode wheel isort ruff
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+mamba install python=3.11 build unidecode wheel isort ruff mypy pytest
 mamba install numpy scipy matplotlib pandas scikit-learn seaborn 
 mamba install ipython jupyter
 mamba update --all
