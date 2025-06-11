@@ -36,7 +36,7 @@ rm Miniforge3-$(uname)-$(uname -m).sh
 exec zsh
 conda config --add channels conda-forge
 conda config --set channel_priority strict
-mamba install python=3.11 build unidecode wheel isort ruff mypy pytest
+mamba install python=3.13 build unidecode wheel isort ruff mypy pytest
 mamba install numpy scipy matplotlib pandas scikit-learn seaborn 
 mamba install ipython jupyter
 mamba update --all
