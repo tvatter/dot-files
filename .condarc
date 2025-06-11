@@ -1,0 +1,5 @@
+always_yes: true
+changeps1: false
+channels:
+  - conda-forge
+channel_priority: strict
