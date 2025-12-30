@@ -4,11 +4,53 @@ cleanup_dropbox_ignored.py
 
 Linux:
 - Enumerate files via `find <root> -type f -print0`.
-- Match rules via trusted PurePosixPath.match + suffix loop (Dropbox-ish semantics).
-- Speed-up: sound literal-component prefilter to skip impossible rules.
+- Fast ignore evaluation for simplified Dropbox rules: structural predicates.
+- Fallback to trusted PurePosixPath.match + suffix loop for unclassified patterns.
 
 WARNING:
 - Deleting/moving inside Dropbox affects the cloud state.
+
+Can also do something like
+
+cd ~/Dropbox
+
+find . -type d \( \
+  -name "__pycache__" -o \
+  -name ".pytest_cache" -o \
+  -name ".mypy_cache" -o \
+  -name ".ruff_cache" -o \
+  -name ".pytype" -o \
+  -name ".hypothesis" -o \
+  -name "htmlcov" -o \
+  -name ".nox" -o \
+  -name ".tox" -o \
+  -name ".eggs" -o \
+  -name ".ipynb_checkpoints" -o \
+  -name ".conda" -o \
+  -name ".mamba" -o \
+  -name "conda-bld" -o \
+  -name ".Rproj.user" -o \
+  -name "CMakeFiles" -o \
+  -name "build" -o \
+  -name "dist" -o \
+  -name "target" -o \
+  -name ".venv" -o \
+  -name "venv" -o \
+  -name ".pixi" -o \
+  -name "node_modules" -o \
+  -name ".npm" -o \
+  -name ".yarn" -o \
+  -name ".pnpm-store" -o \
+  -name ".parcel-cache" -o \
+  -name ".next" -o \
+  -name ".nuxt" -o \
+  -name ".svelte-kit" -o \
+  -name ".cache" -o \
+  -name ".Trash" -o \
+  -name "cmake-build-*" -o \
+  -name "_minted*" -o \
+  -name "*.egg-info" \
+\) -prune -print0 | xargs -0 -r rm -rf --
 """
 
 from __future__ import annotations
@@ -18,13 +60,12 @@ import json
 import logging
 import os
 import shutil
-import stat
 import subprocess
 import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
-from typing import Iterable, Iterator, Optional, Tuple
+from typing import Iterator, Optional, Tuple
 
 LOG = logging.getLogger("cleanup_dropbox_ignored")
 
@@ -89,7 +130,7 @@ def detect_dropbox_root() -> Path:
 
 
 # -----------------------------
-# Rules parsing + trusted matching
+# Rule compilation: fast predicates + fallback
 # -----------------------------
 
 _GLOB_META = set("*?[]")
@@ -99,105 +140,353 @@ def _has_glob_meta(s: str) -> bool:
     return any(c in _GLOB_META for c in s)
 
 
-def _literal_components(pattern_wo_anchor: str) -> list[str]:
-    """
-    Extract *literal* path components (no glob metacharacters) from a pattern.
-    These components are necessary (if pattern matches, these literals appear as components).
-    Safe prefilter: we only use them to skip rules when missing.
-    """
-    comps: list[str] = []
-    for part in pattern_wo_anchor.split("/"):
-        if not part or part == "**":
-            continue
-        if _has_glob_meta(part):
-            continue
-        comps.append(part.lower())
-    return comps
-
-
-def _contains_component(rel_posix_lower: str, comp_lower: str) -> bool:
-    # component boundary check via sentinel slashes
-    hay = f"/{rel_posix_lower}/"
-    needle = f"/{comp_lower}/"
-    return needle in hay
-
-
 @dataclass(frozen=True)
-class Rule:
+class FallbackRule:
     negated: bool
     anchored: bool
-    pat2: str  # pattern without leading '/'
-    has_slash: bool
-    required_components: tuple[
-        str, ...
-    ]  # literal components (lowercase) used for prefilter
+    pat2: str  # lower, without leading '/'
 
 
-def parse_rules(rules_path: Path) -> list[Rule]:
-    rules: list[Rule] = []
+@dataclass
+class CompiledRules:
+    # If True, we can short-circuit on first match (no negations, no anchored rules).
+    any_match_semantics: bool
+
+    # Basename tests (lowercase)
+    basename_exact: set[str]
+    basename_prefix: tuple[str, ...]
+    basename_suffix: tuple[str, ...]
+    # special basename shapes
+    basename_endswith_tilde: bool
+    basename_hash_wrapped: bool  # #*#
+    basename_prefix_dot_underscore: bool  # ._*
+    basename_prefix_dot_hash: bool  # .#*
+
+    # Directory/component tests (lowercase), applied to directory components only
+    dir_exact: set[str]
+    dir_prefix: tuple[str, ...]
+    dir_suffix: tuple[str, ...]  # e.g. ".egg-info"
+
+    # Fallback (trusted matcher) rules, in original order
+    fallback: list[FallbackRule]
+
+    # For full semantics (negations/anchored), keep all rules in order (fast+fallback)
+    # as normalized raw patterns; used only if any_match_semantics=False.
+    ordered_raw: list[Tuple[bool, bool, str]]  # (negated, anchored, pat2_lower)
+
+
+def compile_rules(rules_path: Path) -> CompiledRules:
+    basename_exact: set[str] = set()
+    basename_prefix: list[str] = []
+    basename_suffix: list[str] = []
+
+    dir_exact: set[str] = set()
+    dir_prefix: list[str] = []
+    dir_suffix: list[str] = []
+
+    fallback: list[FallbackRule] = []
+    ordered_raw: list[Tuple[bool, bool, str]] = []
+
+    has_negation = False
+    has_anchored = False
+
+    # These specials are triggered by presence of matching patterns.
+    enable_tilde = False
+    enable_hashwrap = False
+    enable_dot_underscore = False
+    enable_dot_hash = False
+
     for raw in rules_path.read_text(encoding="utf-8").splitlines():
         s = raw.strip()
         if not s or s.startswith("#"):
             continue
+
         neg = s.startswith("!")
-        pat_raw = s[1:].strip() if neg else s
-        if not pat_raw:
+        if neg:
+            has_negation = True
+            s = s[1:].strip()
+        if not s:
             continue
 
-        anchored = pat_raw.startswith("/")
-        pat2 = pat_raw.lstrip("/") if anchored else pat_raw
-        pat2_l = pat2.lower()
+        anchored = s.startswith("/")
+        if anchored:
+            has_anchored = True
+            s = s.lstrip("/")
 
-        rules.append(
-            Rule(
-                negated=neg,
-                anchored=anchored,
-                pat2=pat2_l,
-                has_slash=("/" in pat2_l),
-                required_components=tuple(_literal_components(pat2_l)),
-            )
-        )
-    return rules
+        pat = s.lower()
+        ordered_raw.append((neg, anchored, pat))
+
+        # We primarily support patterns of these forms:
+        # - **/<name>              (basename match)
+        # - **/<name>/**           (directory/component match)
+        # where <name> may include a single trailing '*' (prefix), or a leading '*.' (suffix),
+        # or be '*.egg-info' (component suffix), or simple specials (#*#, ._*, .#*, *~),
+        # or '.coverage.*' (prefix).
+        if pat.startswith("**/"):
+            tail = pat[3:]
+
+            # Directory-tree pattern?
+            if tail.endswith("/**"):
+                name = tail[:-3]  # strip '/**'
+                # If it contains '/', treat as exact directory path component sequence?
+                # In your simplified rules, these are single-component names (possibly with spaces).
+                if "/" in name:
+                    # Too risky to "optimize" multi-component directory patterns; fallback.
+                    fallback.append(
+                        FallbackRule(negated=neg, anchored=anchored, pat2=pat)
+                    )
+                    continue
+
+                if name == "**":
+                    # meaningless
+                    continue
+
+                # Component patterns
+                if not _has_glob_meta(name):
+                    dir_exact.add(name)
+                    continue
+
+                # prefix: foo*
+                if name.endswith("*") and not _has_glob_meta(name[:-1]):
+                    dir_prefix.append(name[:-1])
+                    continue
+
+                # suffix: *.egg-info
+                if name.startswith("*.") and not _has_glob_meta(name[1:]):
+                    dir_suffix.append(name[1:])  # ".egg-info"
+                    continue
+
+                # otherwise fallback
+                fallback.append(FallbackRule(negated=neg, anchored=anchored, pat2=pat))
+                continue
+
+            # Basename-ish pattern (file name in any directory)
+            name = tail
+            if "/" in name:
+                # unexpected here; fallback
+                fallback.append(FallbackRule(negated=neg, anchored=anchored, pat2=pat))
+                continue
+
+            # Specials
+            if name == "*~":
+                enable_tilde = True
+                continue
+            if name == "#*#":
+                enable_hashwrap = True
+                continue
+            if name == "._*":
+                enable_dot_underscore = True
+                continue
+            if name == ".#*":
+                enable_dot_hash = True
+                continue
+
+            # Prefix .coverage.* => prefix ".coverage."
+            if name.endswith(".*") and not _has_glob_meta(name[:-2]):
+                basename_prefix.append(
+                    name[:-1]
+                )  # keep trailing '.' (e.g. ".coverage.")
+                continue
+
+            # Simple exact
+            if not _has_glob_meta(name):
+                basename_exact.add(name)
+                continue
+
+            # Suffix *.ext or *.synctex.gz or *.so.pyd
+            if name.startswith("*.") and not _has_glob_meta(name[1:]):
+                basename_suffix.append(name[1:])  # ".ext" (including multi-dot)
+                continue
+
+            # Prefix foo* (rare for basenames in your set, but keep)
+            if name.endswith("*") and not _has_glob_meta(name[:-1]):
+                basename_prefix.append(name[:-1])
+                continue
+
+            # Otherwise fallback
+            fallback.append(FallbackRule(negated=neg, anchored=anchored, pat2=pat))
+            continue
+
+        # Anything else: fallback
+        fallback.append(FallbackRule(negated=neg, anchored=anchored, pat2=pat))
+
+    # Dedup + normalize for faster loops
+    basename_prefix_t = tuple(sorted(set(basename_prefix), key=len, reverse=True))
+    basename_suffix_t = tuple(sorted(set(basename_suffix), key=len, reverse=True))
+    dir_prefix_t = tuple(sorted(set(dir_prefix), key=len, reverse=True))
+    dir_suffix_t = tuple(sorted(set(dir_suffix), key=len, reverse=True))
+
+    any_match_semantics = (not has_negation) and (not has_anchored)
+
+    return CompiledRules(
+        any_match_semantics=any_match_semantics,
+        basename_exact=basename_exact,
+        basename_prefix=basename_prefix_t,
+        basename_suffix=basename_suffix_t,
+        basename_endswith_tilde=enable_tilde,
+        basename_hash_wrapped=enable_hashwrap,
+        basename_prefix_dot_underscore=enable_dot_underscore,
+        basename_prefix_dot_hash=enable_dot_hash,
+        dir_exact=dir_exact,
+        dir_prefix=dir_prefix_t,
+        dir_suffix=dir_suffix_t,
+        fallback=fallback,
+        ordered_raw=ordered_raw,
+    )
 
 
-def path_matches_rule(rel_posix_lower: str, rule: Rule) -> bool:
+def _trusted_match(
+    rel_posix_lower: str, negated: bool, anchored: bool, pat2: str
+) -> bool:
     """
-    Trusted semantics:
+    Trusted semantics (your original):
     - anchored: PurePosixPath(rel).match(pat2)
     - unanchored with no '/': PurePosixPath(rel).match(pat2)
-    - unanchored with '/': try all suffixes of rel parts (component boundary suffixes)
+    - unanchored with '/': try all suffixes (component boundary)
     """
     p = PurePosixPath(rel_posix_lower)
-
-    if rule.anchored:
-        return p.match(rule.pat2)
-
-    if not rule.has_slash:
-        return p.match(rule.pat2)
-
+    if anchored:
+        return p.match(pat2)
+    if "/" not in pat2:
+        return p.match(pat2)
     parts = p.parts
     for i in range(len(parts)):
-        if PurePosixPath(*parts[i:]).match(rule.pat2):
+        if PurePosixPath(*parts[i:]).match(pat2):
             return True
     return False
 
 
-def is_ignored(rel_posix: str, rules: Iterable[Rule]) -> bool:
+def _fast_match(rel_posix_lower: str, cr: CompiledRules) -> bool:
     """
-    Last-match-wins with negations, plus a sound literal-component prefilter.
+    Fast "any rule matches" evaluation (valid only when cr.any_match_semantics=True).
+    """
+    # Basename
+    # (rel is already lower, and uses '/')
+    basename = rel_posix_lower.rsplit("/", 1)[-1]
+
+    if basename in cr.basename_exact:
+        return True
+
+    if cr.basename_prefix_dot_underscore and basename.startswith("._"):
+        return True
+    if cr.basename_prefix_dot_hash and basename.startswith(".#"):
+        return True
+    if cr.basename_endswith_tilde and basename.endswith("~"):
+        return True
+    if (
+        cr.basename_hash_wrapped
+        and basename.startswith("#")
+        and basename.endswith("#")
+        and len(basename) >= 2
+    ):
+        return True
+
+    for pre in cr.basename_prefix:
+        if basename.startswith(pre):
+            return True
+    for suf in cr.basename_suffix:
+        if basename.endswith(suf):
+            return True
+
+    # Directory components (exclude basename)
+    if (cr.dir_exact or cr.dir_prefix or cr.dir_suffix) and "/" in rel_posix_lower:
+        parts = rel_posix_lower.split("/")
+        dir_parts = parts[:-1]
+        if cr.dir_exact:
+            for part in dir_parts:
+                if part in cr.dir_exact:
+                    return True
+        if cr.dir_prefix:
+            for part in dir_parts:
+                for pre in cr.dir_prefix:
+                    if part.startswith(pre):
+                        return True
+        if cr.dir_suffix:
+            for part in dir_parts:
+                for suf in cr.dir_suffix:
+                    if part.endswith(suf):
+                        return True
+
+    # Fallback rules (rare)
+    for r in cr.fallback:
+        if _trusted_match(rel_posix_lower, r.negated, r.anchored, r.pat2):
+            return True
+
+    return False
+
+
+def is_ignored(rel_posix: str, cr: CompiledRules) -> bool:
+    """
+    If no negations/anchored rules exist: short-circuit on first match (fast).
+    Otherwise: preserve last-match-wins semantics using trusted matcher for all rules
+    (still benefits from fast-path checks before fallback).
     """
     rel_l = rel_posix.lower()
 
-    ignored = False
-    for r in rules:
-        # Safe skip: if pattern requires literal components that are absent, it cannot match.
-        if r.required_components:
-            # All required literals must appear as components somewhere
-            if not all(_contains_component(rel_l, c) for c in r.required_components):
-                continue
+    if cr.any_match_semantics:
+        return _fast_match(rel_l, cr)
 
-        if path_matches_rule(rel_l, r):
-            ignored = not r.negated
+    # Full semantics: last-match-wins.
+    ignored = False
+    # We can still evaluate fast predicates to detect matches cheaply, but we must
+    # do it in order and allow later rules to override, so we cannot short-circuit.
+    basename = rel_l.rsplit("/", 1)[-1]
+    parts = rel_l.split("/") if "/" in rel_l else [rel_l]
+    dir_parts = parts[:-1]
+
+    for neg, anchored, pat2 in cr.ordered_raw:
+        matched = False
+
+        # Attempt fast classification again based on the textual pattern form.
+        # If we cannot classify the pattern safely, fall back to trusted matcher.
+        # NOTE: This path is mainly for completeness; in your simplified rules
+        # any_match_semantics should be True.
+        if not anchored and pat2.startswith("**/"):
+            tail = pat2[3:]
+            if tail.endswith("/**") and "/" not in tail[:-3]:
+                name = tail[:-3]
+                if not _has_glob_meta(name):
+                    matched = name in dir_parts
+                elif name.endswith("*") and not _has_glob_meta(name[:-1]):
+                    pre = name[:-1]
+                    matched = any(p.startswith(pre) for p in dir_parts)
+                elif name.startswith("*.") and not _has_glob_meta(name[1:]):
+                    suf = name[1:]
+                    matched = any(p.endswith(suf) for p in dir_parts)
+                else:
+                    matched = _trusted_match(rel_l, neg, anchored, pat2)
+            elif "/" not in tail:
+                name = tail
+                if name == "*~":
+                    matched = basename.endswith("~")
+                elif name == "#*#":
+                    matched = (
+                        basename.startswith("#")
+                        and basename.endswith("#")
+                        and len(basename) >= 2
+                    )
+                elif name == "._*":
+                    matched = basename.startswith("._")
+                elif name == ".#*":
+                    matched = basename.startswith(".#")
+                elif name.endswith(".*") and not _has_glob_meta(name[:-2]):
+                    matched = basename.startswith(name[:-1])
+                elif not _has_glob_meta(name):
+                    matched = basename == name
+                elif name.startswith("*.") and not _has_glob_meta(name[1:]):
+                    matched = basename.endswith(name[1:])
+                elif name.endswith("*") and not _has_glob_meta(name[:-1]):
+                    matched = basename.startswith(name[:-1])
+                else:
+                    matched = _trusted_match(rel_l, neg, anchored, pat2)
+            else:
+                matched = _trusted_match(rel_l, neg, anchored, pat2)
+        else:
+            matched = _trusted_match(rel_l, neg, anchored, pat2)
+
+        if matched:
+            ignored = not neg
+
     return ignored
 
 
@@ -212,9 +501,6 @@ def _run_find_print0(root: Path) -> subprocess.Popen[bytes]:
 
 
 def iter_files_find(root: Path) -> Iterator[str]:
-    """
-    Yield absolute file paths as strings (decoded), from `find -print0`.
-    """
     proc = _run_find_print0(root)
     assert proc.stdout is not None
     buf = b""
@@ -285,8 +571,31 @@ def collect_matches(
     count_first: bool,
     progress_every: int,
 ) -> Tuple[list[Match], int, int]:
-    rules = parse_rules(rules_path)
-    LOG.debug("Loaded %d rules from %s", len(rules), rules_path)
+    cr = compile_rules(rules_path)
+
+    if cr.any_match_semantics:
+        LOG.debug(
+            "Compiled rules from %s: any-match semantics enabled "
+            "(no negations, no anchored rules).",
+            rules_path,
+        )
+    else:
+        LOG.debug(
+            "Compiled rules from %s: full semantics (negations/anchored present).",
+            rules_path,
+        )
+
+    LOG.debug(
+        "Fast buckets: basename_exact=%d, basename_prefix=%d, basename_suffix=%d, "
+        "dir_exact=%d, dir_prefix=%d, dir_suffix=%d, fallback=%d",
+        len(cr.basename_exact),
+        len(cr.basename_prefix),
+        len(cr.basename_suffix),
+        len(cr.dir_exact),
+        len(cr.dir_prefix),
+        len(cr.dir_suffix),
+        len(cr.fallback),
+    )
 
     root = root.resolve()
     root_str = str(root)
@@ -316,7 +625,7 @@ def collect_matches(
                 pbar.update(1)
             continue
 
-        if is_ignored(rel, rules):
+        if is_ignored(rel, cr):
             p = Path(abs_s)
             try:
                 st = p.lstat()
@@ -324,7 +633,7 @@ def collect_matches(
                 if pbar is not None:
                     pbar.update(1)
                 continue
-            if stat.S_ISREG(st.st_mode):
+            if os.stat.S_ISREG(st.st_mode):
                 size = int(st.st_size)
                 total_size += size
                 matches.append(Match(path=p, rel=rel, size=size))
@@ -341,7 +650,10 @@ def collect_matches(
 
     elapsed = max(1e-9, time.time() - t0)
     LOG.info(
-        "Scanned %d files in %.1fs (%.0f files/s).", scanned, elapsed, scanned / elapsed
+        "Scanned %d files in %.1fs (%.0f files/s).",
+        scanned,
+        elapsed,
+        scanned / elapsed,
     )
 
     return matches, total_size, scanned
@@ -386,7 +698,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument(
         "--progress-every",
         type=int,
-        default=2000,
+        default=20000,
         help="Log every N scanned files (0 disables).",
     )
     p.add_argument(

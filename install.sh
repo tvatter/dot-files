@@ -58,6 +58,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting \
 cd zsh; for f in *; do rm -rf ~/.$f; ln -s $PWD/$f ~/.$f; done; cd ..
 declare -a files=(".R" ".gitconfig")
 for file in "${files[@]}"; do rm -rf ~/$file; ln -s $PWD/$file ~/$file; done
+mkdir -p ~/Dropbox
+ln -sf "$PWD/dropbox/rules.dropboxignore" ~/Dropbox/rules.dropboxignore
 
 #### C++
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
