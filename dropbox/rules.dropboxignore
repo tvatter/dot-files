@@ -1,12 +1,11 @@
 ################################################################################
 # Dropbox ignore rules (beta): rules.dropboxignore
 #
-# Notes (Dropbox Help):
-# - File must live in Dropbox root; applied immediately on save.
+# - Must live in Dropbox root.
 # - Case-insensitive matching.
 # - Forward-only: affects newly-added files/folders; existing synced content stays
 #   until removed manually.
-# - File is local-only and does NOT sync across devices: install on each machine.
+# - Local-only: does NOT sync across devices; install on each machine.
 ################################################################################
 
 ########################################
@@ -28,7 +27,7 @@
 ########################################
 # Editors / IDEs
 ########################################
-# Keep VS Code project settings (you explicitly want .vscode synced)
+# Keep VS Code project settings (you want .vscode synced)
 # (So: DO NOT ignore **/.vscode/**)
 
 # JetBrains / IntelliJ
@@ -42,7 +41,7 @@
 **/.#*
 
 ########################################
-# Python: caches, build artifacts, test/typing tooling
+# Python: caches, typing/testing tooling (safe globally)
 ########################################
 **/__pycache__/**
 **/*.pyc
@@ -66,18 +65,16 @@
 **/dist/**
 **/build/**
 
-# Virtual environments (common across uv/pip/poetry/pixi workflows)
+# Virtual environments (safe globally; usually machine-specific and large)
 **/.venv/**
 **/venv/**
 **/.pixi/**
 
-# Packaging / misc
-**/.Python
-**/pip-wheel-metadata/**
+# Jupyter
 **/.ipynb_checkpoints/**
 
 ########################################
-# Conda / mamba (project-local env folders only; avoids broad ~/.conda usage)
+# Conda / mamba (project-local env folders only)
 ########################################
 **/.conda/**
 **/.mamba/**
@@ -126,7 +123,7 @@
 **/*.pygstyle
 
 ########################################
-# C/C++ / build systems
+# C/C++ / build systems (safe globally)
 ########################################
 **/*.o
 **/*.obj
@@ -143,15 +140,14 @@
 **/*.so
 **/*.mod
 
-# CMake common artifacts (keep sources; drop generated build trees)
+# CMake common artifacts (generated files often appear inside build trees)
 **/CMakeFiles/**
 **/CMakeCache.txt
 **/cmake_install.cmake
-**/Makefile
 **/cmake-build-*/**
 
 ########################################
-# JavaScript / web tooling
+# JavaScript tooling (safe globally)
 ########################################
 **/node_modules/**
 **/.npm/**
