@@ -18,20 +18,20 @@
 **/Thumbs.db
 **/ehthumbs.db
 **/*.lnk
-**/.Spotlight-V100/**
-**/.Trashes/**
-**/Network Trash Folder/**
-**/Temporary Items/**
+**/.Spotlight-V100/
+**/.Trashes/
+**/Network Trash Folder/
+**/Temporary Items/
 **/.apdisk
 
 ########################################
 # Editors / IDEs
 ########################################
 # Keep VS Code project settings (you want .vscode synced)
-# (So: DO NOT ignore **/.vscode/**)
+# (So: DO NOT ignore **/.vscode/)
 
 # JetBrains / IntelliJ
-**/.idea/**
+**/.idea/
 
 # Vim / swap / backups
 **/*.swp
@@ -43,42 +43,42 @@
 ########################################
 # Python: caches, typing/testing tooling (safe globally)
 ########################################
-**/__pycache__/**
+**/__pycache__/
 **/*.pyc
 **/*.pyo
 **/*.pyd
 **/*.pyi.tmp
 **/*.so.pyd
 
-**/.pytest_cache/**
-**/.mypy_cache/**
-**/.ruff_cache/**
-**/.pytype/**
-**/.hypothesis/**
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.pytype/
+**/.hypothesis/
 **/.coverage
 **/.coverage.*
-**/htmlcov/**
-**/.nox/**
-**/.tox/**
-**/.eggs/**
-**/*.egg-info/**
-**/dist/**
-**/build/**
+**/htmlcov/
+**/.nox/
+**/.tox/
+**/.eggs/
+**/*.egg-info/
+**/dist/
+**/build/
 
 # Virtual environments (safe globally; usually machine-specific and large)
-**/.venv/**
-**/venv/**
-**/.pixi/**
+**/.venv/
+**/venv/
+**/.pixi/
 
 # Jupyter
-**/.ipynb_checkpoints/**
+**/.ipynb_checkpoints/
 
 ########################################
 # Conda / mamba (project-local env folders only)
 ########################################
-**/.conda/**
-**/.mamba/**
-**/conda-bld/**
+**/.conda/
+**/.mamba/
+**/conda-bld/
 
 ########################################
 # R: history, user state, local libraries
@@ -87,12 +87,12 @@
 **/.Rapp.history
 **/.RData
 **/.Ruserdata
-**/.Rproj.user/**
+**/.Rproj.user/
 
 # renv / packrat: keep lockfiles but ignore local library payload
-**/renv/library/**
-**/renv/staging/**
-**/packrat/lib/**
+**/renv/library/
+**/renv/staging/
+**/packrat/lib/
 
 ########################################
 # LaTeX: auxiliary / intermediate files
@@ -117,7 +117,7 @@
 **/*.xdv
 
 # minted / pygments / latex caches
-**/_minted*/**
+**/_minted*/
 **/*.pyg
 **/*.pygtex
 **/*.pygstyle
@@ -141,28 +141,28 @@
 **/*.mod
 
 # CMake common artifacts (generated files often appear inside build trees)
-**/CMakeFiles/**
+**/CMakeFiles/
 **/CMakeCache.txt
 **/cmake_install.cmake
-**/cmake-build-*/**
+**/cmake-build-*/
 
 ########################################
 # JavaScript tooling (safe globally)
 ########################################
-**/node_modules/**
-**/.npm/**
-**/.yarn/**
-**/.pnpm-store/**
-**/dist/**
-**/.parcel-cache/**
-**/.next/**
-**/.nuxt/**
-**/.svelte-kit/**
+**/node_modules/
+**/.npm/
+**/.yarn/
+**/.pnpm-store/
+**/dist/
+**/.parcel-cache/
+**/.next/
+**/.nuxt/
+**/.svelte-kit/
 
 ########################################
 # Rust / Go
 ########################################
-**/target/**
+**/target/
 **/*.rlib
 **/*.rmeta
 **/*.pdb
@@ -171,5 +171,5 @@
 ########################################
 # Misc caches
 ########################################
-**/.cache/**
-**/.Trash/**
+**/.cache/
+**/.Trash/
