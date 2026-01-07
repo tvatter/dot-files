@@ -1,0 +1,175 @@
+################################################################################
+# Dropbox ignore rules (beta): rules.dropboxignore
+#
+# - Must live in Dropbox root.
+# - Case-insensitive matching.
+# - Forward-only: affects newly-added files/folders; existing synced content stays
+#   until removed manually.
+# - Local-only: does NOT sync across devices; install on each machine.
+################################################################################
+
+########################################
+# OS / Desktop cruft
+########################################
+**/.DS_Store
+**/.AppleDouble
+**/.LSOverride
+**/._*
+**/Thumbs.db
+**/ehthumbs.db
+**/*.lnk
+**/.Spotlight-V100/**
+**/.Trashes/**
+**/Network Trash Folder/**
+**/Temporary Items/**
+**/.apdisk
+
+########################################
+# Editors / IDEs
+########################################
+# Keep VS Code project settings (you want .vscode synced)
+# (So: DO NOT ignore **/.vscode/**)
+
+# JetBrains / IntelliJ
+**/.idea/**
+
+# Vim / swap / backups
+**/*.swp
+**/*.swo
+**/*~
+**/#*#
+**/.#*
+
+########################################
+# Python: caches, typing/testing tooling (safe globally)
+########################################
+**/__pycache__/**
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/*.pyi.tmp
+**/*.so.pyd
+
+**/.pytest_cache/**
+**/.mypy_cache/**
+**/.ruff_cache/**
+**/.pytype/**
+**/.hypothesis/**
+**/.coverage
+**/.coverage.*
+**/htmlcov/**
+**/.nox/**
+**/.tox/**
+**/.eggs/**
+**/*.egg-info/**
+**/dist/**
+**/build/**
+
+# Virtual environments (safe globally; usually machine-specific and large)
+**/.venv/**
+**/venv/**
+**/.pixi/**
+
+# Jupyter
+**/.ipynb_checkpoints/**
+
+########################################
+# Conda / mamba (project-local env folders only)
+########################################
+**/.conda/**
+**/.mamba/**
+**/conda-bld/**
+
+########################################
+# R: history, user state, local libraries
+########################################
+**/.Rhistory
+**/.Rapp.history
+**/.RData
+**/.Ruserdata
+**/.Rproj.user/**
+
+# renv / packrat: keep lockfiles but ignore local library payload
+**/renv/library/**
+**/renv/staging/**
+**/packrat/lib/**
+
+########################################
+# LaTeX: auxiliary / intermediate files
+########################################
+**/*.aux
+**/*.bbl
+**/*.bcf
+**/*.blg
+**/*.fdb_latexmk
+**/*.fls
+**/*.lof
+**/*.log
+**/*.lot
+**/*.nav
+**/*.out
+**/*.run.xml
+**/*.snm
+**/*.synctex
+**/*.synctex.gz
+**/*.toc
+**/*.vrb
+**/*.xdv
+
+# minted / pygments / latex caches
+**/_minted*/**
+**/*.pyg
+**/*.pygtex
+**/*.pygstyle
+
+########################################
+# C/C++ / build systems (safe globally)
+########################################
+**/*.o
+**/*.obj
+**/*.a
+**/*.lib
+**/*.la
+**/*.lai
+**/*.lo
+**/*.slo
+**/*.pch
+**/*.gch
+**/*.dll
+**/*.dylib
+**/*.so
+**/*.mod
+
+# CMake common artifacts (generated files often appear inside build trees)
+**/CMakeFiles/**
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/cmake-build-*/**
+
+########################################
+# JavaScript tooling (safe globally)
+########################################
+**/node_modules/**
+**/.npm/**
+**/.yarn/**
+**/.pnpm-store/**
+**/dist/**
+**/.parcel-cache/**
+**/.next/**
+**/.nuxt/**
+**/.svelte-kit/**
+
+########################################
+# Rust / Go
+########################################
+**/target/**
+**/*.rlib
+**/*.rmeta
+**/*.pdb
+**/*.exe
+
+########################################
+# Misc caches
+########################################
+**/.cache/**
+**/.Trash/**
