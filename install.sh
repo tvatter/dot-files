@@ -77,9 +77,9 @@ rm Miniforge3-$(uname)-$(uname -m).sh
 exec zsh
 conda config --add channels conda-forge
 conda config --set channel_priority strict
-mamba install python=3.13 build unidecode wheel isort ruff mypy pytest
-mamba install numpy scipy matplotlib pandas scikit-learn seaborn 
-mamba install ipython jupyter quarto
+mamba install --yes python=3.13 build unidecode wheel isort ruff mypy pytest
+mamba install --yes numpy scipy matplotlib pandas scikit-learn seaborn 
+mamba install --yes ipython jupyter quarto
 mamba update --all
 # mamba install rpy2 r-tidyverse r-languageserver r-devtools r-lintr
 # mamba install r-blogdown r-kableExtra r-ggthemes
@@ -111,7 +111,7 @@ Rscript --vanilla -e 'install.packages(c("lintr", "styler", "languageserver", "t
 #### Rstudio
 sudo apt install -y gdebi-core libjpeg62
 mkdir -p rstudio; cd rstudio
-wget -c https://download1.rstudio.org/electron/jammy/amd64/rstudio-2023.09.1-494-amd64.deb 
+wget -c https://download1.rstudio.org/electron/jammy/amd64/rstudio-2025.05.1-513-amd64.deb
 sudo gdebi --non-interactive rstudio*
 cd ..; rm -rf rstudio
 
