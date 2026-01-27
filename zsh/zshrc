@@ -175,3 +175,4 @@ unset __mamba_setup
 export PATH="/home/tvatter/.pixi/bin:$PATH"
 
 . "$HOME/.local/bin/env"
+. "$HOME/.cargo/env"

@@ -87,6 +87,11 @@ mamba update --all
 # mamba install r-blogdown r-kableExtra r-ggthemes
 # mamba update --all
 
+#### Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+source $HOME/.cargo/env
+cargo install tex-fmt
+
 #### VS Code
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc > /dev/null
 echo \
