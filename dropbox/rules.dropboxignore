@@ -65,7 +65,7 @@
 **/dist/
 **/build/
 
-# Virtual environments (safe globally; usually machine-specific and large)
+# Virtual environments
 **/.venv/
 **/venv/
 **/.pixi/
