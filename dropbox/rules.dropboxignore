@@ -37,8 +37,6 @@
 **/*.swp
 **/*.swo
 **/*~
-**/#*#
-**/.#*
 
 ########################################
 # Python: caches, typing/testing tooling (safe globally)
