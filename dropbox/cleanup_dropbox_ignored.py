@@ -10,47 +10,6 @@ Linux:
 WARNING:
 - Deleting/moving inside Dropbox affects the cloud state.
 
-Can also do something like
-
-cd ~/Dropbox
-
-find . -type d \( \
-  -name "__pycache__" -o \
-  -name ".pytest_cache" -o \
-  -name ".mypy_cache" -o \
-  -name ".ruff_cache" -o \
-  -name ".pytype" -o \
-  -name ".hypothesis" -o \
-  -name "htmlcov" -o \
-  -name ".nox" -o \
-  -name ".tox" -o \
-  -name ".eggs" -o \
-  -name ".ipynb_checkpoints" -o \
-  -name ".conda" -o \
-  -name ".mamba" -o \
-  -name "conda-bld" -o \
-  -name ".Rproj.user" -o \
-  -name "CMakeFiles" -o \
-  -name "build" -o \
-  -name "dist" -o \
-  -name "target" -o \
-  -name ".venv" -o \
-  -name "venv" -o \
-  -name ".pixi" -o \
-  -name "node_modules" -o \
-  -name ".npm" -o \
-  -name ".yarn" -o \
-  -name ".pnpm-store" -o \
-  -name ".parcel-cache" -o \
-  -name ".next" -o \
-  -name ".nuxt" -o \
-  -name ".svelte-kit" -o \
-  -name ".cache" -o \
-  -name ".Trash" -o \
-  -name "cmake-build-*" -o \
-  -name "_minted*" -o \
-  -name "*.egg-info" \
-\) -prune -print0 | xargs -0 -r rm -rf --
 """
 
 from __future__ import annotations
